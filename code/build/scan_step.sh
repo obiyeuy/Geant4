@@ -6,7 +6,7 @@
 START_Y=-28.0      # 起始位置 (mm)
 END_Y=28.0         # 结束位置 (mm)
 STEP=0.7          # 步长 (mm)
-EVENTS=1000000       # 每个位置的事件数（可根据需要修改）
+EVENTS=10000000       # 每个位置的事件数（可根据需要修改）
 
 
 # 可执行文件路径
@@ -40,7 +40,7 @@ while read Y; do
         continue
     fi
   
-    # 生成临时宏文件（使用唯一的文件名）
+    # 生成临时宏文件（使用唯一的文件名） 
     cat > "scan_temp_$Y_STR.mac" << EOF
 ## Particle type, position, energy...
 ## Unit mm

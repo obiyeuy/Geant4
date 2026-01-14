@@ -37,6 +37,7 @@ class DetectorConstruction;
 class G4UIdirectory;
 class G4UIcmdWithAString;
 class G4UIcmdWithADoubleAndUnit;
+class G4UIcmdWithABool;
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
@@ -62,6 +63,7 @@ class DetectorMessenger: public G4UImessenger
     G4UIdirectory*           fDetDirectory;
 
     G4UIcmdWithADoubleAndUnit*      fTargetShiftDistance;
+    G4UIcmdWithABool*               fEnableObjectCmd;
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
