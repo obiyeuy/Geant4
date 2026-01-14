@@ -3,14 +3,17 @@
 # 功能：循环不同的ObjShift值，运行模拟并保存结果
 
 # 扫描参数设置
-START_Y=-20.0      # 起始位置 (mm)
-END_Y=20.0         # 结束位置 (mm)
-STEP=0.5          # 步长 (mm)
-EVENTS=100000       # 每个位置的事件数（可根据需要修改）
+START_Y=-28.0      # 起始位置 (mm)
+END_Y=28.0         # 结束位置 (mm)
+STEP=0.7          # 步长 (mm)
+EVENTS=10000000       # 每个位置的事件数（可根据需要修改）
 
 
 # 可执行文件路径
 EXECUTABLE="./CZT"
+
+# 记录开始时间
+script_start_ts=$(date +%s)
 
 # 计数器
 count=0
@@ -37,7 +40,7 @@ while read Y; do
         continue
     fi
   
-    # 生成临时宏文件（使用唯一的文件名）
+    # 生成临时宏文件（使用唯一的文件名） 
     cat > "scan_temp_$Y_STR.mac" << EOF
 ## Particle type, position, energy...
 ## Unit mm
@@ -68,9 +71,17 @@ EOF
     
     # 清理临时文件
     rm -f scan_temp_${Y_STR}.mac
+    
+    # # 休息
+    # echo "  休息 10 秒..."
+    sleep 10
 done < <(awk -v start="$START_Y" -v end="$END_Y" -v step="$STEP" \
     'BEGIN {
-        for (i = start; i <= end; i += step) {
+        # 使用小的容差来避免浮点数精度问题
+        epsilon = step / 100.0
+        for (i = start; i <= end + epsilon; i += step) {
+            # 确保不超过end
+            if (i > end + epsilon) break
             printf "%.1f\n", i
         }
     }')
@@ -79,4 +90,7 @@ echo ""
 echo "=========================================="
 echo "扫描完成！"
 echo "总共扫描了 $count 个位置"
+script_end_ts=$(date +%s)
+script_elapsed=$((script_end_ts - script_start_ts))
+printf "总耗时: %02d:%02d:%02d\n" $((script_elapsed/3600)) $(((script_elapsed%3600)/60)) $((script_elapsed%60))
 echo "=========================================="

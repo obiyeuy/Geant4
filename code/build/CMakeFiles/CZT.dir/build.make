@@ -83,10 +83,24 @@ CMakeFiles/CZT.dir/CZT.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CZT.dir/CZT.cc.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yyb/workspace/XRay-all/XRay-detectionCode/code/CZT.cc -o CMakeFiles/CZT.dir/CZT.cc.s
 
+CMakeFiles/CZT.dir/src/ActionInitialization.cc.o: CMakeFiles/CZT.dir/flags.make
+CMakeFiles/CZT.dir/src/ActionInitialization.cc.o: ../src/ActionInitialization.cc
+CMakeFiles/CZT.dir/src/ActionInitialization.cc.o: CMakeFiles/CZT.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyb/workspace/XRay-all/XRay-detectionCode/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/CZT.dir/src/ActionInitialization.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CZT.dir/src/ActionInitialization.cc.o -MF CMakeFiles/CZT.dir/src/ActionInitialization.cc.o.d -o CMakeFiles/CZT.dir/src/ActionInitialization.cc.o -c /home/yyb/workspace/XRay-all/XRay-detectionCode/code/src/ActionInitialization.cc
+
+CMakeFiles/CZT.dir/src/ActionInitialization.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CZT.dir/src/ActionInitialization.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yyb/workspace/XRay-all/XRay-detectionCode/code/src/ActionInitialization.cc > CMakeFiles/CZT.dir/src/ActionInitialization.cc.i
+
+CMakeFiles/CZT.dir/src/ActionInitialization.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CZT.dir/src/ActionInitialization.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yyb/workspace/XRay-all/XRay-detectionCode/code/src/ActionInitialization.cc -o CMakeFiles/CZT.dir/src/ActionInitialization.cc.s
+
 CMakeFiles/CZT.dir/src/DetectorConstruction.cc.o: CMakeFiles/CZT.dir/flags.make
 CMakeFiles/CZT.dir/src/DetectorConstruction.cc.o: ../src/DetectorConstruction.cc
 CMakeFiles/CZT.dir/src/DetectorConstruction.cc.o: CMakeFiles/CZT.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyb/workspace/XRay-all/XRay-detectionCode/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/CZT.dir/src/DetectorConstruction.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyb/workspace/XRay-all/XRay-detectionCode/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/CZT.dir/src/DetectorConstruction.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CZT.dir/src/DetectorConstruction.cc.o -MF CMakeFiles/CZT.dir/src/DetectorConstruction.cc.o.d -o CMakeFiles/CZT.dir/src/DetectorConstruction.cc.o -c /home/yyb/workspace/XRay-all/XRay-detectionCode/code/src/DetectorConstruction.cc
 
 CMakeFiles/CZT.dir/src/DetectorConstruction.cc.i: cmake_force
@@ -100,7 +114,7 @@ CMakeFiles/CZT.dir/src/DetectorConstruction.cc.s: cmake_force
 CMakeFiles/CZT.dir/src/DetectorMessenger.cc.o: CMakeFiles/CZT.dir/flags.make
 CMakeFiles/CZT.dir/src/DetectorMessenger.cc.o: ../src/DetectorMessenger.cc
 CMakeFiles/CZT.dir/src/DetectorMessenger.cc.o: CMakeFiles/CZT.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyb/workspace/XRay-all/XRay-detectionCode/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/CZT.dir/src/DetectorMessenger.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyb/workspace/XRay-all/XRay-detectionCode/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/CZT.dir/src/DetectorMessenger.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CZT.dir/src/DetectorMessenger.cc.o -MF CMakeFiles/CZT.dir/src/DetectorMessenger.cc.o.d -o CMakeFiles/CZT.dir/src/DetectorMessenger.cc.o -c /home/yyb/workspace/XRay-all/XRay-detectionCode/code/src/DetectorMessenger.cc
 
 CMakeFiles/CZT.dir/src/DetectorMessenger.cc.i: cmake_force
@@ -114,7 +128,7 @@ CMakeFiles/CZT.dir/src/DetectorMessenger.cc.s: cmake_force
 CMakeFiles/CZT.dir/src/EventAction.cc.o: CMakeFiles/CZT.dir/flags.make
 CMakeFiles/CZT.dir/src/EventAction.cc.o: ../src/EventAction.cc
 CMakeFiles/CZT.dir/src/EventAction.cc.o: CMakeFiles/CZT.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyb/workspace/XRay-all/XRay-detectionCode/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/CZT.dir/src/EventAction.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyb/workspace/XRay-all/XRay-detectionCode/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/CZT.dir/src/EventAction.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CZT.dir/src/EventAction.cc.o -MF CMakeFiles/CZT.dir/src/EventAction.cc.o.d -o CMakeFiles/CZT.dir/src/EventAction.cc.o -c /home/yyb/workspace/XRay-all/XRay-detectionCode/code/src/EventAction.cc
 
 CMakeFiles/CZT.dir/src/EventAction.cc.i: cmake_force
@@ -128,7 +142,7 @@ CMakeFiles/CZT.dir/src/EventAction.cc.s: cmake_force
 CMakeFiles/CZT.dir/src/PhysicsList.cc.o: CMakeFiles/CZT.dir/flags.make
 CMakeFiles/CZT.dir/src/PhysicsList.cc.o: ../src/PhysicsList.cc
 CMakeFiles/CZT.dir/src/PhysicsList.cc.o: CMakeFiles/CZT.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyb/workspace/XRay-all/XRay-detectionCode/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/CZT.dir/src/PhysicsList.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyb/workspace/XRay-all/XRay-detectionCode/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/CZT.dir/src/PhysicsList.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CZT.dir/src/PhysicsList.cc.o -MF CMakeFiles/CZT.dir/src/PhysicsList.cc.o.d -o CMakeFiles/CZT.dir/src/PhysicsList.cc.o -c /home/yyb/workspace/XRay-all/XRay-detectionCode/code/src/PhysicsList.cc
 
 CMakeFiles/CZT.dir/src/PhysicsList.cc.i: cmake_force
@@ -142,7 +156,7 @@ CMakeFiles/CZT.dir/src/PhysicsList.cc.s: cmake_force
 CMakeFiles/CZT.dir/src/PrimaryGeneratorAction.cc.o: CMakeFiles/CZT.dir/flags.make
 CMakeFiles/CZT.dir/src/PrimaryGeneratorAction.cc.o: ../src/PrimaryGeneratorAction.cc
 CMakeFiles/CZT.dir/src/PrimaryGeneratorAction.cc.o: CMakeFiles/CZT.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyb/workspace/XRay-all/XRay-detectionCode/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/CZT.dir/src/PrimaryGeneratorAction.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyb/workspace/XRay-all/XRay-detectionCode/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/CZT.dir/src/PrimaryGeneratorAction.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CZT.dir/src/PrimaryGeneratorAction.cc.o -MF CMakeFiles/CZT.dir/src/PrimaryGeneratorAction.cc.o.d -o CMakeFiles/CZT.dir/src/PrimaryGeneratorAction.cc.o -c /home/yyb/workspace/XRay-all/XRay-detectionCode/code/src/PrimaryGeneratorAction.cc
 
 CMakeFiles/CZT.dir/src/PrimaryGeneratorAction.cc.i: cmake_force
@@ -156,7 +170,7 @@ CMakeFiles/CZT.dir/src/PrimaryGeneratorAction.cc.s: cmake_force
 CMakeFiles/CZT.dir/src/RunAction.cc.o: CMakeFiles/CZT.dir/flags.make
 CMakeFiles/CZT.dir/src/RunAction.cc.o: ../src/RunAction.cc
 CMakeFiles/CZT.dir/src/RunAction.cc.o: CMakeFiles/CZT.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyb/workspace/XRay-all/XRay-detectionCode/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/CZT.dir/src/RunAction.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyb/workspace/XRay-all/XRay-detectionCode/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/CZT.dir/src/RunAction.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CZT.dir/src/RunAction.cc.o -MF CMakeFiles/CZT.dir/src/RunAction.cc.o.d -o CMakeFiles/CZT.dir/src/RunAction.cc.o -c /home/yyb/workspace/XRay-all/XRay-detectionCode/code/src/RunAction.cc
 
 CMakeFiles/CZT.dir/src/RunAction.cc.i: cmake_force
@@ -170,7 +184,7 @@ CMakeFiles/CZT.dir/src/RunAction.cc.s: cmake_force
 CMakeFiles/CZT.dir/src/SteppingAction.cc.o: CMakeFiles/CZT.dir/flags.make
 CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc
 CMakeFiles/CZT.dir/src/SteppingAction.cc.o: CMakeFiles/CZT.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyb/workspace/XRay-all/XRay-detectionCode/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/CZT.dir/src/SteppingAction.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yyb/workspace/XRay-all/XRay-detectionCode/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/CZT.dir/src/SteppingAction.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CZT.dir/src/SteppingAction.cc.o -MF CMakeFiles/CZT.dir/src/SteppingAction.cc.o.d -o CMakeFiles/CZT.dir/src/SteppingAction.cc.o -c /home/yyb/workspace/XRay-all/XRay-detectionCode/code/src/SteppingAction.cc
 
 CMakeFiles/CZT.dir/src/SteppingAction.cc.i: cmake_force
@@ -184,6 +198,7 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.s: cmake_force
 # Object files for target CZT
 CZT_OBJECTS = \
 "CMakeFiles/CZT.dir/CZT.cc.o" \
+"CMakeFiles/CZT.dir/src/ActionInitialization.cc.o" \
 "CMakeFiles/CZT.dir/src/DetectorConstruction.cc.o" \
 "CMakeFiles/CZT.dir/src/DetectorMessenger.cc.o" \
 "CMakeFiles/CZT.dir/src/EventAction.cc.o" \
@@ -196,6 +211,7 @@ CZT_OBJECTS = \
 CZT_EXTERNAL_OBJECTS =
 
 CZT: CMakeFiles/CZT.dir/CZT.cc.o
+CZT: CMakeFiles/CZT.dir/src/ActionInitialization.cc.o
 CZT: CMakeFiles/CZT.dir/src/DetectorConstruction.cc.o
 CZT: CMakeFiles/CZT.dir/src/DetectorMessenger.cc.o
 CZT: CMakeFiles/CZT.dir/src/EventAction.cc.o
@@ -250,7 +266,7 @@ CZT: /home/yyb/software/install/geant4/lib/libG4global.so
 CZT: /home/yyb/software/install/geant4/lib/libG4clhep.so
 CZT: /home/yyb/software/install/geant4/lib/libG4ptl.so.2.3.3
 CZT: CMakeFiles/CZT.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/yyb/workspace/XRay-all/XRay-detectionCode/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable CZT"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/yyb/workspace/XRay-all/XRay-detectionCode/code/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable CZT"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CZT.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

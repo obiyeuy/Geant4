@@ -116,151 +116,151 @@ def load_scan_data():
     return positions, low_energy_data, high_energy_data
 
 
-def create_heatmaps(positions, low_data, high_data):
-    """
-    创建2D热图：位置 vs 像素的能量分布
-    """
-    print("生成热图...")
+# def create_heatmaps(positions, low_data, high_data):
+#     """
+#     创建2D热图：位置 vs 像素的能量分布
+#     """
+#     print("生成热图...")
     
-    fig, axes = plt.subplots(1, 2, figsize=(16, 6))
+#     fig, axes = plt.subplots(1, 2, figsize=(16, 6))
     
-    # 低能热图
-    # 注意：low_data 形状是 [n_positions, n_pixels]
-    # 转置后是 [n_pixels, n_positions]，用于显示
-    # Y轴（行）= 像素编号，X轴（列）= Y位置
-    im1 = axes[0].imshow(low_data.T, aspect='auto', origin='lower',
-                        extent=[positions.min(), positions.max(), 0, NUM_PIXELS-1],
-                        cmap='viridis', interpolation='nearest')
-                        # cmap='viridis', interpolation='nearest')
-    axes[0].set_xlabel('Y Position (mm)', fontsize=12)
-    axes[0].set_ylabel('Pixel Number', fontsize=12)
-    axes[0].set_title('Low Energy (GGAG) - Energy Deposition', fontsize=14, fontweight='bold')
-    plt.colorbar(im1, ax=axes[0], label='Energy (keV)')
-    axes[0].grid(True, alpha=0.3)
+#     # 低能热图
+#     # 注意：low_data 形状是 [n_positions, n_pixels]
+#     # 转置后是 [n_pixels, n_positions]，用于显示
+#     # Y轴（行）= 像素编号，X轴（列）= Y位置
+#     im1 = axes[0].imshow(low_data.T, aspect='auto', origin='lower',
+#                         extent=[positions.min(), positions.max(), 0, NUM_PIXELS-1],
+#                         cmap='viridis', interpolation='nearest')
+#                         # cmap='viridis', interpolation='nearest')
+#     axes[0].set_xlabel('Y Position (mm)', fontsize=12)
+#     axes[0].set_ylabel('Pixel Number', fontsize=12)
+#     axes[0].set_title('Low Energy (GGAG) - Energy Deposition', fontsize=14, fontweight='bold')
+#     plt.colorbar(im1, ax=axes[0], label='Energy (keV)')
+#     axes[0].grid(True, alpha=0.3)
     
-    # 高能热图
-    im2 = axes[1].imshow(high_data.T, aspect='auto', origin='lower',
-                        extent=[positions.min(), positions.max(), 0, NUM_PIXELS-1],
-                        cmap='plasma', interpolation='nearest')
-                        # cmap='viridis', interpolation='nearest')
-    axes[1].set_xlabel('Y Position (mm)', fontsize=12)
-    axes[1].set_ylabel('Pixel Number', fontsize=12)
-    axes[1].set_title('High Energy (GOS) - Energy Deposition', fontsize=14, fontweight='bold')
-    plt.colorbar(im2, ax=axes[1], label='Energy (keV)')
-    axes[1].grid(True, alpha=0.3)
+#     # 高能热图
+#     im2 = axes[1].imshow(high_data.T, aspect='auto', origin='lower',
+#                         extent=[positions.min(), positions.max(), 0, NUM_PIXELS-1],
+#                         cmap='plasma', interpolation='nearest')
+#                         # cmap='viridis', interpolation='nearest')
+#     axes[1].set_xlabel('Y Position (mm)', fontsize=12)
+#     axes[1].set_ylabel('Pixel Number', fontsize=12)
+#     axes[1].set_title('High Energy (GOS) - Energy Deposition', fontsize=14, fontweight='bold')
+#     plt.colorbar(im2, ax=axes[1], label='Energy (keV)')
+#     axes[1].grid(True, alpha=0.3)
     
-    plt.tight_layout()
-    output_file = os.path.join(OUTPUT_DIR, "scan_heatmap.png")
-    plt.savefig(output_file, dpi=300, bbox_inches='tight')
-    print(f"  保存到: {output_file}")
-    plt.close()
+#     plt.tight_layout()
+#     output_file = os.path.join(OUTPUT_DIR, "scan_heatmap.png")
+#     plt.savefig(output_file, dpi=300, bbox_inches='tight')
+#     print(f"  保存到: {output_file}")
+#     plt.close()
 
 
-def create_pixel_response_curves(positions, low_data, high_data, num_pixels_to_show=5):
-    """
-    创建像素响应曲线：显示几个代表性像素随位置变化的能量响应
-    """
-    print("生成像素响应曲线...")
+# def create_pixel_response_curves(positions, low_data, high_data, num_pixels_to_show=5):
+#     """
+#     创建像素响应曲线：显示几个代表性像素随位置变化的能量响应
+#     """
+#     print("生成像素响应曲线...")
     
-    # 选择几个代表性像素（均匀分布）
-    pixel_indices = np.linspace(0, NUM_PIXELS-1, num_pixels_to_show, dtype=int)
+#     # 选择几个代表性像素（均匀分布）
+#     pixel_indices = np.linspace(0, NUM_PIXELS-1, num_pixels_to_show, dtype=int)
     
-    fig, axes = plt.subplots(1, 2, figsize=(16, 6))
+#     fig, axes = plt.subplots(1, 2, figsize=(16, 6))
     
-    # 低能响应曲线
-    for idx, pixel in enumerate(pixel_indices):
-        axes[0].plot(positions, low_data[:, pixel], 
-                    marker='o', markersize=3, linewidth=1.5,
-                    label=f'Pixel {pixel}')
-    axes[0].set_xlabel('Y Position (mm)', fontsize=12)
-    axes[0].set_ylabel('Energy Deposition (keV)', fontsize=12)
-    axes[0].set_title('Low Energy (GGAG) - Pixel Response Curves', fontsize=14, fontweight='bold')
-    axes[0].legend(loc='best')
-    axes[0].grid(True, alpha=0.3)
+#     # 低能响应曲线
+#     for idx, pixel in enumerate(pixel_indices):
+#         axes[0].plot(positions, low_data[:, pixel], 
+#                     marker='o', markersize=3, linewidth=1.5,
+#                     label=f'Pixel {pixel}')
+#     axes[0].set_xlabel('Y Position (mm)', fontsize=12)
+#     axes[0].set_ylabel('Energy Deposition (keV)', fontsize=12)
+#     axes[0].set_title('Low Energy (GGAG) - Pixel Response Curves', fontsize=14, fontweight='bold')
+#     axes[0].legend(loc='best')
+#     axes[0].grid(True, alpha=0.3)
     
-    # 高能响应曲线
-    for idx, pixel in enumerate(pixel_indices):
-        axes[1].plot(positions, high_data[:, pixel], 
-                    marker='s', markersize=3, linewidth=1.5,
-                    label=f'Pixel {pixel}')
-    axes[1].set_xlabel('Y Position (mm)', fontsize=12)
-    axes[1].set_ylabel('Energy Deposition (keV)', fontsize=12)
-    axes[1].set_title('High Energy (GOS) - Pixel Response Curves', fontsize=14, fontweight='bold')
-    axes[1].legend(loc='best')
-    axes[1].grid(True, alpha=0.3)
+#     # 高能响应曲线
+#     for idx, pixel in enumerate(pixel_indices):
+#         axes[1].plot(positions, high_data[:, pixel], 
+#                     marker='s', markersize=3, linewidth=1.5,
+#                     label=f'Pixel {pixel}')
+#     axes[1].set_xlabel('Y Position (mm)', fontsize=12)
+#     axes[1].set_ylabel('Energy Deposition (keV)', fontsize=12)
+#     axes[1].set_title('High Energy (GOS) - Pixel Response Curves', fontsize=14, fontweight='bold')
+#     axes[1].legend(loc='best')
+#     axes[1].grid(True, alpha=0.3)
     
-    plt.tight_layout()
-    output_file = os.path.join(OUTPUT_DIR, "pixel_response_curves.png")
-    plt.savefig(output_file, dpi=300, bbox_inches='tight')
-    print(f"  保存到: {output_file}")
-    plt.close()
+#     plt.tight_layout()
+#     output_file = os.path.join(OUTPUT_DIR, "pixel_response_curves.png")
+#     plt.savefig(output_file, dpi=300, bbox_inches='tight')
+#     print(f"  保存到: {output_file}")
+#     plt.close()
 
 
-def create_total_energy_plot(positions, low_data, high_data):
-    """
-    创建总能量随位置变化的曲线
-    """
-    print("生成总能量曲线...")
+# def create_total_energy_plot(positions, low_data, high_data):
+#     """
+#     创建总能量随位置变化的曲线
+#     """
+#     print("生成总能量曲线...")
     
-    # 计算每个位置的总能量
-    low_total = np.sum(low_data, axis=1)
-    high_total = np.sum(high_data, axis=1)
-    combined_total = low_total + high_total
+#     # 计算每个位置的总能量
+#     low_total = np.sum(low_data, axis=1)
+#     high_total = np.sum(high_data, axis=1)
+#     combined_total = low_total + high_total
     
-    fig, ax = plt.subplots(figsize=(10, 6))
+#     fig, ax = plt.subplots(figsize=(10, 6))
     
-    ax.plot(positions, low_total, 'b-o', markersize=4, linewidth=2, label='Low Energy (GGAG)')
-    ax.plot(positions, high_total, 'r-s', markersize=4, linewidth=2, label='High Energy (GOS)')
-    ax.plot(positions, combined_total, 'g-^', markersize=4, linewidth=2, label='Combined Total')
+#     ax.plot(positions, low_total, 'b-o', markersize=4, linewidth=2, label='Low Energy (GGAG)')
+#     ax.plot(positions, high_total, 'r-s', markersize=4, linewidth=2, label='High Energy (GOS)')
+#     ax.plot(positions, combined_total, 'g-^', markersize=4, linewidth=2, label='Combined Total')
     
-    ax.set_xlabel('Y Position (mm)', fontsize=12)
-    ax.set_ylabel('Total Energy Deposition (keV)', fontsize=12)
-    ax.set_title('Total Energy Deposition vs Position', fontsize=14, fontweight='bold')
-    ax.legend(loc='best')
-    ax.grid(True, alpha=0.3)
+#     ax.set_xlabel('Y Position (mm)', fontsize=12)
+#     ax.set_ylabel('Total Energy Deposition (keV)', fontsize=12)
+#     ax.set_title('Total Energy Deposition vs Position', fontsize=14, fontweight='bold')
+#     ax.legend(loc='best')
+#     ax.grid(True, alpha=0.3)
     
-    plt.tight_layout()
-    output_file = os.path.join(OUTPUT_DIR, "total_energy_vs_position.png")
-    plt.savefig(output_file, dpi=300, bbox_inches='tight')
-    print(f"  保存到: {output_file}")
-    plt.close()
+#     plt.tight_layout()
+#     output_file = os.path.join(OUTPUT_DIR, "total_energy_vs_position.png")
+#     plt.savefig(output_file, dpi=300, bbox_inches='tight')
+#     print(f"  保存到: {output_file}")
+#     plt.close()
 
 
-def create_position_slices(positions, low_data, high_data, num_slices=5):
-    """
-    创建几个代表性位置的像素能量分布图
-    """
-    print("生成位置切片图...")
+# def create_position_slices(positions, low_data, high_data, num_slices=5):
+#     """
+#     创建几个代表性位置的像素能量分布图
+#     """
+#     print("生成位置切片图...")
     
-    # 选择几个代表性位置
-    position_indices = np.linspace(0, len(positions)-1, num_slices, dtype=int)
+#     # 选择几个代表性位置
+#     position_indices = np.linspace(0, len(positions)-1, num_slices, dtype=int)
     
-    fig, axes = plt.subplots(2, num_slices, figsize=(4*num_slices, 8))
+#     fig, axes = plt.subplots(2, num_slices, figsize=(4*num_slices, 8))
     
-    for col, pos_idx in enumerate(position_indices):
-        y_pos = positions[pos_idx]
+#     for col, pos_idx in enumerate(position_indices):
+#         y_pos = positions[pos_idx]
         
-        # 低能数据
-        axes[0, col].bar(range(NUM_PIXELS), low_data[pos_idx, :], 
-                        color='blue', alpha=0.7, width=0.8)
-        axes[0, col].set_xlabel('Pixel Number', fontsize=10)
-        axes[0, col].set_ylabel('Energy (keV)', fontsize=10)
-        axes[0, col].set_title(f'Low Energy\nY = {y_pos:.1f} mm', fontsize=11)
-        axes[0, col].grid(True, alpha=0.3, axis='y')
+#         # 低能数据
+#         axes[0, col].bar(range(NUM_PIXELS), low_data[pos_idx, :], 
+#                         color='blue', alpha=0.7, width=0.8)
+#         axes[0, col].set_xlabel('Pixel Number', fontsize=10)
+#         axes[0, col].set_ylabel('Energy (keV)', fontsize=10)
+#         axes[0, col].set_title(f'Low Energy\nY = {y_pos:.1f} mm', fontsize=11)
+#         axes[0, col].grid(True, alpha=0.3, axis='y')
         
-        # 高能数据
-        axes[1, col].bar(range(NUM_PIXELS), high_data[pos_idx, :], 
-                        color='red', alpha=0.7, width=0.8)
-        axes[1, col].set_xlabel('Pixel Number', fontsize=10)
-        axes[1, col].set_ylabel('Energy (keV)', fontsize=10)
-        axes[1, col].set_title(f'High Energy\nY = {y_pos:.1f} mm', fontsize=11)
-        axes[1, col].grid(True, alpha=0.3, axis='y')
+#         # 高能数据
+#         axes[1, col].bar(range(NUM_PIXELS), high_data[pos_idx, :], 
+#                         color='red', alpha=0.7, width=0.8)
+#         axes[1, col].set_xlabel('Pixel Number', fontsize=10)
+#         axes[1, col].set_ylabel('Energy (keV)', fontsize=10)
+#         axes[1, col].set_title(f'High Energy\nY = {y_pos:.1f} mm', fontsize=11)
+#         axes[1, col].grid(True, alpha=0.3, axis='y')
     
-    plt.tight_layout()
-    output_file = os.path.join(OUTPUT_DIR, "position_slices.png")
-    plt.savefig(output_file, dpi=300, bbox_inches='tight')
-    print(f"  保存到: {output_file}")
-    plt.close()
+#     plt.tight_layout()
+#     output_file = os.path.join(OUTPUT_DIR, "position_slices.png")
+#     plt.savefig(output_file, dpi=300, bbox_inches='tight')
+#     print(f"  保存到: {output_file}")
+#     plt.close()
 
 
 def create_grayscale_images(positions, low_data, high_data):
@@ -291,7 +291,7 @@ def create_grayscale_images(positions, low_data, high_data):
     # 保存为PNG灰度图像
     low_output = os.path.join(OUTPUT_DIR, "low_energy_grayscale.png")
     high_output = os.path.join(OUTPUT_DIR, "high_energy_grayscale.png")
-    combined_output = os.path.join(OUTPUT_DIR, "combined_energy_grayscale.png")
+    # combined_output = os.path.join(OUTPUT_DIR, "combined_energy_grayscale.png")
     
     # 保存低能灰度图像
     Image.fromarray(low_gray, mode='L').save(low_output)
@@ -306,12 +306,12 @@ def create_grayscale_images(positions, low_data, high_data):
     print(f"    图像尺寸: {high_gray.shape[1]} x {high_gray.shape[0]} (位置 x 像素)")
     
     # 保存组合能量灰度图像（低能+高能）
-    combined_data = low_data + high_data
-    combined_gray = normalize_to_255(combined_data.T)
-    Image.fromarray(combined_gray, mode='L').save(combined_output)
-    print(f"  组合能量灰度图像保存到: {combined_output}")
-    print(f"    数据范围: {combined_data.min():.2f} - {combined_data.max():.2f} keV")
-    print(f"    图像尺寸: {combined_gray.shape[1]} x {combined_gray.shape[0]} (位置 x 像素)")
+    # combined_data = low_data + high_data
+    # combined_gray = normalize_to_255(combined_data.T)
+    # Image.fromarray(combined_gray, mode='L').save(combined_output)
+    # print(f"  组合能量灰度图像保存到: {combined_output}")
+    # print(f"    数据范围: {combined_data.min():.2f} - {combined_data.max():.2f} keV")
+    # print(f"    图像尺寸: {combined_gray.shape[1]} x {combined_gray.shape[0]} (位置 x 像素)")
     
     # 同时使用matplotlib生成带坐标轴的灰度图像（用于可视化）
     fig, axes = plt.subplots(1, 3, figsize=(18, 6))
@@ -337,19 +337,19 @@ def create_grayscale_images(positions, low_data, high_data):
     axes[1].grid(True, alpha=0.3)
     
     # 组合能量灰度图
-    im3 = axes[2].imshow(combined_gray, aspect='auto', origin='lower',
-                         extent=[positions.min(), positions.max(), 0, NUM_PIXELS-1],
-                         cmap='gray', interpolation='nearest')
-    axes[2].set_xlabel('Y Position (mm)', fontsize=12)
-    axes[2].set_ylabel('Pixel Number', fontsize=12)
-    axes[2].set_title('Combined Energy - Grayscale', fontsize=14, fontweight='bold')
-    plt.colorbar(im3, ax=axes[2], label='Normalized Intensity (0-255)')
-    axes[2].grid(True, alpha=0.3)
+    # im3 = axes[2].imshow(combined_gray, aspect='auto', origin='lower',
+    #                      extent=[positions.min(), positions.max(), 0, NUM_PIXELS-1],
+    #                      cmap='gray', interpolation='nearest')
+    # axes[2].set_xlabel('Y Position (mm)', fontsize=12)
+    # axes[2].set_ylabel('Pixel Number', fontsize=12)
+    # axes[2].set_title('Combined Energy - Grayscale', fontsize=14, fontweight='bold')
+    # plt.colorbar(im3, ax=axes[2], label='Normalized Intensity (0-255)')
+    # axes[2].grid(True, alpha=0.3)
     
-    plt.tight_layout()
-    grayscale_plot_file = os.path.join(OUTPUT_DIR, "grayscale_images.png")
-    plt.savefig(grayscale_plot_file, dpi=300, bbox_inches='tight')
-    print(f"  灰度图像可视化保存到: {grayscale_plot_file}")
+    # plt.tight_layout()
+    # grayscale_plot_file = os.path.join(OUTPUT_DIR, "grayscale_images.png")
+    # plt.savefig(grayscale_plot_file, dpi=300, bbox_inches='tight')
+    # print(f"  灰度图像可视化保存到: {grayscale_plot_file}")
     plt.close()
 
 
@@ -399,47 +399,47 @@ def create_16bit_grayscale_images(positions, low_data, high_data):
     print(f"    灰度值范围: 0 - 65535 (16位)")
     
     # 保存组合能量16位灰度图像（低能+高能）
-    combined_data = low_data + high_data
-    combined_gray_16bit = normalize_to_65535(combined_data.T)
-    Image.fromarray(combined_gray_16bit, mode='I;16').save(combined_output_16bit)
-    print(f"  组合能量16位灰度图像保存到: {combined_output_16bit}")
-    print(f"    数据范围: {combined_data.min():.2f} - {combined_data.max():.2f} keV")
-    print(f"    图像尺寸: {combined_gray_16bit.shape[1]} x {combined_gray_16bit.shape[0]} (位置 x 像素)")
-    print(f"    灰度值范围: 0 - 65535 (16位)")
+    # combined_data = low_data + high_data
+    # combined_gray_16bit = normalize_to_65535(combined_data.T)
+    # Image.fromarray(combined_gray_16bit, mode='I;16').save(combined_output_16bit)
+    # print(f"  组合能量16位灰度图像保存到: {combined_output_16bit}")
+    # print(f"    数据范围: {combined_data.min():.2f} - {combined_data.max():.2f} keV")
+    # print(f"    图像尺寸: {combined_gray_16bit.shape[1]} x {combined_gray_16bit.shape[0]} (位置 x 像素)")
+    # print(f"    灰度值范围: 0 - 65535 (16位)")
 
 
-def save_combined_data(positions, low_data, high_data):
-    """
-    保存组合后的数据为NumPy格式
-    """
-    print("保存组合数据...")
+# def save_combined_data(positions, low_data, high_data):
+#     """
+#     保存组合后的数据为NumPy格式
+#     """
+#     print("保存组合数据...")
     
-    output_file = os.path.join(OUTPUT_DIR, "combined_data.npz")
-    np.savez(output_file,
-             positions=positions,
-             low_energy=low_data,
-             high_energy=high_data,
-             num_pixels=NUM_PIXELS)
-    print(f"  保存到: {output_file}")
+#     output_file = os.path.join(OUTPUT_DIR, "combined_data.npz")
+#     np.savez(output_file,
+#              positions=positions,
+#              low_energy=low_data,
+#              high_energy=high_data,
+#              num_pixels=NUM_PIXELS)
+#     print(f"  保存到: {output_file}")
     
-    # 同时保存为文本格式（CSV）
-    csv_file = os.path.join(OUTPUT_DIR, "combined_data_summary.txt")
-    with open(csv_file, 'w') as f:
-        f.write("# Combined Scan Data Summary\n")
-        f.write(f"# Number of positions: {len(positions)}\n")
-        f.write(f"# Number of pixels: {NUM_PIXELS}\n")
-        f.write(f"# Position range: {positions.min():.1f} to {positions.max():.1f} mm\n")
-        f.write("#\n")
-        f.write("# Format: Position(mm) | LowEnergy_Total(keV) | HighEnergy_Total(keV) | Combined_Total(keV)\n")
-        f.write("#\n")
+#     # 同时保存为文本格式（CSV）
+#     csv_file = os.path.join(OUTPUT_DIR, "combined_data_summary.txt")
+#     with open(csv_file, 'w') as f:
+#         f.write("# Combined Scan Data Summary\n")
+#         f.write(f"# Number of positions: {len(positions)}\n")
+#         f.write(f"# Number of pixels: {NUM_PIXELS}\n")
+#         f.write(f"# Position range: {positions.min():.1f} to {positions.max():.1f} mm\n")
+#         f.write("#\n")
+#         f.write("# Format: Position(mm) | LowEnergy_Total(keV) | HighEnergy_Total(keV) | Combined_Total(keV)\n")
+#         f.write("#\n")
         
-        for i, pos in enumerate(positions):
-            low_total = np.sum(low_data[i, :])
-            high_total = np.sum(high_data[i, :])
-            combined_total = low_total + high_total
-            f.write(f"{pos:.1f}\t{low_total:.2f}\t{high_total:.2f}\t{combined_total:.2f}\n")
+#         for i, pos in enumerate(positions):
+#             low_total = np.sum(low_data[i, :])
+#             high_total = np.sum(high_data[i, :])
+#             combined_total = low_total + high_total
+#             f.write(f"{pos:.1f}\t{low_total:.2f}\t{high_total:.2f}\t{combined_total:.2f}\n")
     
-    print(f"  摘要保存到: {csv_file}")
+#     print(f"  摘要保存到: {csv_file}")
 
 
 def main():
@@ -471,35 +471,35 @@ def main():
     print()
     
     # 生成各种可视化
-    create_heatmaps(positions, low_data, high_data)
-    create_pixel_response_curves(positions, low_data, high_data)
-    create_total_energy_plot(positions, low_data, high_data)
-    create_position_slices(positions, low_data, high_data)
+    # create_heatmaps(positions, low_data, high_data)
+    # create_pixel_response_curves(positions, low_data, high_data)
+    # create_total_energy_plot(positions, low_data, high_data)
+    # create_position_slices(positions, low_data, high_data)
     create_grayscale_images(positions, low_data, high_data)
     create_16bit_grayscale_images(positions, low_data, high_data)
     
     # 保存组合数据
-    save_combined_data(positions, low_data, high_data)
+    # save_combined_data(positions, low_data, high_data)
     
     print()
     print("=" * 60)
     print("完成！所有结果保存在:", OUTPUT_DIR)
     print("=" * 60)
-    print()
-    print("生成的文件:")
-    print("  - scan_heatmap.png: 2D热图（位置 vs 像素）")
-    print("  - pixel_response_curves.png: 像素响应曲线")
-    print("  - total_energy_vs_position.png: 总能量随位置变化")
-    print("  - position_slices.png: 代表性位置的像素分布")
-    print("  - low_energy_grayscale.png: 低能灰度图像（8位，0-255）")
-    print("  - high_energy_grayscale.png: 高能灰度图像（8位，0-255）")
-    print("  - combined_energy_grayscale.png: 组合能量灰度图像（8位，0-255）")
-    print("  - grayscale_images.png: 灰度图像可视化（带坐标轴）")
-    print("  - low_energy_grayscale_16bit.png: 低能灰度图像（16位，0-65535）")
-    print("  - high_energy_grayscale_16bit.png: 高能灰度图像（16位，0-65535）")
-    print("  - combined_energy_grayscale_16bit.png: 组合能量灰度图像（16位，0-65535）")
-    print("  - combined_data.npz: 组合数据（NumPy格式）")
-    print("  - combined_data_summary.txt: 数据摘要")
+    # print()
+    # print("生成的文件:")
+    # print("  - scan_heatmap.png: 2D热图（位置 vs 像素）")
+    # print("  - pixel_response_curves.png: 像素响应曲线")
+    # print("  - total_energy_vs_position.png: 总能量随位置变化")
+    # print("  - position_slices.png: 代表性位置的像素分布")
+    # print("  - low_energy_grayscale.png: 低能灰度图像（8位，0-255）")
+    # print("  - high_energy_grayscale.png: 高能灰度图像（8位，0-255）")
+    # print("  - combined_energy_grayscale.png: 组合能量灰度图像（8位，0-255）")
+    # print("  - grayscale_images.png: 灰度图像可视化（带坐标轴）")
+    # print("  - low_energy_grayscale_16bit.png: 低能灰度图像（16位，0-65535）")
+    # print("  - high_energy_grayscale_16bit.png: 高能灰度图像（16位，0-65535）")
+    # print("  - combined_energy_grayscale_16bit.png: 组合能量灰度图像（16位，0-65535）")
+    # print("  - combined_data.npz: 组合数据（NumPy格式）")
+    # print("  - combined_data_summary.txt: 数据摘要")
 
 
 if __name__ == "__main__":

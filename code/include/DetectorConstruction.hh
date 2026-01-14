@@ -26,6 +26,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4double ObjShift;
     G4bool fEnableObject;  // 是否启用物体（用于生成空白灰度图）
     DetectorMessenger*  fMessenger;   // detector messenger  
+    G4VPhysicalVolume* fPhysiObject; // 定义一个成员变量指针
 };
 
 #endif

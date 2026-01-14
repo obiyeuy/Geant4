@@ -5,7 +5,8 @@
 //                                                     //
 /////////////////////////////////////////////////////////
 
-#include "G4RunManager.hh"
+#include "G4RunManagerFactory.hh"
+#include "G4MTRunManager.hh"
 #include "G4UImanager.hh"
 #include "G4UIterminal.hh"
 
@@ -19,6 +20,7 @@
 #include "RunAction.hh"
 #include "EventAction.hh"
 #include "SteppingAction.hh"
+#include "ActionInitialization.hh"
 
 //#ifdef G4VIS_USE
 #include "G4VisExecutive.hh"
@@ -36,6 +38,7 @@
 #include "iomanip"
 
 #include <fstream>
+#include <cstdlib>  // for std::getenv and std::atoi
 
 using namespace std;	 
 
@@ -48,22 +51,38 @@ int main(int argc, char** argv)
   G4Random::setTheSeed(std::abs(seed));
   
   urandom.close();
-	// construct the default run manager
-	G4RunManager* runManager = new G4RunManager;
+	
+	// 创建多线程运行管理器
+	// 可以通过环境变量 G4FORCENUMBEROFTHREADS 或命令行参数设置线程数
+	// 默认使用系统可用核心数
+	G4MTRunManager* runManager = G4MTRunManager::GetMasterRunManager();
+	if (runManager == nullptr) {
+		runManager = new G4MTRunManager;
+	}
+	
+	// 设置线程数（可以通过环境变量 G4FORCENUMBEROFTHREADS 设置）
+	// 如果没有设置，Geant4会自动检测CPU核心数
+	G4int nThreads = 0;  // 0表示自动检测
+	const char* envThreads = std::getenv("G4FORCENUMBEROFTHREADS");
+	if (envThreads != nullptr) {
+		nThreads = std::atoi(envThreads);
+	}
+	if (nThreads > 0) {
+		runManager->SetNumberOfThreads(nThreads);
+		G4cout << "Using " << nThreads << " threads" << G4endl;
+	} else {
+		G4cout << "Using automatic thread detection" << G4endl;
+	}
 	
 	// set mandatory initialization classes
 	runManager->SetUserInitialization(new DetectorConstruction);
 	runManager->SetUserInitialization(new PhysicsList);
 		
 	// set aditional user action classes
-	RunAction* run = new RunAction;
-	runManager->SetUserAction(run);
-	
-	EventAction* event = new EventAction(run);
-	runManager->SetUserAction(event);
-	
-	SteppingAction* step = new SteppingAction(event);
-	runManager->SetUserAction(step);
+	// 在多线程模式下，创建一个共享的RunAction实例用于汇总结果
+	// ActionInitialization会在每个线程中创建自己的用户动作类实例
+	RunAction* sharedRunAction = new RunAction;
+	runManager->SetUserInitialization(new ActionInitialization(sharedRunAction));
 	
 	//#ifdef G4VIS_USE
   // Initialize visualization
@@ -75,8 +94,8 @@ int main(int argc, char** argv)
   // initialize G4 kernel
   // runManager->Initialize();
   
-  // set mandatory user action class
-  runManager->SetUserAction(new PrimaryGeneratorAction);
+  // 注意：在多线程模式下，用户动作类通过ActionInitialization设置
+  // 不需要在这里单独设置PrimaryGeneratorAction
 
   // Get the pointer to the User Interface manager
   G4UImanager* UImanager = G4UImanager::GetUIpointer();

@@ -27,7 +27,9 @@ set(CMAKE_MAKEFILE_DEPENDS
   "../geo.mac"
   "../init.mac"
   "../init_vis.mac"
+  "../master.mac"
   "../run.mac"
+  "../scan_row.mac"
   "../vis.mac"
   "/usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfig.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigExtras.cmake"
@@ -118,6 +120,8 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "init_vis.mac"
   "run.mac"
   "geo.mac"
+  "master.mac"
+  "scan_row.mac"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 

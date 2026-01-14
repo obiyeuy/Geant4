@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/CZT.dir/CZT.cc.o"
   "CMakeFiles/CZT.dir/CZT.cc.o.d"
+  "CMakeFiles/CZT.dir/src/ActionInitialization.cc.o"
+  "CMakeFiles/CZT.dir/src/ActionInitialization.cc.o.d"
   "CMakeFiles/CZT.dir/src/DetectorConstruction.cc.o"
   "CMakeFiles/CZT.dir/src/DetectorConstruction.cc.o.d"
   "CMakeFiles/CZT.dir/src/DetectorMessenger.cc.o"

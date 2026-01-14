@@ -55,6 +55,8 @@ set(SCRIPTS
   init_vis.mac
   run.mac
   geo.mac
+  master.mac
+  scan_row.mac
   )
 
 foreach(_script ${SCRIPTS})

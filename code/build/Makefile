@@ -198,6 +198,30 @@ CZT.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CZT.dir/build.make CMakeFiles/CZT.dir/CZT.cc.s
 .PHONY : CZT.cc.s
 
+src/ActionInitialization.o: src/ActionInitialization.cc.o
+.PHONY : src/ActionInitialization.o
+
+# target to build an object file
+src/ActionInitialization.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CZT.dir/build.make CMakeFiles/CZT.dir/src/ActionInitialization.cc.o
+.PHONY : src/ActionInitialization.cc.o
+
+src/ActionInitialization.i: src/ActionInitialization.cc.i
+.PHONY : src/ActionInitialization.i
+
+# target to preprocess a source file
+src/ActionInitialization.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CZT.dir/build.make CMakeFiles/CZT.dir/src/ActionInitialization.cc.i
+.PHONY : src/ActionInitialization.cc.i
+
+src/ActionInitialization.s: src/ActionInitialization.cc.s
+.PHONY : src/ActionInitialization.s
+
+# target to generate assembly for a file
+src/ActionInitialization.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CZT.dir/build.make CMakeFiles/CZT.dir/src/ActionInitialization.cc.s
+.PHONY : src/ActionInitialization.cc.s
+
 src/DetectorConstruction.o: src/DetectorConstruction.cc.o
 .PHONY : src/DetectorConstruction.o
 
@@ -382,6 +406,9 @@ help:
 	@echo "... CZT.o"
 	@echo "... CZT.i"
 	@echo "... CZT.s"
+	@echo "... src/ActionInitialization.o"
+	@echo "... src/ActionInitialization.i"
+	@echo "... src/ActionInitialization.s"
 	@echo "... src/DetectorConstruction.o"
 	@echo "... src/DetectorConstruction.i"
 	@echo "... src/DetectorConstruction.s"

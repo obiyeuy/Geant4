@@ -67,7 +67,8 @@ void EventAction::EndOfEventAction(const G4Event* evt)
 	 		{
 	 			//cout<<G4double(i)<< "\t"<< G4double(j)<< "\t"<< EdepInCrystal[i][j] <<endl;
 	 			analysisManager->FillH1(i,  EdepInCrystal[i]);		
-				runAction->Run_EdepInCrystal[i]+= EdepInCrystal[i];
+				// 使用线程安全的方法累加能量沉积
+				runAction->AddEdepInCrystal(i, EdepInCrystal[i]);
 	 		}
 
 	 }
@@ -80,7 +81,8 @@ void EventAction::EndOfEventAction(const G4Event* evt)
 	 		{
 	 			//cout<<G4double(i)<< "\t"<< G4double(j)<< "\t"<< EdepInCrystal[i][j] <<endl;
 	 			analysisManager->FillH1(DetNum + i,  EdepInCrystal2[i]);		
-				runAction->Run_EdepInCrystal2[i]+= EdepInCrystal2[i];
+				// 使用线程安全的方法累加能量沉积
+				runAction->AddEdepInCrystal2(i, EdepInCrystal2[i]);
 	 		}
 
 	 }
@@ -91,9 +93,10 @@ void EventAction::EndOfEventAction(const G4Event* evt)
 	//
 	MyeventID = 1 + evt->GetEventID();
 	//G4int printModulo = G4RunManager::GetRunManager()->GetPrintProgress();
-	G4int printModulo = 1000;
-	if ( ( printModulo > 0 ) && ( MyeventID % printModulo == 0 ) )
-	{
-		G4cout << "---> End of event: " << MyeventID << G4endl;
-	}
+
+	// G4int printModulo = 100000;
+	// if ( ( printModulo > 0 ) && ( MyeventID % printModulo == 0 ) )
+	// {
+	// 	G4cout << "---> End of event: " << MyeventID << G4endl;
+	// }
 }

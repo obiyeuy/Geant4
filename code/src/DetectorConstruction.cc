@@ -245,10 +245,20 @@ G4VPhysicalVolume *DetectorConstruction::Construct()
 
     //待测物体
   	auto solidObject = new G4Sphere("Object", 0., sphereRadius, 0., 360.*deg, 0., 180.*deg);
-	// auto logicObject = new G4LogicalVolume(solidObject, calciumPhosphate, "logicObject");
-	auto logicObject = new G4LogicalVolume(solidObject, Vacuum, "logicObject");
-	auto Object_phys = new G4PVPlacement(fArmRotation, G4ThreeVector(0,ObjShift,0), logicObject, "Object_phys", logicWorld,false,0);
+	auto logicObject = new G4LogicalVolume(solidObject, calciumPhosphate, "logicObject");
+	// // auto logicObject = new G4LogicalVolume(solidObject, Vacuum, "logicObject");
 
+	// auto Object_phys = new G4PVPlacement(fArmRotation, G4ThreeVector(0,ObjShift,0), logicObject, "Object_phys", logicWorld,false,0);
+    logicObject->SetVisAttributes(transblue);
+	fPhysiObject = new G4PVPlacement(
+		fArmRotation, 
+		G4ThreeVector(0, ObjShift, 0), // 初始位置
+		logicObject, 
+		"Object_phys", 
+		logicWorld, 
+		false, 
+		0);
+	
 	//                                        
 	// Visualization attributes
 	//
@@ -269,6 +279,19 @@ void DetectorConstruction::SetObjShiftDistance(G4double shift)
           << G4endl 
           << "##### ----> The object shift distance is  " << shift << " mm  #####" << G4endl;
   	ObjShift = shift;
-  	G4RunManager::GetRunManager()->PhysicsHasBeenModified();
+	
+  	// // G4RunManager::GetRunManager()->PhysicsHasBeenModified();
 	// G4RunManager::GetRunManager()->GeometryHasBeenModified();
+	// ObjShift = shift;
+    // G4cout << "##### ----> 正在搬动球体到 Y = " << shift << " mm #####" << G4endl;
+
+    if (fPhysiObject) {
+        // 1. 真正修改内存中物理卷的坐标
+        fPhysiObject->SetTranslation(G4ThreeVector(0, ObjShift, 0));
+        
+        // 2. 告诉 Geant4 几何已经变了，需要重新优化导航（必写）
+        G4RunManager::GetRunManager()->GeometryHasBeenModified();
+    } else {
+        G4cout << "警告：球体物理卷尚未创建！" << G4endl;
+    }
 }
