@@ -38,10 +38,10 @@ def load_scan_data():
     """
     print("正在加载数据...")
     
-    # 找到所有LowEnergy文件，按数值排序（不是字符串排序）
-    low_files = glob.glob(os.path.join(LOW_ENERGY_DIR, "*.txt"))
-    # 按文件名中的数值排序
-    low_files = sorted(low_files, key=lambda x: float(os.path.basename(x).replace(".txt", "")))
+    # 找到所有LowEnergy二进制文件，按数值排序（不是字符串排序）
+    low_files = glob.glob(os.path.join(LOW_ENERGY_DIR, "*.bin"))
+    # 按文件名中的数值排序（文件名形如: "-28.0.bin"）
+    low_files = sorted(low_files, key=lambda x: float(os.path.basename(x).replace(".bin", "")))
     
     if not low_files:
         print(f"错误: 在 {LOW_ENERGY_DIR} 中找不到数据文件")
@@ -52,47 +52,35 @@ def load_scan_data():
     high_energy_data = []
     
     for low_file in low_files:
-        # 从文件名提取位置（例如: "0.0.txt" -> 0.0）
+        # 从文件名提取位置（例如: "0.0.bin" -> 0.0）
         filename = os.path.basename(low_file)
         try:
-            y_pos = float(filename.replace(".txt", ""))
+            y_pos = float(filename.replace(".bin", ""))
         except ValueError:
             print(f"警告: 无法解析文件名 {filename}，跳过")
             continue
         
-        # 读取低能数据
+        # 读取低能数据（二进制，G4double -> float64）
         try:
-            # 读取文件内容，按制表符分割，过滤空字符串
-            with open(low_file, 'r') as f:
-                content = f.read().strip()
-                values = [float(x) for x in content.split('\t') if x.strip()]
-            
-            if len(values) != NUM_PIXELS:
-                print(f"警告: {filename} 数据点数不是 {NUM_PIXELS}，实际为 {len(values)}")
+            low_data = np.fromfile(low_file, dtype=np.float64)
+            if low_data.size != NUM_PIXELS:
+                print(f"警告: {filename} 数据点数不是 {NUM_PIXELS}，实际为 {low_data.size}")
                 continue
-            
-            low_data = np.array(values)
         except Exception as e:
             print(f"警告: 读取 {low_file} 失败: {e}")
             continue
         
-        # 读取对应的高能数据
+        # 读取对应的高能数据（二进制）
         high_file = os.path.join(HIGH_ENERGY_DIR, filename)
         if not os.path.exists(high_file):
             print(f"警告: 找不到对应的高能文件 {high_file}，跳过")
             continue
         
         try:
-            # 读取文件内容，按制表符分割，过滤空字符串
-            with open(high_file, 'r') as f:
-                content = f.read().strip()
-                values = [float(x) for x in content.split('\t') if x.strip()]
-            
-            if len(values) != NUM_PIXELS:
-                print(f"警告: {high_file} 数据点数不是 {NUM_PIXELS}，实际为 {len(values)}")
+            high_data = np.fromfile(high_file, dtype=np.float64)
+            if high_data.size != NUM_PIXELS:
+                print(f"警告: {high_file} 数据点数不是 {NUM_PIXELS}，实际为 {high_data.size}")
                 continue
-            
-            high_data = np.array(values)
         except Exception as e:
             print(f"警告: 读取 {high_file} 失败: {e}")
             continue

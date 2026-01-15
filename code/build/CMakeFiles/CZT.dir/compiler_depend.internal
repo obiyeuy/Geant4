@@ -2890,66 +2890,6 @@ CMakeFiles/CZT.dir/src/EventAction.cc.o
  /home/yyb/software/install/geant4/include/Geant4/G4EventManager.hh
  /home/yyb/software/install/geant4/include/Geant4/G4UnitsTable.hh
  /home/yyb/software/install/geant4/include/Geant4/G4UnitsTable.icc
- /home/yyb/software/install/geant4/include/Geant4/G4AnalysisManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4GenericAnalysisManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4ToolsAnalysisManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4VAnalysisManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4AnalysisManagerState.hh
- /home/yyb/software/install/geant4/include/Geant4/G4AnalysisVerbose.hh
- /home/yyb/software/install/geant4/include/Geant4/G4VTBaseHnManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4HnInformation.hh
- /home/yyb/software/install/geant4/include/Geant4/G4AnalysisUtilities.hh
- /home/yyb/software/install/geant4/include/Geant4/G4BinScheme.hh
- /home/yyb/software/install/geant4/include/Geant4/G4Fcn.hh
- /home/yyb/software/install/geant4/include/Geant4/G4VAnalysisManager.icc
- /home/yyb/software/install/geant4/include/Geant4/G4HnManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4BaseAnalysisManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4NtupleBookingManager.hh
- /home/yyb/software/install/geant4/include/Geant4/tools/ntuple_booking
- /home/yyb/software/install/geant4/include/Geant4/tools/cids
- /home/yyb/software/install/geant4/include/Geant4/tools/cid
- /home/yyb/software/install/geant4/include/Geant4/tools/typedefs
- /home/yyb/software/install/geant4/include/Geant4/tools/forit
- /home/yyb/software/install/geant4/include/Geant4/G4NtupleBookingManager.icc
- /home/yyb/software/install/geant4/include/Geant4/G4VNtupleManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4VFileManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4BaseFileManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4VTHnFileManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4TH1ToolsManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4THnToolsManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4THnManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4THnManager.icc
- /home/yyb/software/install/geant4/include/Geant4/G4THnMessenger.hh
- /home/yyb/software/install/geant4/include/Geant4/G4THnToolsManager.icc
- /home/yyb/software/install/geant4/include/Geant4/G4THnMessenger.icc
- /home/yyb/software/install/geant4/include/Geant4/G4Tokenizer.hh
- /home/yyb/software/install/geant4/include/Geant4/G4TH2ToolsManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4TH3ToolsManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4TP1ToolsManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4TP2ToolsManager.hh
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/h1d
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/h1
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/b1
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/base_histo
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/histo_data
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/axes
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/axis
- /home/yyb/software/install/geant4/include/Geant4/tools/eqT
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/h2d
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/h2
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/b2
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/h3d
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/h3
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/b3
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/p1d
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/p1
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/profile_data
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/p2d
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/p2
- /home/yyb/software/install/geant4/include/Geant4/G4ToolsAnalysisManager.icc
- /home/yyb/software/install/geant4/include/Geant4/G4GenericAnalysisManager.icc
- /home/yyb/software/install/geant4/include/Geant4/G4GenericFileManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4GenericFileManager.icc
  /home/yyb/workspace/XRay-all/XRay-detectionCode/code/include/DetectorConstruction.hh
 
 CMakeFiles/CZT.dir/src/PhysicsList.cc.o
@@ -4687,66 +4627,6 @@ CMakeFiles/CZT.dir/src/RunAction.cc.o
  /home/yyb/workspace/XRay-all/XRay-detectionCode/code/include/DetectorConstruction.hh
  /home/yyb/software/install/geant4/include/Geant4/G4Run.hh
  /home/yyb/software/install/geant4/include/Geant4/G4ios.hh
- /home/yyb/software/install/geant4/include/Geant4/G4AnalysisManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4GenericAnalysisManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4ToolsAnalysisManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4VAnalysisManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4AnalysisManagerState.hh
- /home/yyb/software/install/geant4/include/Geant4/G4AnalysisVerbose.hh
- /home/yyb/software/install/geant4/include/Geant4/G4VTBaseHnManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4HnInformation.hh
- /home/yyb/software/install/geant4/include/Geant4/G4AnalysisUtilities.hh
- /home/yyb/software/install/geant4/include/Geant4/G4BinScheme.hh
- /home/yyb/software/install/geant4/include/Geant4/G4Fcn.hh
- /home/yyb/software/install/geant4/include/Geant4/G4VAnalysisManager.icc
- /home/yyb/software/install/geant4/include/Geant4/G4HnManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4BaseAnalysisManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4NtupleBookingManager.hh
- /home/yyb/software/install/geant4/include/Geant4/tools/ntuple_booking
- /home/yyb/software/install/geant4/include/Geant4/tools/cids
- /home/yyb/software/install/geant4/include/Geant4/tools/cid
- /home/yyb/software/install/geant4/include/Geant4/tools/typedefs
- /home/yyb/software/install/geant4/include/Geant4/tools/forit
- /home/yyb/software/install/geant4/include/Geant4/G4NtupleBookingManager.icc
- /home/yyb/software/install/geant4/include/Geant4/G4VNtupleManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4VFileManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4BaseFileManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4VTHnFileManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4TH1ToolsManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4THnToolsManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4THnManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4THnManager.icc
- /home/yyb/software/install/geant4/include/Geant4/G4THnMessenger.hh
- /home/yyb/software/install/geant4/include/Geant4/G4THnToolsManager.icc
- /home/yyb/software/install/geant4/include/Geant4/G4THnMessenger.icc
- /home/yyb/software/install/geant4/include/Geant4/G4Tokenizer.hh
- /home/yyb/software/install/geant4/include/Geant4/G4TH2ToolsManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4TH3ToolsManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4TP1ToolsManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4TP2ToolsManager.hh
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/h1d
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/h1
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/b1
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/base_histo
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/histo_data
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/axes
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/axis
- /home/yyb/software/install/geant4/include/Geant4/tools/eqT
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/h2d
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/h2
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/b2
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/h3d
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/h3
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/b3
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/p1d
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/p1
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/profile_data
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/p2d
- /home/yyb/software/install/geant4/include/Geant4/tools/histo/p2
- /home/yyb/software/install/geant4/include/Geant4/G4ToolsAnalysisManager.icc
- /home/yyb/software/install/geant4/include/Geant4/G4GenericAnalysisManager.icc
- /home/yyb/software/install/geant4/include/Geant4/G4GenericFileManager.hh
- /home/yyb/software/install/geant4/include/Geant4/G4GenericFileManager.icc
  /home/yyb/software/install/geant4/include/Geant4/G4Threading.hh
  /usr/include/x86_64-linux-gnu/sys/stat.h
  /usr/include/x86_64-linux-gnu/bits/stat.h

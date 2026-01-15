@@ -84,13 +84,16 @@ int main(int argc, char** argv)
 	RunAction* sharedRunAction = new RunAction;
 	runManager->SetUserInitialization(new ActionInitialization(sharedRunAction));
 	
-	//#ifdef G4VIS_USE
-  // Initialize visualization
-  G4VisManager* visManager = new G4VisExecutive;
-  // G4VisExecutive can take a verbosity argument - see /vis/verbose guidance.
-  // G4VisManager* visManager = new G4VisExecutive("Quiet");
-  visManager->Initialize();
-//#endif
+	// 只在交互模式（直接运行 ./CZT 而不带宏文件）下初始化可视化
+	// batch 模式（例如 ./CZT master.mac）不创建可视化，以减少开销
+	G4VisManager* visManager = nullptr;
+	if (argc == 1) {
+	  // Initialize visualization
+	  visManager = new G4VisExecutive;
+	  // G4VisExecutive can take a verbosity argument - see /vis/verbose guidance.
+	  // G4VisManager* visManager = new G4VisExecutive("Quiet");
+	  visManager->Initialize();
+	}
   // initialize G4 kernel
   // runManager->Initialize();
   
@@ -125,9 +128,9 @@ int main(int argc, char** argv)
   // owned and deleted by the run manager, so they should not be deleted 
   // in the main() program !
   
-//#ifdef G4VIS_USE
-  delete visManager;
-//#endif
+  if (visManager) {
+    delete visManager;
+  }
   delete runManager;
 
   return 0;

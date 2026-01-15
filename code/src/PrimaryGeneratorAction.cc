@@ -40,10 +40,10 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     fParticleGun->SetParticlePosition(G4ThreeVector(0*mm, 0*mm, -433.*mm));
 
     // 定义扇形束的角度范围
-    G4double phiMin = -1. * deg;
-    G4double phiMax = 1. * deg;
-    G4double thetaMin = -7. * deg;
-    G4double thetaMax = 7. * deg;
+    G4double phiMin = -0.15 * deg;
+    G4double phiMax = 0.15 * deg;
+    G4double thetaMin = -6 * deg;
+    G4double thetaMax = 6 * deg;
 
     // 随机生成角度
     G4double phi = G4UniformRand() * (phiMax - phiMin) + phiMin;

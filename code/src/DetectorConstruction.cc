@@ -245,8 +245,8 @@ G4VPhysicalVolume *DetectorConstruction::Construct()
 
     //待测物体
   	auto solidObject = new G4Sphere("Object", 0., sphereRadius, 0., 360.*deg, 0., 180.*deg);
-	auto logicObject = new G4LogicalVolume(solidObject, calciumPhosphate, "logicObject");
-	// // auto logicObject = new G4LogicalVolume(solidObject, Vacuum, "logicObject");
+	// auto logicObject = new G4LogicalVolume(solidObject, calciumPhosphate, "logicObject");
+	auto logicObject = new G4LogicalVolume(solidObject, Vacuum, "logicObject");
 
 	// auto Object_phys = new G4PVPlacement(fArmRotation, G4ThreeVector(0,ObjShift,0), logicObject, "Object_phys", logicWorld,false,0);
     logicObject->SetVisAttributes(transblue);

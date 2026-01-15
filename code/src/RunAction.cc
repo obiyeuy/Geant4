@@ -7,8 +7,9 @@
 #include "DetectorConstruction.hh"
 #include "G4Run.hh"
 #include "G4ios.hh"
-#include "G4AnalysisManager.hh"
 #include "G4Threading.hh"
+// 旧版输出依赖的头文件（保留作参考，已不再使用）
+// #include "G4AnalysisManager.hh"
 #include <iomanip>
 #include <sstream>
 #include <sys/stat.h>
@@ -20,56 +21,19 @@ std::mutex RunAction::fEdepMutex2;
 
 RunAction::RunAction() : G4UserRunAction()
 {
-	  // Create analysis manager
-	  // The choice of analysis technology is done via selecting of a namespace
-	//   // in B4Analysis.hh
 	const auto detConstruction = static_cast<const DetectorConstruction*>(
-    G4RunManager::GetRunManager()->GetUserDetectorConstruction());
+	    G4RunManager::GetRunManager()->GetUserDetectorConstruction());
 
 	G4int DetNum  = detConstruction->DetPixNum;
 
   	G4RunManager::GetRunManager()->SetPrintProgress(1000);
-	auto analysisManager = G4AnalysisManager::Instance();
-	analysisManager->SetVerboseLevel(1);
-	analysisManager->SetNtupleMerging(true);
 
-    // analysisManager->CreateH2("EdepInCrystal","Edep", DetNum, 0, DetNum, DetNum, 0, DetNum);
-
-	  stringstream os;  
-	  G4String title= " Pixel NO. ";	
-	  G4String name1, file_name;
-
-
-	  for(int i = 0; i<DetNum; i++)
-	  {
-			os<<1000 + i;
-			os>>name1;
-			os.clear();
-
-			file_name = title + name1;
-			analysisManager->CreateH1(file_name,file_name, 1000, 0, 200);
-
-	  }
-
-	  for(int i = 0; i<DetNum; i++)
-	  {
-			os<<2000 + i;
-			os>>name1;
-			os.clear();
-
-			file_name = title + name1;
-			analysisManager->CreateH1(file_name,file_name, 1000, 0, 200);
-
-	  }
-
-
-	 for(G4int i = 0; i<DetNum; i++)
-	 {
-			Run_EdepInCrystal[i] = 0;	
-			Run_EdepInCrystal2[i] = 0;	
-	 }	
-
-
+	// 初始化本 run 的累加数组
+	for(G4int i = 0; i<DetNum; i++)
+	{
+		Run_EdepInCrystal[i]  = 0.0;	
+		Run_EdepInCrystal2[i] = 0.0;	
+	}	
 }
 
 void RunAction::BeginOfRunAction(const G4Run*)
@@ -93,7 +57,7 @@ void RunAction::BeginOfRunAction(const G4Run*)
 		}
 	}
 
-	// 检查是否是主线程（在多线程模式下，只有主线程执行文件操作）
+	// 检查是否是主线程（在多线程模式下，只有主线程执行目录创建等操作）
 	// 在单线程模式下，isMaster 始终为 true
 	if (isMaster) {
 		// 输出基础目录名
@@ -102,109 +66,64 @@ void RunAction::BeginOfRunAction(const G4Run*)
 		// 为每种文件类型创建各自的文件夹
 		G4String dirListMode1 = outputDir + "/LowEnergy";
 		G4String dirListMode2 = outputDir + "/HighEnergy";
-		G4String dirMydata = outputDir + "/Mydata";
 		
 		// 创建各个输出目录（如果不存在）
 		mkdir(outputDir.c_str(), 0755);
 		mkdir(dirListMode1.c_str(), 0755);
 		mkdir(dirListMode2.c_str(), 0755);
-		mkdir(dirMydata.c_str(), 0755);
-		
-		// 获取ObjShift值用于生成文件名
-		const auto detConstruction = static_cast<const DetectorConstruction*>(
-			G4RunManager::GetRunManager()->GetUserDetectorConstruction());
-		G4double objShift = detConstruction->GetObjShiftDistance();
-		
-		// 将ObjShift值转换为字符串，用于文件名
-		std::stringstream ss;
-		ss << std::fixed << std::setprecision(1) << objShift;
-		G4String objShiftStr = ss.str();
-		
-		// 生成带各自目录和ObjShift值的文件路径
-		G4String fileName1 = dirListMode1 + "/" + objShiftStr + ".txt";
-		G4String fileName2 = dirListMode2 + "/" + objShiftStr + ".txt";
-		G4String rootFileName = dirMydata + "/" + objShiftStr + ".root";
-
-		fstream datafile1;
-		datafile1.open(fileName1,ios::out|ios::trunc);
-		datafile1.close();
-
-		fstream datafile2;
-		datafile2.open(fileName2,ios::out|ios::trunc);
-		datafile2.close();
-
-
-		//   // Get analysis manager
-		  auto analysisManager = G4AnalysisManager::Instance();
-
-		  // Open an output file
-		  //
-		  analysisManager->OpenFile(rootFileName);
-	  	  G4cout << "Using " << analysisManager->GetType() << G4endl;
-	  	  G4cout << "Output files with ObjShift = " << objShift << " mm" << G4endl;
 	}
 }
 
 void RunAction::EndOfRunAction(const G4Run*)
 {
-	  // print histogram statistics
-	  //
-	  auto analysisManager = G4AnalysisManager::Instance();
-	  
-	  // 检查是否是主线程（在多线程模式下，只有主线程执行文件输出）
-	  // 在单线程模式下，isMaster 始终为 true
-	  if (isMaster) {
-		  analysisManager->Write();
-		  analysisManager->CloseFile();
-
-		  const auto detConstruction = static_cast<const DetectorConstruction*>(
+	// 仅在主线程输出结果到二进制文件
+	if (isMaster) {
+		const auto detConstruction = static_cast<const DetectorConstruction*>(
 		      G4RunManager::GetRunManager()->GetUserDetectorConstruction());
 
-		  G4int DetNum  = detConstruction->DetPixNum;
+		G4int DetNum  = detConstruction->DetPixNum;
 		  
-		  // 输出基础目录名（与BeginOfRunAction中保持一致）
-		  G4String outputDir = "output";
+		// 输出基础目录名（与 BeginOfRunAction 中保持一致）
+		G4String outputDir = "output";
 		  
-		  // 为每种文件类型创建各自的文件夹
-		  G4String dirListMode1 = outputDir + "/LowEnergy";
-		  G4String dirListMode2 = outputDir + "/HighEnergy";
+		// 为每种文件类型创建各自的文件夹
+		G4String dirListMode1 = outputDir + "/LowEnergy";
+		G4String dirListMode2 = outputDir + "/HighEnergy";
 		  
-		  // 获取ObjShift值用于生成文件名
-		  G4double objShift = detConstruction->GetObjShiftDistance();
+		// 获取 ObjShift 值用于生成文件名
+		G4double objShift = detConstruction->GetObjShiftDistance();
 		  
-		  // 将ObjShift值转换为字符串，用于文件名
-		  std::stringstream ss;
-		  ss << std::fixed << std::setprecision(1) << objShift;
-		  G4String objShiftStr = ss.str();
+		// 将 ObjShift 值转换为字符串，用于文件名
+		std::stringstream ss;
+		ss << std::fixed << std::setprecision(1) << objShift;
+		G4String objShiftStr = ss.str();
 		  
-		  // 生成带各自目录和ObjShift值的文件路径
-		  G4String fileName1 = dirListMode1 + "/" + objShiftStr + ".txt";
-		  G4String fileName2 = dirListMode2 + "/" + objShiftStr + ".txt";
+		// 生成带各自目录和 ObjShift 值的文件路径（后缀改为 .bin）
+		G4String fileName1 = dirListMode1 + "/" + objShiftStr + ".bin";
+		G4String fileName2 = dirListMode2 + "/" + objShiftStr + ".bin";
 
-		  fstream datafile1;
-		  datafile1.open(fileName1,ios::out|ios::trunc);
+		// 写入低能量阵列（GGAG）到二进制文件
+		std::ofstream datafile1(fileName1, std::ios::binary | std::ios::trunc);
+		if (datafile1.is_open()) {
+			datafile1.write(
+				reinterpret_cast<const char*>(Run_EdepInCrystal),
+				static_cast<std::streamsize>(DetNum) * sizeof(G4double));
+			datafile1.close();
+		} else {
+			G4cerr << "Error opening file for write: " << fileName1 << G4endl;
+		}
 
-		   for(G4int i = 0; i<DetNum; i++)
-		   {
-
-				  datafile1<<Run_EdepInCrystal[i]<< "\t";
-		  
-		   }
-
-
-		  fstream datafile2;
-		  datafile2.open(fileName2,ios::out|ios::trunc);
-
-		   for(G4int i = 0; i<DetNum; i++)
-		   {
-
-				  datafile2<<Run_EdepInCrystal2[i]<< "\t";
-		  
-		   }
-
-		  datafile1.close();
-		  datafile2.close();
-	  }
+		// 写入高能量阵列（GOS）到二进制文件
+		std::ofstream datafile2(fileName2, std::ios::binary | std::ios::trunc);
+		if (datafile2.is_open()) {
+			datafile2.write(
+				reinterpret_cast<const char*>(Run_EdepInCrystal2),
+				static_cast<std::streamsize>(DetNum) * sizeof(G4double));
+			datafile2.close();
+		} else {
+			G4cerr << "Error opening file for write: " << fileName2 << G4endl;
+		}
+	}
 }
 
 void RunAction::AddEdepInCrystal(G4int index, G4double edep)
@@ -221,4 +140,105 @@ void RunAction::AddEdepInCrystal2(G4int index, G4double edep)
   Run_EdepInCrystal2[index] += edep;
 }
 
+// ======================================================================
+// 旧版实现：使用 G4AnalysisManager + txt/root 输出（已弃用，仅注释保留）
+// ======================================================================
+//
+// 下面这段是之前版本的 BeginOfRunAction / EndOfRunAction 主要逻辑，
+// 为了方便以后对比或恢复，这里用注释的形式完整保留：
+//
+// void RunAction::BeginOfRunAction(const G4Run*)
+// {
+//   //inform the runManager to save random number seed
+//   //G4RunManager::GetRunManager()->SetRandomNumberStore(true);
+//
+//   // 清零 Run_EdepInCrystal / Run_EdepInCrystal2
+//   {
+//     const auto detConstruction = static_cast<const DetectorConstruction*>(
+//         G4RunManager::GetRunManager()->GetUserDetectorConstruction());
+//     G4int DetNum = detConstruction->DetPixNum;
+//
+//     std::lock_guard<std::mutex> lock1(fEdepMutex);
+//     std::lock_guard<std::mutex> lock2(fEdepMutex2);
+//     for (G4int i = 0; i < DetNum; i++) {
+//       Run_EdepInCrystal[i] = 0.0;
+//       Run_EdepInCrystal2[i] = 0.0;
+//     }
+//   }
+//
+//   if (isMaster) {
+//     G4String outputDir = "output";
+//     G4String dirListMode1 = outputDir + "/LowEnergy";
+//     G4String dirListMode2 = outputDir + "/HighEnergy";
+//     G4String dirMydata    = outputDir + "/Mydata";
+//
+//     mkdir(outputDir.c_str(), 0755);
+//     mkdir(dirListMode1.c_str(), 0755);
+//     mkdir(dirListMode2.c_str(), 0755);
+//     mkdir(dirMydata.c_str(),   0755);
+//
+//     const auto detConstruction = static_cast<const DetectorConstruction*>(
+//         G4RunManager::GetRunManager()->GetUserDetectorConstruction());
+//     G4double objShift = detConstruction->GetObjShiftDistance();
+//
+//     std::stringstream ss;
+//     ss << std::fixed << std::setprecision(1) << objShift;
+//     G4String objShiftStr = ss.str();
+//
+//     G4String fileName1   = dirListMode1 + "/" + objShiftStr + ".txt";
+//     G4String fileName2   = dirListMode2 + "/" + objShiftStr + ".txt";
+//     G4String rootFileName = dirMydata  + "/" + objShiftStr + ".root";
+//
+//     // 预创建 txt 文件
+//     fstream datafile1(fileName1, ios::out | ios::trunc);
+//     datafile1.close();
+//     fstream datafile2(fileName2, ios::out | ios::trunc);
+//     datafile2.close();
+//
+//     // 使用 G4AnalysisManager 打开 ROOT 输出
+//     auto analysisManager = G4AnalysisManager::Instance();
+//     analysisManager->OpenFile(rootFileName);
+//     G4cout << "Using " << analysisManager->GetType() << G4endl;
+//     G4cout << "Output files with ObjShift = " << objShift << " mm" << G4endl;
+//   }
+// }
+//
+// void RunAction::EndOfRunAction(const G4Run*)
+// {
+//   auto analysisManager = G4AnalysisManager::Instance();
+//
+//   if (isMaster) {
+//     analysisManager->Write();
+//     analysisManager->CloseFile();
+//
+//     const auto detConstruction = static_cast<const DetectorConstruction*>(
+//         G4RunManager::GetRunManager()->GetUserDetectorConstruction());
+//
+//     G4int DetNum  = detConstruction->DetPixNum;
+//     G4String outputDir = "output";
+//     G4String dirListMode1 = outputDir + "/LowEnergy";
+//     G4String dirListMode2 = outputDir + "/HighEnergy";
+//
+//     G4double objShift = detConstruction->GetObjShiftDistance();
+//     std::stringstream ss;
+//     ss << std::fixed << std::setprecision(1) << objShift;
+//     G4String objShiftStr = ss.str();
+//
+//     G4String fileName1 = dirListMode1 + "/" + objShiftStr + ".txt";
+//     G4String fileName2 = dirListMode2 + "/" + objShiftStr + ".txt";
+//
+//     // 将 Run_EdepInCrystal / Run_EdepInCrystal2 写成 txt
+//     fstream datafile1(fileName1, ios::out | ios::trunc);
+//     for (G4int i = 0; i < DetNum; i++) {
+//       datafile1 << Run_EdepInCrystal[i] << "\t";
+//     }
+//     datafile1.close();
+//
+//     fstream datafile2(fileName2, ios::out | ios::trunc);
+//     for (G4int i = 0; i < DetNum; i++) {
+//       datafile2 << Run_EdepInCrystal2[i] << "\t";
+//     }
+//     datafile2.close();
+//   }
+// }
 

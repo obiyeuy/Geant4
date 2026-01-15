@@ -2885,66 +2885,6 @@ CMakeFiles/CZT.dir/src/EventAction.cc.o: ../src/EventAction.cc \
   /home/yyb/software/install/geant4/include/Geant4/G4EventManager.hh \
   /home/yyb/software/install/geant4/include/Geant4/G4UnitsTable.hh \
   /home/yyb/software/install/geant4/include/Geant4/G4UnitsTable.icc \
-  /home/yyb/software/install/geant4/include/Geant4/G4AnalysisManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4GenericAnalysisManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4ToolsAnalysisManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4VAnalysisManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4AnalysisManagerState.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4AnalysisVerbose.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4VTBaseHnManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4HnInformation.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4AnalysisUtilities.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4BinScheme.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4Fcn.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4VAnalysisManager.icc \
-  /home/yyb/software/install/geant4/include/Geant4/G4HnManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4BaseAnalysisManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4NtupleBookingManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/tools/ntuple_booking \
-  /home/yyb/software/install/geant4/include/Geant4/tools/cids \
-  /home/yyb/software/install/geant4/include/Geant4/tools/cid \
-  /home/yyb/software/install/geant4/include/Geant4/tools/typedefs \
-  /home/yyb/software/install/geant4/include/Geant4/tools/forit \
-  /home/yyb/software/install/geant4/include/Geant4/G4NtupleBookingManager.icc \
-  /home/yyb/software/install/geant4/include/Geant4/G4VNtupleManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4VFileManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4BaseFileManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4VTHnFileManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4TH1ToolsManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4THnToolsManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4THnManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4THnManager.icc \
-  /home/yyb/software/install/geant4/include/Geant4/G4THnMessenger.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4THnToolsManager.icc \
-  /home/yyb/software/install/geant4/include/Geant4/G4THnMessenger.icc \
-  /home/yyb/software/install/geant4/include/Geant4/G4Tokenizer.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4TH2ToolsManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4TH3ToolsManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4TP1ToolsManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4TP2ToolsManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/h1d \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/h1 \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/b1 \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/base_histo \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/histo_data \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/axes \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/axis \
-  /home/yyb/software/install/geant4/include/Geant4/tools/eqT \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/h2d \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/h2 \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/b2 \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/h3d \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/h3 \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/b3 \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/p1d \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/p1 \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/profile_data \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/p2d \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/p2 \
-  /home/yyb/software/install/geant4/include/Geant4/G4ToolsAnalysisManager.icc \
-  /home/yyb/software/install/geant4/include/Geant4/G4GenericAnalysisManager.icc \
-  /home/yyb/software/install/geant4/include/Geant4/G4GenericFileManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4GenericFileManager.icc \
   ../include/DetectorConstruction.hh
 
 CMakeFiles/CZT.dir/src/PhysicsList.cc.o: ../src/PhysicsList.cc \
@@ -4679,66 +4619,6 @@ CMakeFiles/CZT.dir/src/RunAction.cc.o: ../src/RunAction.cc \
   ../include/DetectorConstruction.hh \
   /home/yyb/software/install/geant4/include/Geant4/G4Run.hh \
   /home/yyb/software/install/geant4/include/Geant4/G4ios.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4AnalysisManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4GenericAnalysisManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4ToolsAnalysisManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4VAnalysisManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4AnalysisManagerState.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4AnalysisVerbose.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4VTBaseHnManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4HnInformation.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4AnalysisUtilities.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4BinScheme.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4Fcn.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4VAnalysisManager.icc \
-  /home/yyb/software/install/geant4/include/Geant4/G4HnManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4BaseAnalysisManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4NtupleBookingManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/tools/ntuple_booking \
-  /home/yyb/software/install/geant4/include/Geant4/tools/cids \
-  /home/yyb/software/install/geant4/include/Geant4/tools/cid \
-  /home/yyb/software/install/geant4/include/Geant4/tools/typedefs \
-  /home/yyb/software/install/geant4/include/Geant4/tools/forit \
-  /home/yyb/software/install/geant4/include/Geant4/G4NtupleBookingManager.icc \
-  /home/yyb/software/install/geant4/include/Geant4/G4VNtupleManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4VFileManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4BaseFileManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4VTHnFileManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4TH1ToolsManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4THnToolsManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4THnManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4THnManager.icc \
-  /home/yyb/software/install/geant4/include/Geant4/G4THnMessenger.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4THnToolsManager.icc \
-  /home/yyb/software/install/geant4/include/Geant4/G4THnMessenger.icc \
-  /home/yyb/software/install/geant4/include/Geant4/G4Tokenizer.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4TH2ToolsManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4TH3ToolsManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4TP1ToolsManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4TP2ToolsManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/h1d \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/h1 \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/b1 \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/base_histo \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/histo_data \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/axes \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/axis \
-  /home/yyb/software/install/geant4/include/Geant4/tools/eqT \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/h2d \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/h2 \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/b2 \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/h3d \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/h3 \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/b3 \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/p1d \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/p1 \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/profile_data \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/p2d \
-  /home/yyb/software/install/geant4/include/Geant4/tools/histo/p2 \
-  /home/yyb/software/install/geant4/include/Geant4/G4ToolsAnalysisManager.icc \
-  /home/yyb/software/install/geant4/include/Geant4/G4GenericAnalysisManager.icc \
-  /home/yyb/software/install/geant4/include/Geant4/G4GenericFileManager.hh \
-  /home/yyb/software/install/geant4/include/Geant4/G4GenericFileManager.icc \
   /home/yyb/software/install/geant4/include/Geant4/G4Threading.hh \
   /usr/include/x86_64-linux-gnu/sys/stat.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
@@ -5377,6 +5257,8 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 
 /home/yyb/software/install/geant4/include/Geant4/G4AntiXibZero.hh:
 
+/home/yyb/software/install/geant4/include/Geant4/G4AntiSigmabPlus.hh:
+
 /usr/include/x86_64-linux-gnu/asm/bitsperlong.h:
 
 /home/yyb/software/install/geant4/include/Geant4/G4AntiLambdab.hh:
@@ -5419,6 +5301,8 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 
 /home/yyb/software/install/geant4/include/Geant4/G4BMesonMinus.hh:
 
+/home/yyb/software/install/geant4/include/Geant4/G4Etac.hh:
+
 /home/yyb/software/install/geant4/include/Geant4/G4JPsi.hh:
 
 /home/yyb/software/install/geant4/include/Geant4/G4DsMesonPlus.hh:
@@ -5457,65 +5341,11 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 
 ../src/PhysicsList.cc:
 
-/home/yyb/software/install/geant4/include/Geant4/G4GenericFileManager.icc:
-
-/home/yyb/software/install/geant4/include/Geant4/G4GenericFileManager.hh:
-
-/home/yyb/software/install/geant4/include/Geant4/G4GenericAnalysisManager.icc:
-
-/home/yyb/software/install/geant4/include/Geant4/G4AntiSigmabPlus.hh:
-
-/home/yyb/software/install/geant4/include/Geant4/tools/histo/p2:
-
-/home/yyb/software/install/geant4/include/Geant4/G4Etac.hh:
-
-/home/yyb/software/install/geant4/include/Geant4/tools/histo/p2d:
-
-/home/yyb/software/install/geant4/include/Geant4/tools/histo/p1:
-
-/home/yyb/software/install/geant4/include/Geant4/tools/histo/p1d:
-
-/home/yyb/software/install/geant4/include/Geant4/tools/histo/b3:
-
-/home/yyb/software/install/geant4/include/Geant4/tools/histo/h3d:
-
-/home/yyb/software/install/geant4/include/Geant4/tools/eqT:
-
-/home/yyb/software/install/geant4/include/Geant4/tools/histo/histo_data:
-
-/home/yyb/software/install/geant4/include/Geant4/tools/histo/h1:
-
-/home/yyb/software/install/geant4/include/Geant4/tools/histo/h1d:
-
-/home/yyb/software/install/geant4/include/Geant4/G4TP1ToolsManager.hh:
-
-/home/yyb/software/install/geant4/include/Geant4/G4THnMessenger.hh:
-
-/home/yyb/software/install/geant4/include/Geant4/G4THnManager.icc:
-
-/home/yyb/software/install/geant4/include/Geant4/G4THnManager.hh:
-
-/home/yyb/software/install/geant4/include/Geant4/G4TH1ToolsManager.hh:
-
-/home/yyb/software/install/geant4/include/Geant4/G4NtupleBookingManager.icc:
-
-/home/yyb/software/install/geant4/include/Geant4/tools/cid:
-
-/home/yyb/software/install/geant4/include/Geant4/G4BaseAnalysisManager.hh:
-
-/home/yyb/software/install/geant4/include/Geant4/G4VTBaseHnManager.hh:
-
-/home/yyb/software/install/geant4/include/Geant4/G4ToolsAnalysisManager.hh:
-
-/home/yyb/software/install/geant4/include/Geant4/G4AnalysisManager.hh:
-
 /home/yyb/software/install/geant4/include/Geant4/G4PionPlus.hh:
 
 /home/yyb/software/install/geant4/include/Geant4/G4ParticleGun.hh:
 
 ../src/EventAction.cc:
-
-/home/yyb/software/install/geant4/include/Geant4/tools/histo/axes:
 
 /home/yyb/software/install/geant4/include/Geant4/G4UIcmdWithADoubleAndUnit.hh:
 
@@ -5570,8 +5400,6 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 /home/yyb/software/install/geant4/include/Geant4/G4OpenGLImmediateQt.hh:
 
 /home/yyb/software/install/geant4/include/Geant4/G4AntiSigmacPlusPlus.hh:
-
-/home/yyb/software/install/geant4/include/Geant4/tools/histo/axis:
 
 /home/yyb/software/install/geant4/include/Geant4/G4OpenGLImmediateX.hh:
 
@@ -5628,8 +5456,6 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 /home/yyb/software/install/geant4/include/Geant4/G4Polycone.hh:
 
 /home/yyb/software/install/geant4/include/Geant4/G4BMesonZero.hh:
-
-/home/yyb/software/install/geant4/include/Geant4/G4VAnalysisManager.hh:
 
 /home/yyb/software/install/geant4/include/Geant4/G4Trd.icc:
 
@@ -5713,8 +5539,6 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 
 ../include/RunAction.hh:
 
-/home/yyb/software/install/geant4/include/Geant4/tools/forit:
-
 /home/yyb/software/install/geant4/include/Geant4/G4MCCIndexConversionTable.hh:
 
 /home/yyb/software/install/geant4/include/Geant4/G4MaterialCutsCouple.hh:
@@ -5736,8 +5560,6 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 /usr/include/x86_64-linux-gnu/bits/types/sigval_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/siginfo-consts-arch.h:
-
-/home/yyb/software/install/geant4/include/Geant4/G4HnManager.hh:
 
 /usr/include/x86_64-linux-gnu/bits/siginfo-consts.h:
 
@@ -5770,8 +5592,6 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 /usr/include/x86_64-linux-gnu/bits/posix_opt.h:
 
 /home/yyb/software/install/geant4/include/Geant4/G4CacheDetails.hh:
-
-/home/yyb/software/install/geant4/include/Geant4/G4VTHnFileManager.hh:
 
 /home/yyb/software/install/geant4/include/Geant4/G4Cache.hh:
 
@@ -5897,13 +5717,9 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 
 /usr/include/c++/11/bits/stl_deque.h:
 
-/home/yyb/software/install/geant4/include/Geant4/G4VFileManager.hh:
-
 /home/yyb/software/install/geant4/include/Geant4/G4LogicalSurface.hh:
 
 /usr/include/c++/11/deque:
-
-/home/yyb/software/install/geant4/include/Geant4/G4THnToolsManager.hh:
 
 /usr/include/c++/11/queue:
 
@@ -6049,13 +5865,9 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 
 /home/yyb/software/install/geant4/include/Geant4/CLHEP/Random/RandGeneral.h:
 
-/home/yyb/software/install/geant4/include/Geant4/G4TH3ToolsManager.hh:
-
 /usr/include/c++/11/bits/streambuf_iterator.h:
 
 /usr/include/c++/11/cwctype:
-
-/home/yyb/software/install/geant4/include/Geant4/G4Tokenizer.hh:
 
 /usr/include/c++/11/fenv.h:
 
@@ -6068,8 +5880,6 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 /home/yyb/software/install/geant4/include/Geant4/G4VNotifier.hh:
 
 /usr/include/c++/11/bits/unique_ptr.h:
-
-/home/yyb/software/install/geant4/include/Geant4/G4VNtupleManager.hh:
 
 /home/yyb/software/install/geant4/include/Geant4/CLHEP/Random/RandGauss.icc:
 
@@ -6136,8 +5946,6 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 /usr/include/x86_64-linux-gnu/bits/floatn.h:
 
 /home/yyb/software/install/geant4/include/Geant4/G4NeutrinoMu.hh:
-
-/home/yyb/software/install/geant4/include/Geant4/tools/histo/h2:
 
 /home/yyb/software/install/geant4/include/Geant4/CLHEP/Random/RandLandau.icc:
 
@@ -6277,8 +6085,6 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 
 /usr/include/x86_64-linux-gnu/bits/waitflags.h:
 
-/home/yyb/software/install/geant4/include/Geant4/G4TH2ToolsManager.hh:
-
 /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/error_t.h:
@@ -6286,8 +6092,6 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 /home/yyb/software/install/geant4/include/Geant4/G4Cons.hh:
 
 /home/yyb/software/install/geant4/include/Geant4/CLHEP/Vector/RotationInterfaces.h:
-
-/home/yyb/software/install/geant4/include/Geant4/G4GenericAnalysisManager.hh:
 
 /home/yyb/software/install/geant4/include/Geant4/G4TwoVector.hh:
 
@@ -6427,8 +6231,6 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
 
-/home/yyb/software/install/geant4/include/Geant4/tools/histo/profile_data:
-
 /usr/include/stdlib.h:
 
 /usr/include/x86_64-linux-gnu/bits/wordsize.h:
@@ -6483,8 +6285,6 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 
 /usr/include/c++/11/bits/allocator.h:
 
-/home/yyb/software/install/geant4/include/Geant4/tools/ntuple_booking:
-
 ../src/DetectorConstruction.cc:
 
 /usr/include/c++/11/cmath:
@@ -6531,8 +6331,6 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 
 /usr/include/x86_64-linux-gnu/bits/types.h:
 
-/home/yyb/software/install/geant4/include/Geant4/tools/typedefs:
-
 /home/yyb/software/install/geant4/include/Geant4/G4DigiFilterFactories.hh:
 
 /usr/include/x86_64-linux-gnu/bits/errno.h:
@@ -6540,8 +6338,6 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 /home/yyb/software/install/geant4/include/Geant4/G4GlobalConfig.hh:
 
 /usr/include/x86_64-linux-gnu/bits/typesizes.h:
-
-/home/yyb/software/install/geant4/include/Geant4/tools/histo/h3:
 
 /usr/include/c++/11/bits/predefined_ops.h:
 
@@ -6581,23 +6377,17 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 
 /home/yyb/software/install/geant4/include/Geant4/CLHEP/Geometry/Vector3D.h:
 
-/home/yyb/software/install/geant4/include/Geant4/G4AnalysisVerbose.hh:
-
 /home/yyb/software/install/geant4/include/Geant4/trkgdefs.hh:
 
 /usr/include/alloca.h:
 
 /home/yyb/software/install/geant4/include/Geant4/G4AntiSigmabZero.hh:
 
-/home/yyb/software/install/geant4/include/Geant4/G4BinScheme.hh:
-
 /usr/include/c++/11/bits/specfun.h:
 
 /usr/include/c++/11/ext/atomicity.h:
 
 /usr/include/c++/11/debug/assertions.h:
-
-/home/yyb/software/install/geant4/include/Geant4/tools/histo/b1:
 
 /usr/include/c++/11/cstdlib:
 
@@ -6649,8 +6439,6 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 
 /usr/include/c++/11/istream:
 
-/home/yyb/software/install/geant4/include/Geant4/G4ToolsAnalysisManager.icc:
-
 /usr/include/c++/11/typeinfo:
 
 /home/yyb/software/install/geant4/include/Geant4/G4AntiXicZero.hh:
@@ -6699,8 +6487,6 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 
 /home/yyb/software/install/geant4/include/Geant4/G4OmegabMinus.hh:
 
-/home/yyb/software/install/geant4/include/Geant4/tools/cids:
-
 /usr/include/c++/11/bits/nested_exception.h:
 
 /home/yyb/software/install/geant4/include/Geant4/G4ProductionCutsTable.hh:
@@ -6714,8 +6500,6 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 /usr/include/x86_64-linux-gnu/bits/floatn-common.h:
 
 /usr/include/x86_64-linux-gnu/bits/struct_stat.h:
-
-/home/yyb/software/install/geant4/include/Geant4/G4Fcn.hh:
 
 /usr/include/signal.h:
 
@@ -6771,8 +6555,6 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 
 /home/yyb/software/install/geant4/include/Geant4/CLHEP/Random/Ranlux64Engine.h:
 
-/home/yyb/software/install/geant4/include/Geant4/G4VAnalysisManager.icc:
-
 /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
 
 /usr/include/c++/11/bits/char_traits.h:
@@ -6812,8 +6594,6 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 /usr/include/c++/11/bits/stl_map.h:
 
 /usr/include/c++/11/mutex:
-
-/home/yyb/software/install/geant4/include/Geant4/tools/histo/base_histo:
 
 /home/yyb/software/install/geant4/include/Geant4/windefs.hh:
 
@@ -6903,8 +6683,6 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 
 /home/yyb/software/install/geant4/include/Geant4/G4VVolumeMaterialScanner.hh:
 
-/home/yyb/software/install/geant4/include/Geant4/tools/histo/b2:
-
 /home/yyb/software/install/geant4/include/Geant4/PTL/Utility.hh:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs.h:
@@ -6920,8 +6698,6 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 /home/yyb/software/install/geant4/include/Geant4/G4VModularPhysicsList.hh:
 
 /home/yyb/software/install/geant4/include/Geant4/G4UserStackingAction.hh:
-
-/home/yyb/software/install/geant4/include/Geant4/G4TP2ToolsManager.hh:
 
 /home/yyb/software/install/geant4/include/Geant4/G4StackedTrack.hh:
 
@@ -7025,8 +6801,6 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 
 /home/yyb/software/install/geant4/include/Geant4/G4Step.hh:
 
-/home/yyb/software/install/geant4/include/Geant4/G4AnalysisUtilities.hh:
-
 /usr/include/x86_64-linux-gnu/bits/endian.h:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls.h:
@@ -7074,8 +6848,6 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 /home/yyb/software/install/geant4/include/Geant4/G4Isotope.hh:
 
 /home/yyb/software/install/geant4/include/Geant4/G4NormalNavigation.icc:
-
-/home/yyb/software/install/geant4/include/Geant4/G4NtupleBookingManager.hh:
 
 /home/yyb/software/install/geant4/include/Geant4/G4Polyhedra.icc:
 
@@ -7157,8 +6929,6 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 
 /home/yyb/software/install/geant4/include/Geant4/CLHEP/Random/DualRand.h:
 
-/home/yyb/software/install/geant4/include/Geant4/G4HnInformation.hh:
-
 /home/yyb/software/install/geant4/include/Geant4/G4DataVector.hh:
 
 /home/yyb/software/install/geant4/include/Geant4/G4StepPoint.icc:
@@ -7174,8 +6944,6 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 /usr/include/c++/11/bits/localefwd.h:
 
 /home/yyb/software/install/geant4/include/Geant4/G4StepStatus.hh:
-
-/home/yyb/software/install/geant4/include/Geant4/G4BaseFileManager.hh:
 
 /home/yyb/software/install/geant4/include/Geant4/G4SteppingManager.hh:
 
@@ -7200,8 +6968,6 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 /home/yyb/software/install/geant4/include/Geant4/G4TrackingManager.hh:
 
 /home/yyb/software/install/geant4/include/Geant4/G4Lambdab.hh:
-
-/home/yyb/software/install/geant4/include/Geant4/G4THnToolsManager.icc:
 
 /usr/include/c++/11/bits/deque.tcc:
 
@@ -7315,8 +7081,6 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 
 /home/yyb/software/install/geant4/include/Geant4/G4AntiSigmaZero.hh:
 
-/home/yyb/software/install/geant4/include/Geant4/G4AnalysisManagerState.hh:
-
 /home/yyb/software/install/geant4/include/Geant4/G4GRSVolume.hh:
 
 /home/yyb/software/install/geant4/include/Geant4/G4BlockingList.icc:
@@ -7357,8 +7121,6 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 
 /home/yyb/software/install/geant4/include/Geant4/G4VSolid.icc:
 
-/home/yyb/software/install/geant4/include/Geant4/G4THnMessenger.icc:
-
 /home/yyb/software/install/geant4/include/Geant4/G4SmartVoxelProxy.icc:
 
 /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
@@ -7398,8 +7160,6 @@ CMakeFiles/CZT.dir/src/SteppingAction.cc.o: ../src/SteppingAction.cc \
 /home/yyb/software/install/geant4/include/Geant4/G4ProcessManager.hh:
 
 /home/yyb/software/install/geant4/include/Geant4/G4VProcess.hh:
-
-/home/yyb/software/install/geant4/include/Geant4/tools/histo/h2d:
 
 /home/yyb/software/install/geant4/include/Geant4/G4VGraphicsSystem.hh:
 
