@@ -8,7 +8,7 @@ from PIL import Image
 # --- 算法常量 ---
 EPS = 1e-6          # 防止 log(0)
 BIX_OFFSET = 10.0   # 信号平滑偏移 (keV)，用于稳定厚重区域噪声
-R_SMOOTH = 1e-2     # R值平滑因子，用于稳定背景区域
+R_SMOOTH = 5e-2     # R值平滑因子，用于稳定背景区域
 
 def save_16bit_png(arr, path, vmin, vmax):
     """将物理数据映射到 16位 灰度图保存"""
@@ -57,7 +57,7 @@ def main():
     # 保存 R 值材质图（看材质）
     # R 值通常在 0.5 - 2.5 之间，可以根据你的矿石种类微调 vmin/vmax
     # save_16bit_png(r_map, "results/r_value_map.png", vmin=0.5, vmax=2.5)
-    save_16bit_png(r_map, "results/r_value_map.png", vmin=0.5, vmax=2.0)
+    save_16bit_png(r_map, "results/r_value_map.png", vmin=0.5, vmax=1.5)
 
     print("=" * 50)
     print("物理处理完成！")

@@ -57,6 +57,7 @@ set(SCRIPTS
   geo.mac
   master.mac
   scan_row.mac
+  src/spectrum.txt
   )
 
 foreach(_script ${SCRIPTS})

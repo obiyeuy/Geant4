@@ -30,6 +30,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "../master.mac"
   "../run.mac"
   "../scan_row.mac"
+  "../src/spectrum.txt"
   "../vis.mac"
   "/usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfig.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigExtras.cmake"
@@ -122,6 +123,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "geo.mac"
   "master.mac"
   "scan_row.mac"
+  "src/spectrum.txt"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
