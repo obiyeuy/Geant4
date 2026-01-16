@@ -4,8 +4,10 @@
 
 #include "G4VUserDetectorConstruction.hh"
 #include "G4RotationMatrix.hh"
+#include "G4GDMLParser.hh"
 class DetectorMessenger;
 class G4VPhysicalVolume;
+class G4LogicalVolume;
 
 class DetectorConstruction : public G4VUserDetectorConstruction
 {
@@ -21,12 +23,15 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4double GetObjShiftDistance() const { return ObjShift; }  // 获取ObjShift值
     void SetEnableObject (G4bool enable);  // 设置是否启用物体
     G4bool GetEnableObject() const { return fEnableObject; }  // 获取是否启用物体
+    void LoadOreGDML(G4String filename);  // 动态加载矿石 GDML 文件
 
   private:
     G4double ObjShift;
     G4bool fEnableObject;  // 是否启用物体（用于生成空白灰度图）
     DetectorMessenger*  fMessenger;   // detector messenger  
     G4VPhysicalVolume* fPhysiObject; // 定义一个成员变量指针
+    G4LogicalVolume* fLogicOre;  // 矿石逻辑体积指针（用于动态替换）
+    G4GDMLParser fParser;  // GDML 解析器
 };
 
 #endif

@@ -13,10 +13,16 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 #
 option(WITH_GEANT4_UIVIS "Build example with Geant4 UI and Vis drivers" ON)
 if(WITH_GEANT4_UIVIS)
-  find_package(Geant4 REQUIRED ui_all vis_all)
+  find_package(Geant4 REQUIRED ui_all vis_all gdml)
 else()
-  find_package(Geant4 REQUIRED)
+  find_package(Geant4 REQUIRED gdml)
 endif()
+
+#----------------------------------------------------------------------------
+# Find XercesC for GDML support
+#
+find_package(XercesC REQUIRED)
+include_directories(${XERCESC_INCLUDE_DIRS})
 
 #----------------------------------------------------------------------------
 # Setup Geant4 include directories and compile definitions
@@ -37,7 +43,7 @@ file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 # Add the executable, and link it to the Geant4 libraries
 #
 add_executable(CZT CZT.cc ${sources} ${headers})
-target_link_libraries(CZT ${Geant4_LIBRARIES})
+target_link_libraries(CZT ${Geant4_LIBRARIES} ${XERCESC_LIBRARIES})
 
 #----------------------------------------------------------------------------
 #

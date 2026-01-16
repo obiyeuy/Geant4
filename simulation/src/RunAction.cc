@@ -14,6 +14,7 @@
 #include <sstream>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <cstdlib>
 
 // 静态成员变量定义
 std::mutex RunAction::fEdepMutex;
@@ -57,8 +58,9 @@ void RunAction::BeginOfRunAction(const G4Run*)
 	// 检查是否是主线程（在多线程模式下，只有主线程执行目录创建等操作）
 	// 在单线程模式下，isMaster 始终为 true
 	if (isMaster) {
-		// 输出基础目录名
-		G4String outputDir = "output";
+		// 优先读取环境变量 G4_OUTPUT_DIR，如果不存在则使用默认值 "output"
+		const char* env_p = std::getenv("G4_OUTPUT_DIR");
+		G4String outputDir = (env_p != nullptr) ? G4String(env_p) : "output";
 		
 		// 为每种文件类型创建各自的文件夹
 		G4String dirListMode1 = outputDir + "/LowEnergy";
@@ -68,6 +70,8 @@ void RunAction::BeginOfRunAction(const G4Run*)
 		mkdir(outputDir.c_str(), 0755);
 		mkdir(dirListMode1.c_str(), 0755);
 		mkdir(dirListMode2.c_str(), 0755);
+		
+		G4cout << "##### Output directory: " << outputDir << " #####" << G4endl;
 	}
 }
 
@@ -78,8 +82,9 @@ void RunAction::EndOfRunAction(const G4Run*)
 		const auto detConstruction = static_cast<const DetectorConstruction*>(
 		      G4RunManager::GetRunManager()->GetUserDetectorConstruction());
 		  
-		// 输出基础目录名（与 BeginOfRunAction 中保持一致）
-		G4String outputDir = "output";
+		// 优先读取环境变量 G4_OUTPUT_DIR，如果不存在则使用默认值 "output"
+		const char* env_p = std::getenv("G4_OUTPUT_DIR");
+		G4String outputDir = (env_p != nullptr) ? G4String(env_p) : "output";
 		  
 		// 为每种文件类型创建各自的文件夹
 		G4String dirListMode1 = outputDir + "/LowEnergy";

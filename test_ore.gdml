@@ -1,0 +1,941 @@
+<?xml version="1.0" ?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+	<define/>
+	<materials>
+		<element name="Ca" formula="Ca" Z="20">
+			<atom value="40.078"/>
+		</element>
+		<element name="P" formula="P" Z="15">
+			<atom value="30.974"/>
+		</element>
+		<element name="O" formula="O" Z="8">
+			<atom value="15.999"/>
+		</element>
+		<material name="CalciumPhosphate">
+			<D value="2.9"/>
+			<composite ref="Ca" n="3"/>
+			<composite ref="P" n="2"/>
+			<composite ref="O" n="8"/>
+		</material>
+	</materials>
+	<solids>
+		<ellipsoid name="matrix_ellipsoid" ax="9.130955675463369" by="8.898858449503832" cz="10.25824897300052" zcut1="-10.25824897300052" zcut2="10.25824897300052" lunit="mm"/>
+		<sphere name="inclusion_0" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_1" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_2" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_3" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_4" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_5" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_6" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_7" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_8" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_9" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_10" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_11" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_12" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_13" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_14" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_15" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_16" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_17" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_18" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_19" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_20" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_21" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_22" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_23" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_24" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_25" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_26" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_27" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_28" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_29" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_30" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_31" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_32" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_33" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_34" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_35" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_36" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_37" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_38" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_39" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_40" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_41" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_42" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_43" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_44" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_45" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_46" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_47" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_48" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_49" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_50" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_51" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_52" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_53" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_54" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_55" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_56" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_57" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_58" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_59" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_60" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_61" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_62" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_63" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_64" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_65" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_66" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_67" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_68" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_69" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_70" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_71" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_72" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_73" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_74" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_75" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_76" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_77" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_78" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_79" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_80" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_81" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_82" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_83" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_84" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_85" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_86" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_87" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_88" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_89" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_90" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_91" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_92" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_93" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_94" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_95" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_96" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_97" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_98" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<sphere name="inclusion_99" rmin="0.0" rmax="1.0" deltaphi="6.283185307179586" startphi="0.0" starttheta="0.0" deltatheta="3.141592653589793" lunit="mm" aunit="rad"/>
+		<box name="world" x="1000" y="1000" z="1000" lunit="mm"/>
+	</solids>
+	<structure>
+		<volume name="inclusion_lv_0">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_0"/>
+		</volume>
+		<volume name="inclusion_lv_1">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_1"/>
+		</volume>
+		<volume name="inclusion_lv_2">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_2"/>
+		</volume>
+		<volume name="inclusion_lv_3">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_3"/>
+		</volume>
+		<volume name="inclusion_lv_4">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_4"/>
+		</volume>
+		<volume name="inclusion_lv_5">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_5"/>
+		</volume>
+		<volume name="inclusion_lv_6">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_6"/>
+		</volume>
+		<volume name="inclusion_lv_7">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_7"/>
+		</volume>
+		<volume name="inclusion_lv_8">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_8"/>
+		</volume>
+		<volume name="inclusion_lv_9">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_9"/>
+		</volume>
+		<volume name="inclusion_lv_10">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_10"/>
+		</volume>
+		<volume name="inclusion_lv_11">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_11"/>
+		</volume>
+		<volume name="inclusion_lv_12">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_12"/>
+		</volume>
+		<volume name="inclusion_lv_13">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_13"/>
+		</volume>
+		<volume name="inclusion_lv_14">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_14"/>
+		</volume>
+		<volume name="inclusion_lv_15">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_15"/>
+		</volume>
+		<volume name="inclusion_lv_16">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_16"/>
+		</volume>
+		<volume name="inclusion_lv_17">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_17"/>
+		</volume>
+		<volume name="inclusion_lv_18">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_18"/>
+		</volume>
+		<volume name="inclusion_lv_19">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_19"/>
+		</volume>
+		<volume name="inclusion_lv_20">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_20"/>
+		</volume>
+		<volume name="inclusion_lv_21">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_21"/>
+		</volume>
+		<volume name="inclusion_lv_22">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_22"/>
+		</volume>
+		<volume name="inclusion_lv_23">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_23"/>
+		</volume>
+		<volume name="inclusion_lv_24">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_24"/>
+		</volume>
+		<volume name="inclusion_lv_25">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_25"/>
+		</volume>
+		<volume name="inclusion_lv_26">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_26"/>
+		</volume>
+		<volume name="inclusion_lv_27">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_27"/>
+		</volume>
+		<volume name="inclusion_lv_28">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_28"/>
+		</volume>
+		<volume name="inclusion_lv_29">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_29"/>
+		</volume>
+		<volume name="inclusion_lv_30">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_30"/>
+		</volume>
+		<volume name="inclusion_lv_31">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_31"/>
+		</volume>
+		<volume name="inclusion_lv_32">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_32"/>
+		</volume>
+		<volume name="inclusion_lv_33">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_33"/>
+		</volume>
+		<volume name="inclusion_lv_34">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_34"/>
+		</volume>
+		<volume name="inclusion_lv_35">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_35"/>
+		</volume>
+		<volume name="inclusion_lv_36">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_36"/>
+		</volume>
+		<volume name="inclusion_lv_37">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_37"/>
+		</volume>
+		<volume name="inclusion_lv_38">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_38"/>
+		</volume>
+		<volume name="inclusion_lv_39">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_39"/>
+		</volume>
+		<volume name="inclusion_lv_40">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_40"/>
+		</volume>
+		<volume name="inclusion_lv_41">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_41"/>
+		</volume>
+		<volume name="inclusion_lv_42">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_42"/>
+		</volume>
+		<volume name="inclusion_lv_43">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_43"/>
+		</volume>
+		<volume name="inclusion_lv_44">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_44"/>
+		</volume>
+		<volume name="inclusion_lv_45">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_45"/>
+		</volume>
+		<volume name="inclusion_lv_46">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_46"/>
+		</volume>
+		<volume name="inclusion_lv_47">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_47"/>
+		</volume>
+		<volume name="inclusion_lv_48">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_48"/>
+		</volume>
+		<volume name="inclusion_lv_49">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_49"/>
+		</volume>
+		<volume name="inclusion_lv_50">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_50"/>
+		</volume>
+		<volume name="inclusion_lv_51">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_51"/>
+		</volume>
+		<volume name="inclusion_lv_52">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_52"/>
+		</volume>
+		<volume name="inclusion_lv_53">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_53"/>
+		</volume>
+		<volume name="inclusion_lv_54">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_54"/>
+		</volume>
+		<volume name="inclusion_lv_55">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_55"/>
+		</volume>
+		<volume name="inclusion_lv_56">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_56"/>
+		</volume>
+		<volume name="inclusion_lv_57">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_57"/>
+		</volume>
+		<volume name="inclusion_lv_58">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_58"/>
+		</volume>
+		<volume name="inclusion_lv_59">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_59"/>
+		</volume>
+		<volume name="inclusion_lv_60">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_60"/>
+		</volume>
+		<volume name="inclusion_lv_61">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_61"/>
+		</volume>
+		<volume name="inclusion_lv_62">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_62"/>
+		</volume>
+		<volume name="inclusion_lv_63">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_63"/>
+		</volume>
+		<volume name="inclusion_lv_64">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_64"/>
+		</volume>
+		<volume name="inclusion_lv_65">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_65"/>
+		</volume>
+		<volume name="inclusion_lv_66">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_66"/>
+		</volume>
+		<volume name="inclusion_lv_67">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_67"/>
+		</volume>
+		<volume name="inclusion_lv_68">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_68"/>
+		</volume>
+		<volume name="inclusion_lv_69">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_69"/>
+		</volume>
+		<volume name="inclusion_lv_70">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_70"/>
+		</volume>
+		<volume name="inclusion_lv_71">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_71"/>
+		</volume>
+		<volume name="inclusion_lv_72">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_72"/>
+		</volume>
+		<volume name="inclusion_lv_73">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_73"/>
+		</volume>
+		<volume name="inclusion_lv_74">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_74"/>
+		</volume>
+		<volume name="inclusion_lv_75">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_75"/>
+		</volume>
+		<volume name="inclusion_lv_76">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_76"/>
+		</volume>
+		<volume name="inclusion_lv_77">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_77"/>
+		</volume>
+		<volume name="inclusion_lv_78">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_78"/>
+		</volume>
+		<volume name="inclusion_lv_79">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_79"/>
+		</volume>
+		<volume name="inclusion_lv_80">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_80"/>
+		</volume>
+		<volume name="inclusion_lv_81">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_81"/>
+		</volume>
+		<volume name="inclusion_lv_82">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_82"/>
+		</volume>
+		<volume name="inclusion_lv_83">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_83"/>
+		</volume>
+		<volume name="inclusion_lv_84">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_84"/>
+		</volume>
+		<volume name="inclusion_lv_85">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_85"/>
+		</volume>
+		<volume name="inclusion_lv_86">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_86"/>
+		</volume>
+		<volume name="inclusion_lv_87">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_87"/>
+		</volume>
+		<volume name="inclusion_lv_88">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_88"/>
+		</volume>
+		<volume name="inclusion_lv_89">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_89"/>
+		</volume>
+		<volume name="inclusion_lv_90">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_90"/>
+		</volume>
+		<volume name="inclusion_lv_91">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_91"/>
+		</volume>
+		<volume name="inclusion_lv_92">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_92"/>
+		</volume>
+		<volume name="inclusion_lv_93">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_93"/>
+		</volume>
+		<volume name="inclusion_lv_94">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_94"/>
+		</volume>
+		<volume name="inclusion_lv_95">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_95"/>
+		</volume>
+		<volume name="inclusion_lv_96">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_96"/>
+		</volume>
+		<volume name="inclusion_lv_97">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_97"/>
+		</volume>
+		<volume name="inclusion_lv_98">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_98"/>
+		</volume>
+		<volume name="inclusion_lv_99">
+			<materialref ref="G4_Pb"/>
+			<solidref ref="inclusion_99"/>
+		</volume>
+		<volume name="OreLog">
+			<materialref ref="CalciumPhosphate"/>
+			<solidref ref="matrix_ellipsoid"/>
+			<physvol name="inclusion_pv_0">
+				<volumeref ref="inclusion_lv_0"/>
+				<position name="inclusion_pv_0_pos" x="-5.223433248826929" y="3.265701406853561" z="-1.944938709987762" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_1">
+				<volumeref ref="inclusion_lv_1"/>
+				<position name="inclusion_pv_1_pos" x="-6.016291407178644" y="-1.615408639397154" z="1.132644480644339" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_2">
+				<volumeref ref="inclusion_lv_2"/>
+				<position name="inclusion_pv_2_pos" x="-5.583466164029135" y="-0.214396651751420" z="-6.441033823056610" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_3">
+				<volumeref ref="inclusion_lv_3"/>
+				<position name="inclusion_pv_3_pos" x="5.996206321480448" y="0.896784646482001" z="3.716215584994981" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_4">
+				<volumeref ref="inclusion_lv_4"/>
+				<position name="inclusion_pv_4_pos" x="0.443476176911837" y="4.436935869456690" z="-0.046996543289222" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_5">
+				<volumeref ref="inclusion_lv_5"/>
+				<position name="inclusion_pv_5_pos" x="0.524887095513039" y="-3.125436688637394" z="6.815817076207175" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_6">
+				<volumeref ref="inclusion_lv_6"/>
+				<position name="inclusion_pv_6_pos" x="3.950270108140622" y="-5.749633450656314" z="0.381975965964717" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_7">
+				<volumeref ref="inclusion_lv_7"/>
+				<position name="inclusion_pv_7_pos" x="-0.128815102360479" y="0.077607678329942" z="-2.484617368727148" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_8">
+				<volumeref ref="inclusion_lv_8"/>
+				<position name="inclusion_pv_8_pos" x="1.613426419883085" y="6.022497717768930" z="-3.696904030978419" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_9">
+				<volumeref ref="inclusion_lv_9"/>
+				<position name="inclusion_pv_9_pos" x="-1.267132792288682" y="3.661469401657079" z="6.691834125963764" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_10">
+				<volumeref ref="inclusion_lv_10"/>
+				<position name="inclusion_pv_10_pos" x="-2.968749464284383" y="-5.107538007911122" z="0.970001639817928" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_11">
+				<volumeref ref="inclusion_lv_11"/>
+				<position name="inclusion_pv_11_pos" x="-1.095268622751741" y="-5.331365397428822" z="3.722129959088001" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_12">
+				<volumeref ref="inclusion_lv_12"/>
+				<position name="inclusion_pv_12_pos" x="-2.924673696608592" y="4.961162962715834" z="-1.709390746510548" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_13">
+				<volumeref ref="inclusion_lv_13"/>
+				<position name="inclusion_pv_13_pos" x="1.140589649491114" y="3.330182583038139" z="-4.947858280352334" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_14">
+				<volumeref ref="inclusion_lv_14"/>
+				<position name="inclusion_pv_14_pos" x="-2.429587641150055" y="-5.000764615633063" z="5.885078510508420" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_15">
+				<volumeref ref="inclusion_lv_15"/>
+				<position name="inclusion_pv_15_pos" x="0.812176640894860" y="-0.054419119911538" z="7.475965061992575" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_16">
+				<volumeref ref="inclusion_lv_16"/>
+				<position name="inclusion_pv_16_pos" x="1.099612588390727" y="3.809770221009707" z="7.125086507975480" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_17">
+				<volumeref ref="inclusion_lv_17"/>
+				<position name="inclusion_pv_17_pos" x="2.433000321303501" y="0.628221687738700" z="-1.278999494690936" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_18">
+				<volumeref ref="inclusion_lv_18"/>
+				<position name="inclusion_pv_18_pos" x="-1.241992475335425" y="0.551623717280909" z="-8.740129388607210" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_19">
+				<volumeref ref="inclusion_lv_19"/>
+				<position name="inclusion_pv_19_pos" x="2.362848395269744" y="5.888967348986384" z="2.814480718121954" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_20">
+				<volumeref ref="inclusion_lv_20"/>
+				<position name="inclusion_pv_20_pos" x="5.090304512564879" y="-0.542862828541066" z="-3.418627894551157" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_21">
+				<volumeref ref="inclusion_lv_21"/>
+				<position name="inclusion_pv_21_pos" x="2.874646479541395" y="-6.803995959441823" z="2.801590375093534" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_22">
+				<volumeref ref="inclusion_lv_22"/>
+				<position name="inclusion_pv_22_pos" x="3.348033943640329" y="-1.075977458035471" z="7.001407663230209" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_23">
+				<volumeref ref="inclusion_lv_23"/>
+				<position name="inclusion_pv_23_pos" x="-1.869049305949694" y="-0.334503066453208" z="0.511933696763741" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_24">
+				<volumeref ref="inclusion_lv_24"/>
+				<position name="inclusion_pv_24_pos" x="7.424737608592110" y="-1.742313722062265" z="0.587668770335663" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_25">
+				<volumeref ref="inclusion_lv_25"/>
+				<position name="inclusion_pv_25_pos" x="-6.912779831558778" y="-3.945078901317542" z="-0.206834742655772" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_26">
+				<volumeref ref="inclusion_lv_26"/>
+				<position name="inclusion_pv_26_pos" x="-0.840696190251686" y="6.494145362042127" z="-1.516309110395627" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_27">
+				<volumeref ref="inclusion_lv_27"/>
+				<position name="inclusion_pv_27_pos" x="-5.469719937106629" y="4.629866339823707" z="2.414566968199081" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_28">
+				<volumeref ref="inclusion_lv_28"/>
+				<position name="inclusion_pv_28_pos" x="-0.555824264454892" y="-4.176939452442027" z="-1.358737015818924" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_29">
+				<volumeref ref="inclusion_lv_29"/>
+				<position name="inclusion_pv_29_pos" x="-4.870563830732989" y="-4.161724977542370" z="5.055639014440770" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_30">
+				<volumeref ref="inclusion_lv_30"/>
+				<position name="inclusion_pv_30_pos" x="2.269389794748410" y="-1.458357448387645" z="2.380236513787301" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_31">
+				<volumeref ref="inclusion_lv_31"/>
+				<position name="inclusion_pv_31_pos" x="1.174838876746591" y="0.119806342269811" z="-8.054625318676669" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_32">
+				<volumeref ref="inclusion_lv_32"/>
+				<position name="inclusion_pv_32_pos" x="-3.650230059795158" y="-1.320306818565418" z="-2.033371531851894" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_33">
+				<volumeref ref="inclusion_lv_33"/>
+				<position name="inclusion_pv_33_pos" x="-1.611590425405460" y="4.802224702681848" z="4.090182796587722" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_34">
+				<volumeref ref="inclusion_lv_34"/>
+				<position name="inclusion_pv_34_pos" x="3.927395379097831" y="0.402213641606051" z="-7.538320296911845" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_35">
+				<volumeref ref="inclusion_lv_35"/>
+				<position name="inclusion_pv_35_pos" x="5.359579919123044" y="-2.139552265090919" z="2.512667270756175" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_36">
+				<volumeref ref="inclusion_lv_36"/>
+				<position name="inclusion_pv_36_pos" x="0.740970197742556" y="0.996616647345695" z="3.153394607442488" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_37">
+				<volumeref ref="inclusion_lv_37"/>
+				<position name="inclusion_pv_37_pos" x="1.216386329634176" y="-4.629643104582229" z="2.301028975668267" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_38">
+				<volumeref ref="inclusion_lv_38"/>
+				<position name="inclusion_pv_38_pos" x="-0.088472656986021" y="7.091057879557942" z="2.177767020409268" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_39">
+				<volumeref ref="inclusion_lv_39"/>
+				<position name="inclusion_pv_39_pos" x="1.163550361660391" y="-2.377189585858823" z="-2.470774500992860" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_40">
+				<volumeref ref="inclusion_lv_40"/>
+				<position name="inclusion_pv_40_pos" x="4.576100515970776" y="-1.937582034137590" z="4.734090089651612" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_41">
+				<volumeref ref="inclusion_lv_41"/>
+				<position name="inclusion_pv_41_pos" x="-4.082871693755593" y="3.660147521050021" z="5.198689261110855" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_42">
+				<volumeref ref="inclusion_lv_42"/>
+				<position name="inclusion_pv_42_pos" x="-7.082476618894756" y="0.745355619527912" z="3.898182909883863" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_43">
+				<volumeref ref="inclusion_lv_43"/>
+				<position name="inclusion_pv_43_pos" x="-2.572418464200690" y="0.416098977280186" z="-3.838545605031808" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_44">
+				<volumeref ref="inclusion_lv_44"/>
+				<position name="inclusion_pv_44_pos" x="2.978281487527815" y="1.060498605177626" z="-4.907046845155508" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_45">
+				<volumeref ref="inclusion_lv_45"/>
+				<position name="inclusion_pv_45_pos" x="0.787971210679430" y="-2.008891367069527" z="0.100763851793612" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_46">
+				<volumeref ref="inclusion_lv_46"/>
+				<position name="inclusion_pv_46_pos" x="-7.019801477223859" y="1.652188367703884" z="0.481891870679654" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_47">
+				<volumeref ref="inclusion_lv_47"/>
+				<position name="inclusion_pv_47_pos" x="-0.178981125606184" y="-1.783012502587453" z="-4.663859889971529" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_48">
+				<volumeref ref="inclusion_lv_48"/>
+				<position name="inclusion_pv_48_pos" x="-2.910831407482606" y="2.187161374160791" z="1.040988183535717" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_49">
+				<volumeref ref="inclusion_lv_49"/>
+				<position name="inclusion_pv_49_pos" x="5.350289041037700" y="-0.668210567789429" z="0.716905308531707" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_50">
+				<volumeref ref="inclusion_lv_50"/>
+				<position name="inclusion_pv_50_pos" x="2.094268349710472" y="-2.257613683920092" z="4.519679760804289" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_51">
+				<volumeref ref="inclusion_lv_51"/>
+				<position name="inclusion_pv_51_pos" x="4.010487994557506" y="-4.418755107326015" z="3.347433130444557" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_52">
+				<volumeref ref="inclusion_lv_52"/>
+				<position name="inclusion_pv_52_pos" x="5.852675251283733" y="-5.034108679752062" z="1.484983063302247" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_53">
+				<volumeref ref="inclusion_lv_53"/>
+				<position name="inclusion_pv_53_pos" x="3.609129074869648" y="6.272045507979467" z="-2.448196454449795" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_54">
+				<volumeref ref="inclusion_lv_54"/>
+				<position name="inclusion_pv_54_pos" x="2.056074624032927" y="4.821345728120873" z="-6.895441755240356" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_55">
+				<volumeref ref="inclusion_lv_55"/>
+				<position name="inclusion_pv_55_pos" x="0.879370229904243" y="-6.341332012023637" z="-2.645086425657376" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_56">
+				<volumeref ref="inclusion_lv_56"/>
+				<position name="inclusion_pv_56_pos" x="-3.090754724225334" y="-1.353394519242801" z="7.775467464732635" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_57">
+				<volumeref ref="inclusion_lv_57"/>
+				<position name="inclusion_pv_57_pos" x="3.463715905901790" y="0.881134467794549" z="8.312324736594274" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_58">
+				<volumeref ref="inclusion_lv_58"/>
+				<position name="inclusion_pv_58_pos" x="-1.335692316990540" y="-7.207587273563493" z="-0.950305947927299" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_59">
+				<volumeref ref="inclusion_lv_59"/>
+				<position name="inclusion_pv_59_pos" x="-1.856635979826980" y="-6.833459224542642" z="-3.644555047629861" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_60">
+				<volumeref ref="inclusion_lv_60"/>
+				<position name="inclusion_pv_60_pos" x="4.074693262815900" y="4.381468844676455" z="0.449808636256890" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_61">
+				<volumeref ref="inclusion_lv_61"/>
+				<position name="inclusion_pv_61_pos" x="-2.415083733662627" y="0.295445403879422" z="5.863544124386864" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_62">
+				<volumeref ref="inclusion_lv_62"/>
+				<position name="inclusion_pv_62_pos" x="6.709556363356389" y="4.068756835691268" z="-0.377380044546230" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_63">
+				<volumeref ref="inclusion_lv_63"/>
+				<position name="inclusion_pv_63_pos" x="-2.807605580825954" y="-3.607278403780060" z="3.433087985785315" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_64">
+				<volumeref ref="inclusion_lv_64"/>
+				<position name="inclusion_pv_64_pos" x="4.413923971137576" y="3.057223146814302" z="-6.000610566683285" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_65">
+				<volumeref ref="inclusion_lv_65"/>
+				<position name="inclusion_pv_65_pos" x="0.151030202564861" y="-2.597849796469534" z="-7.303633215423004" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_66">
+				<volumeref ref="inclusion_lv_66"/>
+				<position name="inclusion_pv_66_pos" x="-3.728543810372979" y="5.233000116347307" z="-4.071797121825452" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_67">
+				<volumeref ref="inclusion_lv_67"/>
+				<position name="inclusion_pv_67_pos" x="6.294942326242850" y="-3.344229340071655" z="-4.221212593507351" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_68">
+				<volumeref ref="inclusion_lv_68"/>
+				<position name="inclusion_pv_68_pos" x="-0.350512445008501" y="-1.385235338499451" z="3.600409353127146" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_69">
+				<volumeref ref="inclusion_lv_69"/>
+				<position name="inclusion_pv_69_pos" x="-1.668092252344609" y="-7.045400216776255" z="2.079664482966978" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_70">
+				<volumeref ref="inclusion_lv_70"/>
+				<position name="inclusion_pv_70_pos" x="4.045256314305538" y="1.805334562357370" z="5.931183863709034" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_71">
+				<volumeref ref="inclusion_lv_71"/>
+				<position name="inclusion_pv_71_pos" x="-4.707112049232082" y="-5.773858140677571" z="-1.449864607361220" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_72">
+				<volumeref ref="inclusion_lv_72"/>
+				<position name="inclusion_pv_72_pos" x="3.148590578226520" y="1.829278565864541" z="1.233173223536296" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_73">
+				<volumeref ref="inclusion_lv_73"/>
+				<position name="inclusion_pv_73_pos" x="-2.161840282931001" y="-0.084849101987724" z="-6.511335500051713" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_74">
+				<volumeref ref="inclusion_lv_74"/>
+				<position name="inclusion_pv_74_pos" x="-0.402808268589605" y="3.045311240946326" z="-7.138156083636336" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_75">
+				<volumeref ref="inclusion_lv_75"/>
+				<position name="inclusion_pv_75_pos" x="-2.542375512062817" y="-2.456628945950041" z="-4.657076266518689" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_76">
+				<volumeref ref="inclusion_lv_76"/>
+				<position name="inclusion_pv_76_pos" x="-4.351454640487794" y="-1.406424619762106" z="5.584147665857198" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_77">
+				<volumeref ref="inclusion_lv_77"/>
+				<position name="inclusion_pv_77_pos" x="6.173558790913836" y="0.596191269410369" z="-5.572443129669205" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_78">
+				<volumeref ref="inclusion_lv_78"/>
+				<position name="inclusion_pv_78_pos" x="3.427386215694190" y="4.915372198465958" z="6.093514181381623" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_79">
+				<volumeref ref="inclusion_lv_79"/>
+				<position name="inclusion_pv_79_pos" x="0.742237306129677" y="-5.662754214849230" z="5.597324414381672" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_80">
+				<volumeref ref="inclusion_lv_80"/>
+				<position name="inclusion_pv_80_pos" x="6.418090530796450" y="-3.320478318262396" z="-1.893268244638166" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_81">
+				<volumeref ref="inclusion_lv_81"/>
+				<position name="inclusion_pv_81_pos" x="2.778329469540289" y="0.158931960936634" z="4.371172695118915" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_82">
+				<volumeref ref="inclusion_lv_82"/>
+				<position name="inclusion_pv_82_pos" x="3.147859633017665" y="-4.502188089271780" z="-4.710514589461793" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_83">
+				<volumeref ref="inclusion_lv_83"/>
+				<position name="inclusion_pv_83_pos" x="6.948119448282021" y="-1.383759300689747" z="4.371590306254905" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_84">
+				<volumeref ref="inclusion_lv_84"/>
+				<position name="inclusion_pv_84_pos" x="-5.193922113302905" y="2.055914491644501" z="3.446908526460636" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_85">
+				<volumeref ref="inclusion_lv_85"/>
+				<position name="inclusion_pv_85_pos" x="2.001871938543799" y="6.187418264080822" z="-0.598349844288396" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_86">
+				<volumeref ref="inclusion_lv_86"/>
+				<position name="inclusion_pv_86_pos" x="2.043723029740937" y="3.312830621654518" z="-1.510817190681066" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_87">
+				<volumeref ref="inclusion_lv_87"/>
+				<position name="inclusion_pv_87_pos" x="-6.576160375304340" y="0.795596723177232" z="-3.326936883067346" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_88">
+				<volumeref ref="inclusion_lv_88"/>
+				<position name="inclusion_pv_88_pos" x="4.176162859624679" y="3.035061242740271" z="2.863697686360398" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_89">
+				<volumeref ref="inclusion_lv_89"/>
+				<position name="inclusion_pv_89_pos" x="-4.132572087044180" y="-5.663267185566667" z="3.050477663392284" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_90">
+				<volumeref ref="inclusion_lv_90"/>
+				<position name="inclusion_pv_90_pos" x="-1.024969657745201" y="-4.357057445026772" z="-4.545664295555370" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_91">
+				<volumeref ref="inclusion_lv_91"/>
+				<position name="inclusion_pv_91_pos" x="-2.513657948013959" y="2.553817227637298" z="-1.557695844287308" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_92">
+				<volumeref ref="inclusion_lv_92"/>
+				<position name="inclusion_pv_92_pos" x="5.148480219180511" y="2.335181902446017" z="-3.576293389029926" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_93">
+				<volumeref ref="inclusion_lv_93"/>
+				<position name="inclusion_pv_93_pos" x="-3.877685022764109" y="-3.764773568965095" z="-6.370631751065538" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_94">
+				<volumeref ref="inclusion_lv_94"/>
+				<position name="inclusion_pv_94_pos" x="1.870469450258312" y="-4.717250796424031" z="-6.785856412567477" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_95">
+				<volumeref ref="inclusion_lv_95"/>
+				<position name="inclusion_pv_95_pos" x="-6.353462368798333" y="4.072034143220586" z="0.473257853295731" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_96">
+				<volumeref ref="inclusion_lv_96"/>
+				<position name="inclusion_pv_96_pos" x="-0.663202728662400" y="1.400139619986055" z="-0.513339407393197" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_97">
+				<volumeref ref="inclusion_lv_97"/>
+				<position name="inclusion_pv_97_pos" x="-0.889412827742385" y="5.277958505361603" z="-6.084977098730132" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_98">
+				<volumeref ref="inclusion_lv_98"/>
+				<position name="inclusion_pv_98_pos" x="5.088178642606840" y="1.753856194773846" z="-1.067871465169122" unit="mm"/>
+			</physvol>
+			<physvol name="inclusion_pv_99">
+				<volumeref ref="inclusion_lv_99"/>
+				<position name="inclusion_pv_99_pos" x="-3.790105958833179" y="1.925909178197431" z="-5.976693858377914" unit="mm"/>
+			</physvol>
+		</volume>
+		<volume name="world">
+			<materialref ref="G4_Galactic"/>
+			<solidref ref="world"/>
+			<physvol name="OrePV">
+				<volumeref ref="OreLog"/>
+			</physvol>
+		</volume>
+	</structure>
+	<setup name="Default" version="1.0">
+		<world ref="world"/>
+	</setup>
+</gdml>

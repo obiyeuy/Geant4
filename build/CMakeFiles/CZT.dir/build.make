@@ -258,6 +258,7 @@ CZT: /usr/lib/x86_64-linux-gnu/libXt.so
 CZT: /usr/lib/x86_64-linux-gnu/libICE.so
 CZT: /usr/lib/x86_64-linux-gnu/libSM.so
 CZT: /usr/lib/x86_64-linux-gnu/libX11.so
+CZT: /usr/lib/x86_64-linux-gnu/libxerces-c.so
 CZT: /home/yyb/software/install/geant4/lib/libG4analysis.so
 CZT: /home/yyb/software/install/geant4/lib/libG4expat.so
 CZT: /home/yyb/software/install/geant4/lib/libG4zlib.so

@@ -4,6 +4,11 @@
 # 核心初始化（只执行这一次，节省大量时间）
 /run/initialize
 
+# 加载 GDML 矿石几何（必须在 initialize 之后）
+# 注意：使用绝对路径，避免路径问题
+/Xray/det/loadGDML /home/yyb/workspace/XRay-all/XRay-detectionCode/test_ore.gdml
+
+
 # 性能优化：禁用所有不必要的输出
 /control/verbose 0
 /run/verbose 0

@@ -564,6 +564,226 @@ CMakeFiles/CZT.dir/CZT.cc.o: \
  /home/yyb/workspace/XRay-all/XRay-detectionCode/simulation/include/DetectorConstruction.hh \
  /home/yyb/software/install/geant4/include/Geant4/G4VUserDetectorConstruction.hh \
  /home/yyb/software/install/geant4/include/Geant4/G4RotationMatrix.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4GDMLParser.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4GDMLReadStructure.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4GDMLReadParamvol.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4GDMLReadSetup.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4GDMLReadSolids.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4GDMLReadMaterials.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4GDMLReadDefine.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4GDMLRead.hh \
+ /usr/include/xercesc/parsers/XercesDOMParser.hpp \
+ /usr/include/xercesc/parsers/AbstractDOMParser.hpp \
+ /usr/include/xercesc/dom/DOMDocument.hpp \
+ /usr/include/xercesc/util/XercesDefs.hpp \
+ /usr/include/xercesc/util/Xerces_autoconf_config.hpp \
+ /usr/include/inttypes.h /usr/include/xercesc/util/XercesVersion.hpp \
+ /usr/include/xercesc/dom/DOMNode.hpp \
+ /usr/include/xercesc/dom/DOMDocumentRange.hpp \
+ /usr/include/xercesc/dom/DOMDocumentTraversal.hpp \
+ /usr/include/xercesc/dom/DOMNodeFilter.hpp \
+ /usr/include/xercesc/dom/DOMXPathEvaluator.hpp \
+ /usr/include/xercesc/dom/DOMXPathResult.hpp \
+ /usr/include/xercesc/framework/XMLDocumentHandler.hpp \
+ /usr/include/xercesc/util/RefVectorOf.hpp \
+ /usr/include/xercesc/util/BaseRefVectorOf.hpp \
+ /usr/include/xercesc/util/ArrayIndexOutOfBoundsException.hpp \
+ /usr/include/xercesc/util/XMLException.hpp \
+ /usr/include/xercesc/util/XMemory.hpp \
+ /usr/include/xercesc/util/XMLExceptMsgs.hpp \
+ /usr/include/xercesc/dom/DOMError.hpp \
+ /usr/include/xercesc/util/XMLUni.hpp \
+ /usr/include/xercesc/framework/XMLErrorReporter.hpp \
+ /usr/include/xercesc/util/XMLEnumerator.hpp \
+ /usr/include/xercesc/util/PlatformUtils.hpp \
+ /usr/include/xercesc/util/PanicHandler.hpp \
+ /usr/include/xercesc/util/XMLFileMgr.hpp \
+ /usr/include/xercesc/util/XMLMutexMgr.hpp \
+ /usr/include/xercesc/framework/MemoryManager.hpp \
+ /usr/include/xercesc/util/BaseRefVectorOf.c \
+ /usr/include/xercesc/util/RefVectorOf.c \
+ /usr/include/xercesc/framework/XMLAttr.hpp \
+ /usr/include/xercesc/util/QName.hpp \
+ /usr/include/xercesc/util/XMLString.hpp \
+ /usr/include/xercesc/framework/XMLBuffer.hpp \
+ /usr/include/xercesc/util/XMLUniDefs.hpp \
+ /usr/include/xercesc/internal/XSerializable.hpp \
+ /usr/include/xercesc/internal/XSerializeEngine.hpp \
+ /usr/include/xercesc/util/RefHashTableOf.hpp \
+ /usr/include/xercesc/util/Hashers.hpp \
+ /usr/include/xercesc/util/IllegalArgumentException.hpp \
+ /usr/include/xercesc/util/NoSuchElementException.hpp \
+ /usr/include/xercesc/util/RuntimeException.hpp \
+ /usr/include/xercesc/util/RefHashTableOf.c \
+ /usr/include/xercesc/util/Janitor.hpp \
+ /usr/include/xercesc/util/Janitor.c \
+ /usr/include/xercesc/util/NullPointerException.hpp \
+ /usr/include/xercesc/util/ValueVectorOf.hpp \
+ /usr/include/xercesc/util/ValueVectorOf.c \
+ /usr/include/xercesc/internal/XSerializationException.hpp \
+ /usr/include/xercesc/internal/XProtoType.hpp \
+ /usr/include/xercesc/framework/XMLAttDef.hpp \
+ /usr/include/xercesc/validators/datatype/DatatypeValidator.hpp \
+ /usr/include/xercesc/util/KVStringPair.hpp \
+ /usr/include/xercesc/util/regx/RegularExpression.hpp \
+ /usr/include/xercesc/util/RefArrayVectorOf.hpp \
+ /usr/include/xercesc/util/RefArrayVectorOf.c \
+ /usr/include/xercesc/util/regx/Op.hpp \
+ /usr/include/xercesc/util/regx/TokenFactory.hpp \
+ /usr/include/xercesc/util/regx/Token.hpp \
+ /usr/include/xercesc/util/Mutexes.hpp \
+ /usr/include/xercesc/util/regx/BMPattern.hpp \
+ /usr/include/xercesc/util/regx/OpFactory.hpp \
+ /usr/include/xercesc/util/regx/RegxUtil.hpp \
+ /usr/include/xercesc/validators/schema/SchemaSymbols.hpp \
+ /usr/include/xercesc/framework/psvi/XSSimpleTypeDefinition.hpp \
+ /usr/include/xercesc/framework/psvi/XSTypeDefinition.hpp \
+ /usr/include/xercesc/framework/psvi/XSObject.hpp \
+ /usr/include/xercesc/framework/psvi/XSConstants.hpp \
+ /usr/include/xercesc/framework/ValidationContext.hpp \
+ /usr/include/xercesc/util/NameIdPool.hpp \
+ /usr/include/xercesc/util/NameIdPool.c \
+ /usr/include/xercesc/framework/XMLEntityHandler.hpp \
+ /usr/include/xercesc/util/SecurityManager.hpp \
+ /usr/include/xercesc/util/ValueStackOf.hpp \
+ /usr/include/xercesc/util/EmptyStackException.hpp \
+ /usr/include/xercesc/util/ValueStackOf.c \
+ /usr/include/xercesc/validators/DTD/DocTypeHandler.hpp \
+ /usr/include/xercesc/framework/XMLNotationDecl.hpp \
+ /usr/include/xercesc/validators/DTD/DTDAttDef.hpp \
+ /usr/include/xercesc/validators/DTD/DTDElementDecl.hpp \
+ /usr/include/xercesc/framework/XMLElementDecl.hpp \
+ /usr/include/xercesc/framework/XMLAttDefList.hpp \
+ /usr/include/xercesc/framework/XMLContentModel.hpp \
+ /usr/include/xercesc/validators/DTD/DTDEntityDecl.hpp \
+ /usr/include/xercesc/framework/XMLEntityDecl.hpp \
+ /usr/include/xercesc/dom/DOMDocumentType.hpp \
+ /usr/include/xercesc/framework/XMLBufferMgr.hpp \
+ /usr/include/xercesc/framework/psvi/PSVIHandler.hpp \
+ /usr/include/xercesc/validators/common/Grammar.hpp \
+ /usr/include/xercesc/sax/HandlerBase.hpp \
+ /usr/include/xercesc/sax/DocumentHandler.hpp \
+ /usr/include/xercesc/sax/DTDHandler.hpp \
+ /usr/include/xercesc/sax/EntityResolver.hpp \
+ /usr/include/xercesc/sax/ErrorHandler.hpp \
+ /usr/include/xercesc/sax/SAXParseException.hpp \
+ /usr/include/xercesc/sax/SAXException.hpp \
+ /usr/include/xercesc/dom/DOM.hpp /usr/include/xercesc/dom/DOMAttr.hpp \
+ /usr/include/xercesc/dom/DOMCDATASection.hpp \
+ /usr/include/xercesc/dom/DOMText.hpp \
+ /usr/include/xercesc/dom/DOMCharacterData.hpp \
+ /usr/include/xercesc/dom/DOMComment.hpp \
+ /usr/include/xercesc/dom/DOMDocumentFragment.hpp \
+ /usr/include/xercesc/dom/DOMElement.hpp \
+ /usr/include/xercesc/dom/DOMEntity.hpp \
+ /usr/include/xercesc/dom/DOMEntityReference.hpp \
+ /usr/include/xercesc/dom/DOMException.hpp \
+ /usr/include/xercesc/dom/DOMImplementation.hpp \
+ /usr/include/xercesc/dom/DOMImplementationLS.hpp \
+ /usr/include/xercesc/dom/DOMLSException.hpp \
+ /usr/include/xercesc/dom/DOMRangeException.hpp \
+ /usr/include/xercesc/dom/DOMNamedNodeMap.hpp \
+ /usr/include/xercesc/dom/DOMNodeList.hpp \
+ /usr/include/xercesc/dom/DOMNotation.hpp \
+ /usr/include/xercesc/dom/DOMProcessingInstruction.hpp \
+ /usr/include/xercesc/dom/DOMNodeIterator.hpp \
+ /usr/include/xercesc/dom/DOMRange.hpp \
+ /usr/include/xercesc/dom/DOMTreeWalker.hpp \
+ /usr/include/xercesc/dom/DOMLSParser.hpp \
+ /usr/include/xercesc/dom/DOMConfiguration.hpp \
+ /usr/include/xercesc/dom/DOMStringList.hpp \
+ /usr/include/xercesc/dom/DOMLSParserFilter.hpp \
+ /usr/include/xercesc/dom/DOMLSResourceResolver.hpp \
+ /usr/include/xercesc/dom/DOMErrorHandler.hpp \
+ /usr/include/xercesc/dom/DOMImplementationList.hpp \
+ /usr/include/xercesc/dom/DOMImplementationRegistry.hpp \
+ /usr/include/xercesc/dom/DOMImplementationSource.hpp \
+ /usr/include/xercesc/dom/DOMLSInput.hpp \
+ /usr/include/xercesc/dom/DOMLSOutput.hpp \
+ /usr/include/xercesc/dom/DOMLocator.hpp \
+ /usr/include/xercesc/dom/DOMPSVITypeInfo.hpp \
+ /usr/include/xercesc/dom/DOMTypeInfo.hpp \
+ /usr/include/xercesc/dom/DOMUserDataHandler.hpp \
+ /usr/include/xercesc/dom/DOMLSSerializer.hpp \
+ /usr/include/xercesc/dom/DOMLSSerializerFilter.hpp \
+ /usr/include/xercesc/dom/DOMXPathNSResolver.hpp \
+ /usr/include/xercesc/dom/DOMXPathException.hpp \
+ /usr/include/xercesc/dom/DOMXPathExpression.hpp \
+ /usr/include/xercesc/dom/DOMXPathNamespace.hpp \
+ /home/yyb/software/install/geant4/include/Geant4/G4GDMLEvaluator.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4Evaluator.hh \
+ /home/yyb/software/install/geant4/include/Geant4/CLHEP/Evaluator/Evaluator.h \
+ /home/yyb/software/install/geant4/include/Geant4/G4GDMLAuxStructType.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4ExtrudedSolid.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4GeomTypes.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4GeomConfig.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4TwoVector.hh \
+ /home/yyb/software/install/geant4/include/Geant4/CLHEP/Vector/TwoVector.h \
+ /home/yyb/software/install/geant4/include/Geant4/CLHEP/Vector/TwoVector.icc \
+ /home/yyb/software/install/geant4/include/Geant4/G4TessellatedSolid.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4Voxelizer.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4SurfBits.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4Box.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4CSGSolid.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4Polyhedron.hh \
+ /home/yyb/software/install/geant4/include/Geant4/HepPolyhedron.h \
+ /home/yyb/software/install/geant4/include/Geant4/G4Point3D.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4Normal3D.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4Visible.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4Visible.icc \
+ /home/yyb/software/install/geant4/include/Geant4/G4Box.icc \
+ /home/yyb/software/install/geant4/include/Geant4/G4VFacet.hh \
+ /home/yyb/software/install/geant4/include/Geant4/windefs.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4Voxelizer.icc \
+ /home/yyb/software/install/geant4/include/Geant4/G4ExtrudedSolid.icc \
+ /home/yyb/software/install/geant4/include/Geant4/G4MultiUnion.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4Vector3D.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4GDMLParameterisation.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4Trd.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4Trd.icc \
+ /home/yyb/software/install/geant4/include/Geant4/G4Trap.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4Trap.icc \
+ /home/yyb/software/install/geant4/include/Geant4/G4Cons.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4Cons.icc \
+ /home/yyb/software/install/geant4/include/Geant4/G4Sphere.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4Sphere.icc \
+ /home/yyb/software/install/geant4/include/Geant4/G4Orb.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4Orb.icc \
+ /home/yyb/software/install/geant4/include/Geant4/G4Ellipsoid.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4Ellipsoid.icc \
+ /home/yyb/software/install/geant4/include/Geant4/G4Polycone.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4VCSGfaceted.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4PolyconeSide.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4VCSGface.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4PolyconeHistorical.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4Polycone.icc \
+ /home/yyb/software/install/geant4/include/Geant4/G4Polyhedra.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4PolyhedraSide.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4PolyhedraHistorical.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4Polyhedra.icc \
+ /home/yyb/software/install/geant4/include/Geant4/G4Torus.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4Torus.icc \
+ /home/yyb/software/install/geant4/include/Geant4/G4Para.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4Para.icc \
+ /home/yyb/software/install/geant4/include/Geant4/G4Hype.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4Hype.icc \
+ /home/yyb/software/install/geant4/include/Geant4/G4Tubs.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4Tubs.icc \
+ /home/yyb/software/install/geant4/include/Geant4/G4GDMLWriteStructure.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4GDMLWriteParamvol.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4GDMLWriteSetup.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4GDMLWriteSolids.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4GDMLWriteMaterials.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4GDMLWriteDefine.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4GDMLWrite.hh \
+ /usr/include/xercesc/framework/LocalFileFormatTarget.hpp \
+ /usr/include/xercesc/framework/XMLFormatter.hpp \
+ /home/yyb/software/install/geant4/include/Geant4/G4STRead.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4GDMLMessenger.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4TransportationManager.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4SafetyHelper.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4TransportationManager.icc \
+ /home/yyb/software/install/geant4/include/Geant4/G4GDMLParser.icc \
  /home/yyb/workspace/XRay-all/XRay-detectionCode/simulation/include/PhysicsList.hh \
  /home/yyb/software/install/geant4/include/Geant4/G4VModularPhysicsList.hh \
  /home/yyb/software/install/geant4/include/Geant4/G4VPhysicsConstructor.hh \
@@ -633,7 +853,6 @@ CMakeFiles/CZT.dir/CZT.cc.o: \
  /home/yyb/software/install/geant4/include/Geant4/G4VGraphicsSystem.hh \
  /home/yyb/software/install/geant4/include/Geant4/G4ModelingParameters.hh \
  /home/yyb/software/install/geant4/include/Geant4/G4VisExtent.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4Point3D.hh \
  /home/yyb/software/install/geant4/include/Geant4/G4VisAttributes.hh \
  /home/yyb/software/install/geant4/include/Geant4/graphics_reps_defs.hh \
  /home/yyb/software/install/geant4/include/Geant4/G4Colour.hh \
@@ -649,12 +868,9 @@ CMakeFiles/CZT.dir/CZT.cc.o: \
  /home/yyb/software/install/geant4/include/Geant4/G4ViewerList.hh \
  /home/yyb/software/install/geant4/include/Geant4/G4VViewer.hh \
  /home/yyb/software/install/geant4/include/Geant4/G4ViewParameters.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4Vector3D.hh \
  /home/yyb/software/install/geant4/include/Geant4/G4Plane3D.hh \
  /home/yyb/software/install/geant4/include/Geant4/CLHEP/Geometry/Plane3D.h \
  /home/yyb/software/install/geant4/include/Geant4/G4VMarker.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4Visible.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4Visible.icc \
  /home/yyb/software/install/geant4/include/Geant4/G4VMarker.icc \
  /home/yyb/software/install/geant4/include/Geant4/G4ViewParameters.icc \
  /home/yyb/software/install/geant4/include/Geant4/G4PhysicalVolumeModel.hh \
@@ -662,51 +878,6 @@ CMakeFiles/CZT.dir/CZT.cc.o: \
  /home/yyb/software/install/geant4/include/Geant4/G4THitsMap.hh \
  /home/yyb/software/install/geant4/include/Geant4/G4THitsCollection.hh \
  /home/yyb/software/install/geant4/include/Geant4/G4PseudoScene.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4Box.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4GeomTypes.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4GeomConfig.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4CSGSolid.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4Polyhedron.hh \
- /home/yyb/software/install/geant4/include/Geant4/HepPolyhedron.h \
- /home/yyb/software/install/geant4/include/Geant4/G4TwoVector.hh \
- /home/yyb/software/install/geant4/include/Geant4/CLHEP/Vector/TwoVector.h \
- /home/yyb/software/install/geant4/include/Geant4/CLHEP/Vector/TwoVector.icc \
- /home/yyb/software/install/geant4/include/Geant4/G4Normal3D.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4Box.icc \
- /home/yyb/software/install/geant4/include/Geant4/G4Cons.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4Cons.icc \
- /home/yyb/software/install/geant4/include/Geant4/G4Orb.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4Orb.icc \
- /home/yyb/software/install/geant4/include/Geant4/G4Para.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4Para.icc \
- /home/yyb/software/install/geant4/include/Geant4/G4Sphere.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4Sphere.icc \
- /home/yyb/software/install/geant4/include/Geant4/G4Torus.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4Torus.icc \
- /home/yyb/software/install/geant4/include/Geant4/G4Trap.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4Trap.icc \
- /home/yyb/software/install/geant4/include/Geant4/G4Trd.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4Trd.icc \
- /home/yyb/software/install/geant4/include/Geant4/G4Tubs.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4Tubs.icc \
- /home/yyb/software/install/geant4/include/Geant4/G4Ellipsoid.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4Ellipsoid.icc \
- /home/yyb/software/install/geant4/include/Geant4/G4Polycone.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4VCSGfaceted.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4PolyconeSide.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4VCSGface.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4PolyconeHistorical.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4Polycone.icc \
- /home/yyb/software/install/geant4/include/Geant4/G4Polyhedra.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4PolyhedraSide.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4PolyhedraHistorical.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4Polyhedra.icc \
- /home/yyb/software/install/geant4/include/Geant4/G4TessellatedSolid.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4Voxelizer.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4SurfBits.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4VFacet.hh \
- /home/yyb/software/install/geant4/include/Geant4/windefs.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4Voxelizer.icc \
  /home/yyb/software/install/geant4/include/Geant4/G4VSceneHandler.icc \
  /home/yyb/software/install/geant4/include/Geant4/G4SceneList.hh \
  /home/yyb/software/install/geant4/include/Geant4/G4Scene.hh \

@@ -55,6 +55,12 @@ DetectorMessenger::DetectorMessenger(DetectorConstruction* Det)
   fTargetShiftDistance->AvailableForStates(G4State_PreInit,G4State_Idle);
   fTargetShiftDistance->SetToBeBroadcasted(false);
 
+  fLoadGDMLCmd = new G4UIcmdWithAString("/Xray/det/loadGDML",this);
+  fLoadGDMLCmd->SetGuidance("Load ore geometry from GDML file.");
+  fLoadGDMLCmd->SetParameterName("filename",false);
+  fLoadGDMLCmd->AvailableForStates(G4State_PreInit, G4State_Idle);
+  fLoadGDMLCmd->SetToBeBroadcasted(false);
+
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -63,6 +69,7 @@ DetectorMessenger::~DetectorMessenger()
 {
   
   delete fTargetShiftDistance;
+  delete fLoadGDMLCmd;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -71,6 +78,8 @@ void DetectorMessenger::SetNewValue(G4UIcommand* command,G4String newValue)
 {
   if( command == fTargetShiftDistance )
    { fDetectorConstruction->SetObjShiftDistance(fTargetShiftDistance->GetNewDoubleValue(newValue));}
+  else if( command == fLoadGDMLCmd )
+   { fDetectorConstruction->LoadOreGDML(newValue);}
 
 }
 

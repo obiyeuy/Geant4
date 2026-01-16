@@ -24,11 +24,15 @@
 #include "G4GeometryManager.hh"
 #include "G4PhysicalVolumeStore.hh"
 #include "G4LogicalVolumeStore.hh"
+#include "G4GDMLParser.hh"
+#include "G4RunManager.hh"
+#include <fstream>
 using namespace CLHEP;
 
 DetectorConstruction::DetectorConstruction()
 : G4VUserDetectorConstruction(),
- ObjShift(0)
+ ObjShift(0),
+ fLogicOre(nullptr)
 {
     ObjShift = 0.0*mm; 
     fMessenger = new DetectorMessenger(this); 
@@ -36,7 +40,8 @@ DetectorConstruction::DetectorConstruction()
 }
 
 DetectorConstruction::~DetectorConstruction()
-{ delete fMessenger;
+{ 
+    delete fMessenger;
 }
 
 G4VPhysicalVolume *DetectorConstruction::Construct()
@@ -151,10 +156,18 @@ G4VPhysicalVolume *DetectorConstruction::Construct()
     G4Element* elP  = nist->FindOrBuildElement("P");
 
     // 定义磷酸钙（Ca3(PO4)2）
-    G4Material* calciumPhosphate = new G4Material("CalciumPhosphate", 2.9 * g/cm3, 3);
-    calciumPhosphate->AddElement(elCa, 3);
-    calciumPhosphate->AddElement(elP,  2);
-    calciumPhosphate->AddElement(elO,  8);
+    // 注意：如果材质将从 GDML 加载，这里先不创建，避免重复定义警告
+    // GDML 加载会在 LoadOreGDML() 中完成，材质会从 GDML 中读取
+    // 如果 GDML 中没有定义材质，则在这里创建
+    G4Material* calciumPhosphate = G4Material::GetMaterial("CalciumPhosphate");
+    if (calciumPhosphate == nullptr) {
+        // 材质不存在，创建它（用于默认球体）
+        calciumPhosphate = new G4Material("CalciumPhosphate", 2.9 * g/cm3, 3);
+        calciumPhosphate->AddElement(elCa, 3);
+        calciumPhosphate->AddElement(elP,  2);
+        calciumPhosphate->AddElement(elO,  8);
+    }
+    // 如果材质已存在（可能从之前的运行中创建），直接使用它
 
 	//====================================================
 	// Detector geometry 探测器几何构建
@@ -243,11 +256,14 @@ G4VPhysicalVolume *DetectorConstruction::Construct()
  
     fArmRotation->rotateY(0 *deg);
 
-    //待测物体
+    //待测物体 - 默认创建一个占位球体，后续可通过 GDML 动态替换
   	auto solidObject = new G4Sphere("Object", 0., sphereRadius, 0., 360.*deg, 0., 180.*deg);
 	auto logicObject = new G4LogicalVolume(solidObject, calciumPhosphate, "logicObject");
 	// auto logicObject = new G4LogicalVolume(solidObject, Vacuum, "logicObject");
 
+	// 保存逻辑体积指针，用于后续动态替换
+	fLogicOre = logicObject;
+	
 	// auto Object_phys = new G4PVPlacement(fArmRotation, G4ThreeVector(0,ObjShift,0), logicObject, "Object_phys", logicWorld,false,0);
     logicObject->SetVisAttributes(transblue);
 	fPhysiObject = new G4PVPlacement(
@@ -294,5 +310,53 @@ void DetectorConstruction::SetObjShiftDistance(G4double shift)
         // G4cout << "##### ----> The object shift distance is  " << shift << " mm  #####" << G4endl;
     } else {
         G4cout << "警告：球体物理卷尚未创建！" << G4endl;
+    }
+}
+
+void DetectorConstruction::LoadOreGDML(G4String filename)
+{
+    G4cout << "##### Loading GDML file: " << filename << " #####" << G4endl;
+    
+    // 检查文件是否存在
+    std::ifstream test_file(filename);
+    if (!test_file.good()) {
+        G4cerr << "错误：GDML 文件不存在或无法读取: " << filename << G4endl;
+        return;
+    }
+    test_file.close();
+    
+    // 读取 GDML 文件（false 表示不验证 schema）
+    fParser.Read(filename, false);
+    
+    // 从 GDML 中获取名为 "OreLog" 的逻辑体积（与 Python 约定一致）
+    G4LogicalVolume* oreLog = fParser.GetVolume("OreLog");
+    
+    if (oreLog == nullptr) {
+        G4cerr << "错误：在 GDML 文件中未找到名为 'OreLog' 的逻辑体积！" << G4endl;
+        G4cerr << "提示：请确保 Python 脚本生成的 GDML 中逻辑体积名称为 'OreLog'" << G4endl;
+        return;
+    }
+    
+    // 更新物理体积的逻辑体积指针
+    if (fPhysiObject != nullptr) {
+        // 更新逻辑体积指针
+        fLogicOre = oreLog;
+        
+        // 设置新的逻辑体积到物理体积
+        fPhysiObject->SetLogicalVolume(oreLog);
+        
+        // 设置可视化属性（保持与默认一致）
+        G4VisAttributes* transblue = new G4VisAttributes(G4Colour(0.01, 0.98, 0.9, 0.3));
+        transblue->SetForceSolid(true);
+        oreLog->SetVisAttributes(transblue);
+        
+        // 通知 Geant4 几何已修改，需要重新优化导航
+        G4RunManager::GetRunManager()->GeometryHasBeenModified();
+        
+        G4cout << "##### GDML 矿石几何加载成功！#####" << G4endl;
+        G4cout << "##### 逻辑体积名称: " << oreLog->GetName() << " #####" << G4endl;
+    } else {
+        G4cerr << "错误：物理体积 fPhysiObject 尚未创建！" << G4endl;
+        G4cerr << "提示：LoadOreGDML 必须在 /run/initialize 之后调用" << G4endl;
     }
 }
