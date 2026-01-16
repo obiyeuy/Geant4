@@ -3,6 +3,7 @@
 
 #include "G4VUserPrimaryGeneratorAction.hh"
 #include "globals.hh"
+#include "G4ThreeVector.hh"
 #include <vector>
 
 class G4GeneralParticleSource;
@@ -26,6 +27,15 @@ private:
     
     std::vector<G4double> fEnergies;      // 存储能量点 (keV)
     std::vector<G4double> fCDF;           // 存储累积概率分布
+    
+    // 预计算的角度范围和常量（避免每次事件都计算）
+    static const G4double fPhiMin;
+    static const G4double fPhiMax;
+    static const G4double fThetaMin;
+    static const G4double fThetaMax;
+    static const G4double fPhiRange;
+    static const G4double fThetaRange;
+    static const G4ThreeVector fSourcePosition;
 };
 
 

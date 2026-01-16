@@ -245,8 +245,8 @@ G4VPhysicalVolume *DetectorConstruction::Construct()
 
     //待测物体
   	auto solidObject = new G4Sphere("Object", 0., sphereRadius, 0., 360.*deg, 0., 180.*deg);
-	// auto logicObject = new G4LogicalVolume(solidObject, calciumPhosphate, "logicObject");
-	auto logicObject = new G4LogicalVolume(solidObject, Vacuum, "logicObject");
+	auto logicObject = new G4LogicalVolume(solidObject, calciumPhosphate, "logicObject");
+	// auto logicObject = new G4LogicalVolume(solidObject, Vacuum, "logicObject");
 
 	// auto Object_phys = new G4PVPlacement(fArmRotation, G4ThreeVector(0,ObjShift,0), logicObject, "Object_phys", logicWorld,false,0);
     logicObject->SetVisAttributes(transblue);
@@ -268,29 +268,30 @@ G4VPhysicalVolume *DetectorConstruction::Construct()
 	logicObject->SetVisAttributes(transblue);
 	logicGOS->SetVisAttributes(transgrey);
 
+	// 几何优化：关闭几何并优化导航结构（提高运行时性能）
+	// G4GeometryManager::GetInstance()->CloseGeometry();
+	// G4GeometryManager::GetInstance()->OptimizeGeometry();
+
   return physiWorld;
 }
 
 
 void DetectorConstruction::SetObjShiftDistance(G4double shift)
 {
-
-  	G4cout
-          << G4endl 
-          << "##### ----> The object shift distance is  " << shift << " mm  #####" << G4endl;
   	ObjShift = shift;
-	
-  	// // G4RunManager::GetRunManager()->PhysicsHasBeenModified();
-	// G4RunManager::GetRunManager()->GeometryHasBeenModified();
-	// ObjShift = shift;
-    // G4cout << "##### ----> 正在搬动球体到 Y = " << shift << " mm #####" << G4endl;
 
     if (fPhysiObject) {
         // 1. 真正修改内存中物理卷的坐标
         fPhysiObject->SetTranslation(G4ThreeVector(0, ObjShift, 0));
         
-        // 2. 告诉 Geant4 几何已经变了，需要重新优化导航（必写）
+        // 2. 告诉 Geant4 几何已经变了，需要重新优化导航
+        // 注意：在多线程模式下，GeometryHasBeenModified() 会触发所有线程的几何重新优化
+        // 如果频繁调用（如循环扫描），可能会影响性能
+        // 可以考虑批量更新或延迟优化
         G4RunManager::GetRunManager()->GeometryHasBeenModified();
+        
+        // 可选：减少输出以提高性能（如果不需要每次位移都打印）
+        // G4cout << "##### ----> The object shift distance is  " << shift << " mm  #####" << G4endl;
     } else {
         G4cout << "警告：球体物理卷尚未创建！" << G4endl;
     }

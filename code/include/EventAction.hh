@@ -35,7 +35,7 @@ class EventAction : public G4UserEventAction
     G4double EdepInCrystal2[128];       // 探测器阵列数量
   private:
     RunAction*       runAction;
-
+    G4int fDetNum;                      // 缓存的探测器像素数量
 };
 
 #endif

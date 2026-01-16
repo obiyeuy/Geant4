@@ -289,6 +289,7 @@ CMakeFiles/CZT.dir/src/EventAction.cc.o: \
  /home/yyb/software/install/geant4/include/Geant4/G4ParticleMomentum.hh \
  /home/yyb/workspace/XRay-all/XRay-detectionCode/code/include/PrimaryGeneratorAction.hh \
  /home/yyb/software/install/geant4/include/Geant4/G4VUserPrimaryGeneratorAction.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4ThreeVector.hh \
  /home/yyb/software/install/geant4/include/Geant4/G4RunManager.hh \
  /usr/include/c++/11/list /usr/include/c++/11/bits/stl_list.h \
  /usr/include/c++/11/bits/list.tcc \

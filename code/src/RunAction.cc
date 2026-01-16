@@ -24,12 +24,12 @@ RunAction::RunAction() : G4UserRunAction()
 	const auto detConstruction = static_cast<const DetectorConstruction*>(
 	    G4RunManager::GetRunManager()->GetUserDetectorConstruction());
 
-	G4int DetNum  = detConstruction->DetPixNum;
+	fDetNum = detConstruction->DetPixNum;
 
   	G4RunManager::GetRunManager()->SetPrintProgress(1000);
 
 	// 初始化本 run 的累加数组
-	for(G4int i = 0; i<DetNum; i++)
+	for(G4int i = 0; i < fDetNum; i++)
 	{
 		Run_EdepInCrystal[i]  = 0.0;	
 		Run_EdepInCrystal2[i] = 0.0;	
@@ -42,16 +42,13 @@ void RunAction::BeginOfRunAction(const G4Run*)
 	  //G4RunManager::GetRunManager()->SetRandomNumberStore(true);
 
 	// 关键：如果在同一个进程里多次 /run/beamOn（例如用 /control/loop 扫描），
-	// Run_EdepInCrystal 会跨“run”累加，导致后处理图像出现条纹/渐增等伪影。
+	// Run_EdepInCrystal 会跨"run"累加，导致后处理图像出现条纹/渐增等伪影。
 	// 因此每个 run 开始时都要清零一次（线程安全）。
+	// 使用缓存的DetNum，避免重复查询
 	{
-		const auto detConstruction = static_cast<const DetectorConstruction*>(
-			G4RunManager::GetRunManager()->GetUserDetectorConstruction());
-		G4int DetNum = detConstruction->DetPixNum;
-
 		std::lock_guard<std::mutex> lock1(fEdepMutex);
 		std::lock_guard<std::mutex> lock2(fEdepMutex2);
-		for (G4int i = 0; i < DetNum; i++) {
+		for (G4int i = 0; i < fDetNum; i++) {
 			Run_EdepInCrystal[i] = 0.0;
 			Run_EdepInCrystal2[i] = 0.0;
 		}
@@ -80,8 +77,6 @@ void RunAction::EndOfRunAction(const G4Run*)
 	if (isMaster) {
 		const auto detConstruction = static_cast<const DetectorConstruction*>(
 		      G4RunManager::GetRunManager()->GetUserDetectorConstruction());
-
-		G4int DetNum  = detConstruction->DetPixNum;
 		  
 		// 输出基础目录名（与 BeginOfRunAction 中保持一致）
 		G4String outputDir = "output";
@@ -107,7 +102,7 @@ void RunAction::EndOfRunAction(const G4Run*)
 		if (datafile1.is_open()) {
 			datafile1.write(
 				reinterpret_cast<const char*>(Run_EdepInCrystal),
-				static_cast<std::streamsize>(DetNum) * sizeof(G4double));
+				static_cast<std::streamsize>(fDetNum) * sizeof(G4double));
 			datafile1.close();
 		} else {
 			G4cerr << "Error opening file for write: " << fileName1 << G4endl;
@@ -118,7 +113,7 @@ void RunAction::EndOfRunAction(const G4Run*)
 		if (datafile2.is_open()) {
 			datafile2.write(
 				reinterpret_cast<const char*>(Run_EdepInCrystal2),
-				static_cast<std::streamsize>(DetNum) * sizeof(G4double));
+				static_cast<std::streamsize>(fDetNum) * sizeof(G4double));
 			datafile2.close();
 		} else {
 			G4cerr << "Error opening file for write: " << fileName2 << G4endl;
@@ -138,6 +133,26 @@ void RunAction::AddEdepInCrystal2(G4int index, G4double edep)
   // 使用互斥锁保护共享数据的累加操作
   std::lock_guard<std::mutex> lock(fEdepMutex2);
   Run_EdepInCrystal2[index] += edep;
+}
+
+void RunAction::AddEdepInCrystalBatch(const G4double* edepArray, G4int size)
+{
+  // 批量更新：一次获取锁，更新所有像素，减少锁竞争
+  // 注意：edepArray中的值已经在EventAction中检查过>0，这里直接累加
+  std::lock_guard<std::mutex> lock(fEdepMutex);
+  for (G4int i = 0; i < size; i++) {
+    Run_EdepInCrystal[i] += edepArray[i];
+  }
+}
+
+void RunAction::AddEdepInCrystal2Batch(const G4double* edepArray, G4int size)
+{
+  // 批量更新：一次获取锁，更新所有像素，减少锁竞争
+  // 注意：edepArray中的值已经在EventAction中检查过>0，这里直接累加
+  std::lock_guard<std::mutex> lock(fEdepMutex2);
+  for (G4int i = 0; i < size; i++) {
+    Run_EdepInCrystal2[i] += edepArray[i];
+  }
 }
 
 // ======================================================================

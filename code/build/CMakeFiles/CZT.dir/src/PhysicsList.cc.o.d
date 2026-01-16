@@ -589,4 +589,9 @@ CMakeFiles/CZT.dir/src/PhysicsList.cc.o: \
  /home/yyb/software/install/geant4/include/Geant4/G4MesonConstructor.hh \
  /home/yyb/software/install/geant4/include/Geant4/G4BaryonConstructor.hh \
  /home/yyb/software/install/geant4/include/Geant4/G4IonConstructor.hh \
- /home/yyb/software/install/geant4/include/Geant4/G4ShortLivedConstructor.hh
+ /home/yyb/software/install/geant4/include/Geant4/G4ShortLivedConstructor.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4RegionStore.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4VStoreNotifier.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4VNotifier.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4ProductionCutsTable.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4ProductionCuts.hh

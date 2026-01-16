@@ -1,14 +1,23 @@
-# 设置线程数为虚拟机的满载 8 线程
-/run/numberOfThreads 8
+# 设置线程数为虚拟机的满载 12 线程
+/run/numberOfThreads 12
 
 # 核心初始化（只执行这一次，节省大量时间）
 /run/initialize
 
+# 性能优化：禁用所有不必要的输出
 /control/verbose 0
-/run/verbose 1
+/run/verbose 0
 /event/verbose 0
 /tracking/verbose 0
+
+# 设置进度打印间隔（减少I/O开销，提高性能）
 /run/printProgress 1000000
+
+# 性能优化：禁用随机数种子存储（如果不需要完全重现性，可以提高性能）
+# 注意：此命令在Geant4 11中可能不存在，已注释
+# /run/random/setSavingFlag false
+# 如果使用Geant4 10或更早版本，可以使用：
+# /run/random/setSavingFlag 0
 
 # 开启内置循环
 # 参数含义：[单行宏文件名] [循环变量名] [初始值] [终止值] [步长]

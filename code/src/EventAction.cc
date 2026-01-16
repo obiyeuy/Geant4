@@ -3,6 +3,7 @@
 
 //#include "Randomize.hh" // do we really need this?
 #include <iomanip>
+#include <cstring>  // for memset
 
 #include "RunAction.hh"
 // #include "Analysis.hh"
@@ -28,7 +29,10 @@ using namespace CLHEP;
 EventAction::EventAction(RunAction* RuAct)
 :G4UserEventAction(),runAction(RuAct)
 {
-	
+	// 缓存探测器像素数量（避免每次事件都查询）
+	const auto detConstruction = static_cast<const DetectorConstruction*>(
+		G4RunManager::GetRunManager()->GetUserDetectorConstruction());
+	fDetNum = detConstruction->DetPixNum;
 }
 
 EventAction::~EventAction()
@@ -36,54 +40,20 @@ EventAction::~EventAction()
 
 void EventAction::BeginOfEventAction(const G4Event*)
 {
-	const auto detConstruction = static_cast<const DetectorConstruction*>(
-      G4RunManager::GetRunManager()->GetUserDetectorConstruction());
-
-	G4int DetNum  = detConstruction->DetPixNum;
-
-
-	 for(G4int i = 0; i<DetNum; i++)
-	 {
-	 		EdepInCrystal[i] = 0;
-	 		EdepInCrystal2[i] = 0;
-	 }
+	// 使用缓存的DetNum，避免重复查询
+	// 使用memset优化数组清零（G4double是POD类型，可以安全使用）
+	std::memset(EdepInCrystal, 0, fDetNum * sizeof(G4double));
+	std::memset(EdepInCrystal2, 0, fDetNum * sizeof(G4double));
 }
 
 void EventAction::EndOfEventAction(const G4Event* evt)
 {
-
 	// Accumulate statistics（将每个事件的像素能量累加到 RunAction 中）
-	const auto detConstruction = static_cast<const DetectorConstruction*>(
-      G4RunManager::GetRunManager()->GetUserDetectorConstruction());
-
-	G4int DetNum  = detConstruction->DetPixNum;
-
-	 for(G4int i = 0; i<DetNum; i++)
-	 {
-	 		if(EdepInCrystal[i]>0)
-	 		{
-				// 使用线程安全的方法累加能量沉积
-				runAction->AddEdepInCrystal(i, EdepInCrystal[i]);
-	 		}
-
-	 }
-
-
-
-	 for(G4int i = 0; i<DetNum; i++)
-	 {
-	 		if(EdepInCrystal2[i]>0)
-	 		{
-				// 使用线程安全的方法累加能量沉积
-				runAction->AddEdepInCrystal2(i, EdepInCrystal2[i]);
-	 		}
-
-	 }
-
-
+	// 使用批量更新方法减少锁竞争，提高性能
+	runAction->AddEdepInCrystalBatch(EdepInCrystal, fDetNum);
+	runAction->AddEdepInCrystal2Batch(EdepInCrystal2, fDetNum);
 
 	// Print per event (modulo n)
-	//
 	MyeventID = 1 + evt->GetEventID();
 	//G4int printModulo = G4RunManager::GetRunManager()->GetPrintProgress();
 

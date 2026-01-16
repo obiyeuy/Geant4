@@ -616,6 +616,7 @@ CMakeFiles/CZT.dir/CZT.cc.o: \
  /home/yyb/software/install/geant4/include/Geant4/globals.hh \
  /home/yyb/workspace/XRay-all/XRay-detectionCode/code/include/PrimaryGeneratorAction.hh \
  /home/yyb/software/install/geant4/include/Geant4/G4VUserPrimaryGeneratorAction.hh \
+ /home/yyb/software/install/geant4/include/Geant4/G4ThreeVector.hh \
  /home/yyb/workspace/XRay-all/XRay-detectionCode/code/include/RunAction.hh \
  /home/yyb/workspace/XRay-all/XRay-detectionCode/code/include/DetectorConstruction.hh \
  /home/yyb/software/install/geant4/include/Geant4/G4UserRunAction.hh \

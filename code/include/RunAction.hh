@@ -27,6 +27,10 @@ class RunAction : public G4UserRunAction
     // 线程安全的能量沉积累加方法
     void AddEdepInCrystal(G4int index, G4double edep);
     void AddEdepInCrystal2(G4int index, G4double edep);
+    
+    // 批量更新方法（减少锁竞争，提高性能）
+    void AddEdepInCrystalBatch(const G4double* edepArray, G4int size);
+    void AddEdepInCrystal2Batch(const G4double* edepArray, G4int size);
 
 	G4double Run_EdepInCrystal[128];    // 探测器阵列数量
 	G4double Run_EdepInCrystal2[128];    // 探测器阵列数量
@@ -35,6 +39,7 @@ class RunAction : public G4UserRunAction
     // 互斥锁保护能量沉积累加操作
     static std::mutex fEdepMutex;
     static std::mutex fEdepMutex2;
+    G4int fDetNum;                      // 缓存的探测器像素数量
 };
 
 #endif

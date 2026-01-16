@@ -22,12 +22,13 @@ def main():
     try:
         low_ore = np.load("npy_data/ore_low.npy")
         high_ore = np.load("npy_data/ore_high.npy")
-        low_blank = np.load("npy_data/blank_low.npy")
-        high_blank = np.load("npy_data/blank_high.npy")
+        # low_blank = np.load("npy_data/blank_low.npy")
+        # high_blank = np.load("npy_data/blank_high.npy")
     except FileNotFoundError:
         print("错误: 找不到 .npy 矩阵文件，请先运行脚本 1")
         return
-
+    print(low_ore[41])
+    print(high_ore[41])
     # 2. 计算黄金平场线 (利用 81 行空扫数据求平均，降低统计涨落)
     # axis=0 对行求平均，得到 128 维向量
     low_flat_vector = np.mean(low_blank, axis=0)
