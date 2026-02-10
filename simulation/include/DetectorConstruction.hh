@@ -24,6 +24,9 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     void SetEnableObject (G4bool enable);  // 设置是否启用物体
     G4bool GetEnableObject() const { return fEnableObject; }  // 获取是否启用物体
     void LoadOreGDML(G4String filename);  // 动态加载矿石 GDML 文件
+    void SetMaterialSlabMaterial(G4String materialName);  // 设置材料板材料
+    void SetMaterialSlabThickness(G4double thickness);  // 设置材料板厚度
+    G4double GetMaterialSlabThickness() const { return fMaterialSlabThickness; }  // 获取材料板厚度
 
   private:
     G4double ObjShift;
@@ -32,6 +35,10 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     G4VPhysicalVolume* fPhysiObject; // 定义一个成员变量指针
     G4LogicalVolume* fLogicOre;  // 矿石逻辑体积指针（用于动态替换）
     G4GDMLParser fParser;  // GDML 解析器
+    G4Material* fMaterialSlabMaterial;  // 材料板材料
+    G4double fMaterialSlabThickness;  // 材料板厚度
+    G4VPhysicalVolume* fPhysiMaterialSlab;  // 材料板物理体积指针
+    G4LogicalVolume* fLogicMaterialSlab;  // 材料板逻辑体积指针
 };
 
 #endif

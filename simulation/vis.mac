@@ -7,7 +7,8 @@
 /control/verbose 2
 /run/verbose 2
 #
-#/Xray/det/SetObjShift 20 mm  注意：想看见移动，可以修改这里
+# 注意：想看见移动，可以修改这里
+#/Xray/det/SetObjShift 20 mm
 /run/initialize
 #
 # Use this open statement to create an OpenGL view:

@@ -18,7 +18,6 @@
 #include "G4UnitsTable.hh"
 #include "globals.hh"
 #include "DetectorConstruction.hh"
-//#include "iomanip"
 
 using namespace std;
 using namespace CLHEP;

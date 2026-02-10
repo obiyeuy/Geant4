@@ -1,7 +1,0 @@
-/home/yyb/workspace/XRay-all/XRay-detectionCode/build/CMakeFiles/CZT.dir
-/home/yyb/workspace/XRay-all/XRay-detectionCode/build/CMakeFiles/edit_cache.dir
-/home/yyb/workspace/XRay-all/XRay-detectionCode/build/CMakeFiles/rebuild_cache.dir
-/home/yyb/workspace/XRay-all/XRay-detectionCode/build/CMakeFiles/list_install_components.dir
-/home/yyb/workspace/XRay-all/XRay-detectionCode/build/CMakeFiles/install.dir
-/home/yyb/workspace/XRay-all/XRay-detectionCode/build/CMakeFiles/install/local.dir
-/home/yyb/workspace/XRay-all/XRay-detectionCode/build/CMakeFiles/install/strip.dir

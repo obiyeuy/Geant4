@@ -10,7 +10,7 @@ def generate_safe_spectrum(filename="spectrum.txt"):
     
     # 2. 添加过滤 (1.0mm Al 固有 + 0.5mm Cu 外部)
     s.filter('Al', 1.0)
-    s.filter('Cu', 0.5)
+    s.filter('Cu', 1.5)
     
     # 3. 获取数据 (不传参数，避开 dk 或 ener_step 错误)
     # 这将返回 SpekPy 默认分辨率的能谱 (通常是 0.5 keV)

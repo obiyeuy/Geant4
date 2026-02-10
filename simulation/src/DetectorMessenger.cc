@@ -61,6 +61,20 @@ DetectorMessenger::DetectorMessenger(DetectorConstruction* Det)
   fLoadGDMLCmd->AvailableForStates(G4State_PreInit, G4State_Idle);
   fLoadGDMLCmd->SetToBeBroadcasted(false);
 
+  fMaterialSlabMaterialCmd = new G4UIcmdWithAString("/Xray/det/SetMaterialSlabMaterial",this);
+  fMaterialSlabMaterialCmd->SetGuidance("Set material for the material slab (H2O, CHO, C, Al, Fe, Cu, Pb).");
+  fMaterialSlabMaterialCmd->SetParameterName("material",false);
+  fMaterialSlabMaterialCmd->AvailableForStates(G4State_PreInit, G4State_Idle);
+  fMaterialSlabMaterialCmd->SetToBeBroadcasted(false);
+
+  fMaterialSlabThicknessCmd = new G4UIcmdWithADoubleAndUnit("/Xray/det/SetMaterialSlabThickness",this);
+  fMaterialSlabThicknessCmd->SetGuidance("Set thickness of the material slab.");
+  fMaterialSlabThicknessCmd->SetParameterName("thickness",false);
+  fMaterialSlabThicknessCmd->SetRange("thickness>=0.");
+  fMaterialSlabThicknessCmd->SetUnitCategory("Length");
+  fMaterialSlabThicknessCmd->AvailableForStates(G4State_PreInit, G4State_Idle);
+  fMaterialSlabThicknessCmd->SetToBeBroadcasted(false);
+
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -70,6 +84,8 @@ DetectorMessenger::~DetectorMessenger()
   
   delete fTargetShiftDistance;
   delete fLoadGDMLCmd;
+  delete fMaterialSlabMaterialCmd;
+  delete fMaterialSlabThicknessCmd;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -80,6 +96,10 @@ void DetectorMessenger::SetNewValue(G4UIcommand* command,G4String newValue)
    { fDetectorConstruction->SetObjShiftDistance(fTargetShiftDistance->GetNewDoubleValue(newValue));}
   else if( command == fLoadGDMLCmd )
    { fDetectorConstruction->LoadOreGDML(newValue);}
+  else if( command == fMaterialSlabMaterialCmd )
+   { fDetectorConstruction->SetMaterialSlabMaterial(newValue);}
+  else if( command == fMaterialSlabThicknessCmd )
+   { fDetectorConstruction->SetMaterialSlabThickness(fMaterialSlabThicknessCmd->GetNewDoubleValue(newValue));}
 
 }
 

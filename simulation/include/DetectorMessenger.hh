@@ -65,6 +65,8 @@ class DetectorMessenger: public G4UImessenger
     G4UIcmdWithADoubleAndUnit*      fTargetShiftDistance;
     G4UIcmdWithABool*               fEnableObjectCmd;
     G4UIcmdWithAString*             fLoadGDMLCmd;
+    G4UIcmdWithAString*             fMaterialSlabMaterialCmd;
+    G4UIcmdWithADoubleAndUnit*      fMaterialSlabThicknessCmd;
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

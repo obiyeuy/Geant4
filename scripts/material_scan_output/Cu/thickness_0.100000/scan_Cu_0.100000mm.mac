@@ -1,0 +1,15 @@
+# Material thickness scan macro
+# Material: Cu, Thickness: 0.1 mm
+
+/control/verbose 2
+/run/verbose 2
+
+/Xray/det/SetMaterialSlabMaterial Cu
+/Xray/det/SetMaterialSlabThickness 0.1 mm
+
+/run/initialize
+
+# Output directory: /home/yyb/workspace/XRay-all/XRay-detectionCode/scripts/material_scan_output/Cu/thickness_0.100000
+# This is set via environment variable G4_OUTPUT_DIR
+
+/run/beamOn 1000000

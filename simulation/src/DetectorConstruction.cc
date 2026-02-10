@@ -32,7 +32,11 @@ using namespace CLHEP;
 DetectorConstruction::DetectorConstruction()
 : G4VUserDetectorConstruction(),
  ObjShift(0),
- fLogicOre(nullptr)
+ fLogicOre(nullptr),
+ fMaterialSlabMaterial(nullptr),
+ fMaterialSlabThickness(0.0),
+ fPhysiMaterialSlab(nullptr),
+ fLogicMaterialSlab(nullptr)
 {
     ObjShift = 0.0*mm; 
     fMessenger = new DetectorMessenger(this); 
@@ -51,6 +55,10 @@ G4VPhysicalVolume *DetectorConstruction::Construct()
   G4PhysicalVolumeStore::GetInstance()->Clean();
   G4LogicalVolumeStore::GetInstance()->Clean();
   G4SolidStore::GetInstance()->Clean();
+  
+  // 重置材料板指针（几何清理后需要重置）
+  fPhysiMaterialSlab = nullptr;
+  fLogicMaterialSlab = nullptr;
 
 	  // ------ Vis --------
 	//
@@ -145,7 +153,8 @@ G4VPhysicalVolume *DetectorConstruction::Construct()
     GGAG->AddElement(elO,  12);
 
     // 定义 Gd2O2S 材料
-    density = 2.9 * g/cm3; // GOS 密度
+    // density = 2.9 * g/cm3; // GOS 密度
+    density = 7.34 * g/cm3; // GOS 密度
     G4Material* GOS = new G4Material("GOS", density, 3);
     GOS->AddElement(elGd, 2);
     GOS->AddElement(elO, 2);
@@ -183,11 +192,13 @@ G4VPhysicalVolume *DetectorConstruction::Construct()
 
 	G4double GOSlength =  0.72 *mm;
 	G4double GOSwidth=  2.2 *mm;
-	G4double GOSthickness=  0.5 *mm;
+	// G4double GOSthickness=  0.5 *mm;
+    G4double GOSthickness=  0.14 *mm;
 
 	G4double GGAGlength =  0.72 *mm;
 	G4double GGAGwidth=  2.1 *mm;
-	G4double GGAGthickness=  3.3 *mm;
+	// G4double GGAGthickness=  3.3 *mm;
+	G4double GGAGthickness=  4.0 *mm;
 	G4double GapPeriod=  0.8 * mm; // 像素间距
 
 	// GOS薄膜的尺寸是102.5mmX2.2mmX0.5mm
@@ -195,8 +206,9 @@ G4VPhysicalVolume *DetectorConstruction::Construct()
 
 	G4double Copperlength = 102.5 *mm;
 	G4double Copperthickness = 0.6 *mm;
-	// 待测物体
+	// G4double Copperthickness = 1.8 *mm;
 
+	// 待测物体
 	// G4double Angle = 45;                    // 旋转角度单位 degree
     G4double sphereRadius = 15 * mm;  // 待测物半径
 	//
@@ -256,32 +268,58 @@ G4VPhysicalVolume *DetectorConstruction::Construct()
  
     fArmRotation->rotateY(0 *deg);
 
-    //待测物体 - 默认创建一个占位球体，后续可通过 GDML 动态替换
-  	auto solidObject = new G4Sphere("Object", 0., sphereRadius, 0., 360.*deg, 0., 180.*deg);
-	auto logicObject = new G4LogicalVolume(solidObject, calciumPhosphate, "logicObject");
-	// auto logicObject = new G4LogicalVolume(solidObject, Vacuum, "logicObject");
+    // // 待测物体 - 默认创建一个占位球体，后续可通过 GDML 动态替换
+  	// auto solidObject = new G4Sphere("Object", 0., sphereRadius, 0., 360.*deg, 0., 180.*deg);
+	// auto logicObject = new G4LogicalVolume(solidObject, calciumPhosphate, "logicObject");
+	// // auto logicObject = new G4LogicalVolume(solidObject, Vacuum, "logicObject");
 
-	// 保存逻辑体积指针，用于后续动态替换
-	fLogicOre = logicObject;
+	// // 保存逻辑体积指针，用于后续动态替换
+	// fLogicOre = logicObject;
 	
-	// auto Object_phys = new G4PVPlacement(fArmRotation, G4ThreeVector(0,ObjShift,0), logicObject, "Object_phys", logicWorld,false,0);
-    logicObject->SetVisAttributes(transblue);
-	fPhysiObject = new G4PVPlacement(
-		fArmRotation, 
-		G4ThreeVector(0, ObjShift, 0), // 初始位置
-		logicObject, 
-		"Object_phys", 
-		logicWorld, 
-		false, 
-		0);
+	// // auto Object_phys = new G4PVPlacement(fArmRotation, G4ThreeVector(0,ObjShift,0), logicObject, "Object_phys", logicWorld,false,0);
+    // logicObject->SetVisAttributes(transblue);
+	// fPhysiObject = new G4PVPlacement(
+	// 	fArmRotation, 
+	// 	G4ThreeVector(0, ObjShift, 0), // 初始位置
+	// 	logicObject, 
+	// 	"Object_phys", 
+	// 	logicWorld, 
+	// 	false, 
+	// 	0);
 	
-	//                                        
+	                                      
+	// 材料板（用于材料厚度扫描）
+	// 材料板位置：在待测物体和探测器之间
+	G4double MaterialSlabSizeXY = 200 * mm;  // 材料板尺寸，足够大以覆盖探测器
+	G4double MaterialSlabZ = 0.0;  // 材料板中心位置，在待测物体和探测器之间
+	
+	// 如果材料板材料已设置，创建材料板
+	if (fMaterialSlabMaterial != nullptr && fMaterialSlabThickness > 0.0) {
+		auto solidMaterialSlab = new G4Box("solidMaterialSlab", 
+			MaterialSlabSizeXY/2.0, MaterialSlabSizeXY/2.0, fMaterialSlabThickness/2.0);
+		fLogicMaterialSlab = new G4LogicalVolume(solidMaterialSlab, fMaterialSlabMaterial, "logicMaterialSlab");
+		
+		// 材料板位置：在待测物体和探测器之间，距离探测器约一半距离
+		fPhysiMaterialSlab = new G4PVPlacement(
+			0,  // 无旋转
+			G4ThreeVector(0, 0, 0),  // 位置
+			fLogicMaterialSlab,
+			"MaterialSlab_phys",
+			logicWorld,
+			false,
+			0);
+		
+		// 设置可视化属性
+		G4VisAttributes* transorange = new G4VisAttributes(G4Colour(1.0, 0.65, 0.0, 0.5));
+		transorange->SetForceSolid(true);
+		fLogicMaterialSlab->SetVisAttributes(transorange);
+	}
+	
 	// Visualization attributes
 	//
 	logicWorld->SetVisAttributes (G4VisAttributes::GetInvisible());
 	logicCopper->SetVisAttributes(transyellow);
 	logicGGAG->SetVisAttributes(transgreen);
-	logicObject->SetVisAttributes(transblue);
 	logicGOS->SetVisAttributes(transgrey);
 
 	// 几何优化：关闭几何并优化导航结构（提高运行时性能）
@@ -358,5 +396,68 @@ void DetectorConstruction::LoadOreGDML(G4String filename)
     } else {
         G4cerr << "错误：物理体积 fPhysiObject 尚未创建！" << G4endl;
         G4cerr << "提示：LoadOreGDML 必须在 /run/initialize 之后调用" << G4endl;
+    }
+}
+
+void DetectorConstruction::SetMaterialSlabMaterial(G4String materialName)
+{
+    // 从NIST数据库查找或构建材料
+    auto nist = G4NistManager::Instance();
+    G4Material* material = nullptr;
+    
+    // 处理特殊材料名称
+    if (materialName == "H2O" || materialName == "Water") {
+        material = nist->FindOrBuildMaterial("G4_WATER");
+    } else if (materialName == "CHO" || materialName == "PMMA" || materialName == "Acrylic") {
+        // 亚克力 (PMMA: C5H8O2)
+        G4Element* elC = nist->FindOrBuildElement("C");
+        G4Element* elH = nist->FindOrBuildElement("H");
+        G4Element* elO = nist->FindOrBuildElement("O");
+        G4double density = 1.19 * g/cm3;
+        material = new G4Material("PMMA", density, 3);
+        material->AddElement(elC, 5);
+        material->AddElement(elH, 8);
+        material->AddElement(elO, 2);
+    } else if (materialName == "C" || materialName == "Graphite") {
+        material = nist->FindOrBuildMaterial("G4_GRAPHITE");
+    } else if (materialName == "Al" || materialName == "Aluminum") {
+        material = nist->FindOrBuildMaterial("G4_Al");
+    } else if (materialName == "Fe" || materialName == "Iron") {
+        material = nist->FindOrBuildMaterial("G4_Fe");
+    } else if (materialName == "Cu" || materialName == "Copper") {
+        material = nist->FindOrBuildMaterial("G4_Cu");
+    } else if (materialName == "Pb" || materialName == "Lead") {
+        material = nist->FindOrBuildMaterial("G4_Pb");
+    } else {
+        // 尝试直接查找
+        material = nist->FindOrBuildMaterial(materialName);
+    }
+    
+    if (material != nullptr) {
+        fMaterialSlabMaterial = material;
+        G4cout << "##### 材料板材料设置为: " << material->GetName() << " #####" << G4endl;
+        
+        // 如果几何已构建，更新材料板
+        if (fLogicMaterialSlab != nullptr) {
+            fLogicMaterialSlab->SetMaterial(material);
+            G4RunManager::GetRunManager()->PhysicsHasBeenModified();
+        }
+    } else {
+        G4cerr << "错误：无法找到或创建材料: " << materialName << G4endl;
+    }
+}
+
+void DetectorConstruction::SetMaterialSlabThickness(G4double thickness)
+{
+    fMaterialSlabThickness = thickness;
+    G4cout << "##### 材料板厚度设置为: " << thickness / mm << " mm #####" << G4endl;
+    
+    // 如果几何已构建，通知需要重新初始化几何
+    // 注意：在 /run/initialize 之前设置厚度时，会在 Construct() 中创建
+    // 在 /run/initialize 之后设置厚度时，需要重新初始化几何
+    if (fPhysiMaterialSlab != nullptr) {
+        // 几何已构建，需要重新初始化
+        // 注意：这会触发完整的几何重建，包括 Construct() 的重新调用
+        G4RunManager::GetRunManager()->ReinitializeGeometry();
     }
 }
