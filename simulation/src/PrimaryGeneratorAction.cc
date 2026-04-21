@@ -16,9 +16,9 @@
 // 静态成员变量定义（预计算常量以提高性能）
 const G4double PrimaryGeneratorAction::fPhiMin = -0.15 * deg;
 const G4double PrimaryGeneratorAction::fPhiMax = 0.15 * deg;
-// const G4double PrimaryGeneratorAction::fThetaMin = -6.0 * deg;
-const G4double PrimaryGeneratorAction::fThetaMin = -0.1 * deg;
-const G4double PrimaryGeneratorAction::fThetaMax = 0.1 * deg;
+const G4double PrimaryGeneratorAction::fThetaMin = -6.0 * deg;
+// const G4double PrimaryGeneratorAction::fThetaMin = -0.1 * deg;
+const G4double PrimaryGeneratorAction::fThetaMax = 6.0 * deg;
 const G4double PrimaryGeneratorAction::fPhiRange = PrimaryGeneratorAction::fPhiMax - PrimaryGeneratorAction::fPhiMin;
 const G4double PrimaryGeneratorAction::fThetaRange = PrimaryGeneratorAction::fThetaMax - PrimaryGeneratorAction::fThetaMin;
 const G4ThreeVector PrimaryGeneratorAction::fSourcePosition(0*mm, 0*mm, -433.*mm);

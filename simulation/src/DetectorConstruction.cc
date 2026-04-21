@@ -32,6 +32,8 @@ using namespace CLHEP;
 DetectorConstruction::DetectorConstruction()
 : G4VUserDetectorConstruction(),
  ObjShift(0),
+ fEnableObject(true),
+ fPhysiObject(nullptr),
  fLogicOre(nullptr),
  fMaterialSlabMaterial(nullptr),
  fMaterialSlabThickness(0.0),
@@ -241,6 +243,8 @@ G4VPhysicalVolume *DetectorConstruction::Construct()
 					Vacuum,  // its material
 					"World");         // its name
 									
+	constexpr G4bool kCheckOverlaps = true;
+
 	auto physiWorld
 		= new G4PVPlacement(
 					0,                // no rotation
@@ -250,9 +254,9 @@ G4VPhysicalVolume *DetectorConstruction::Construct()
 					0,                // its mother  volume
 					false,            // no boolean operation
 					0,                // copy number
-					0);  // checking overlaps 
+					kCheckOverlaps);  // checking overlaps 
 
-	auto Copper_phys = new G4PVPlacement(0, G4ThreeVector(0, 0,   Distance_Object2GGAG - GGAGthickness/2.0 - Copperthickness/2.0 - Distance_GGAG2Copper ), logicCopper, "Copper_phys", logicWorld,false, 0);
+	auto Copper_phys = new G4PVPlacement(0, G4ThreeVector(0, 0,   Distance_Object2GGAG - GGAGthickness/2.0 - Copperthickness/2.0 - Distance_GGAG2Copper ), logicCopper, "Copper_phys", logicWorld,false, 0, kCheckOverlaps);
 
 		// 像素探测器阵列
 		for(G4int i = 0; i < NPx; i++)
@@ -260,60 +264,60 @@ G4VPhysicalVolume *DetectorConstruction::Construct()
 			G4int x_direction = NPx/2;  
 			G4double Posx_shift = -(x_direction-i)*GapPeriod + GapPeriod/2.0;
 
-			auto GGAG_phys = new G4PVPlacement(0, G4ThreeVector(Posx_shift, 0,   Distance_Object2GGAG ), logicGGAG, "GGAG_phys", logicWorld,false, i);
+			auto GGAG_phys = new G4PVPlacement(0, G4ThreeVector(Posx_shift, 0,   Distance_Object2GGAG ), logicGGAG, "GGAG_phys", logicWorld,false, i, kCheckOverlaps);
 			auto GOS_phys = new G4PVPlacement(0, G4ThreeVector(Posx_shift, 0,   Distance_Object2GGAG - GGAGthickness/2.0 - Copperthickness- GOSthickness/2.0 			
-			- Distance_GGAG2Copper - Distance_Copper2GOS ), logicGOS, "GOS_phys", logicWorld,false, i);
+			- Distance_GGAG2Copper - Distance_Copper2GOS ), logicGOS, "GOS_phys", logicWorld,false, i, kCheckOverlaps);
 		}
 
  
     fArmRotation->rotateY(0 *deg);
 
-    // // 待测物体 - 默认创建一个占位球体，后续可通过 GDML 动态替换
-  	// auto solidObject = new G4Sphere("Object", 0., sphereRadius, 0., 360.*deg, 0., 180.*deg);
-	// auto logicObject = new G4LogicalVolume(solidObject, calciumPhosphate, "logicObject");
-	// // auto logicObject = new G4LogicalVolume(solidObject, Vacuum, "logicObject");
+    // 待测物体 - 默认创建一个占位球体，后续可通过 GDML 动态替换逻辑体
+  	auto solidObject = new G4Sphere("Object", 0., sphereRadius, 0., 360.*deg, 0., 180.*deg);
+	auto logicObject = new G4LogicalVolume(solidObject, calciumPhosphate, "logicObject");
+	// auto logicObject = new G4LogicalVolume(solidObject, Vacuum, "logicObject");
 
-	// // 保存逻辑体积指针，用于后续动态替换
-	// fLogicOre = logicObject;
-	
-	// // auto Object_phys = new G4PVPlacement(fArmRotation, G4ThreeVector(0,ObjShift,0), logicObject, "Object_phys", logicWorld,false,0);
-    // logicObject->SetVisAttributes(transblue);
-	// fPhysiObject = new G4PVPlacement(
-	// 	fArmRotation, 
-	// 	G4ThreeVector(0, ObjShift, 0), // 初始位置
-	// 	logicObject, 
-	// 	"Object_phys", 
-	// 	logicWorld, 
-	// 	false, 
-	// 	0);
+	// 保存逻辑体积指针，用于后续动态替换
+	fLogicOre = logicObject;
+	logicObject->SetVisAttributes(transblue);
+	fPhysiObject = new G4PVPlacement(
+		fArmRotation, 
+		G4ThreeVector(0, ObjShift, 0), // 初始位置
+		logicObject, 
+		"Object_phys", 
+		logicWorld, 
+		false, 
+		0,
+		kCheckOverlaps);
 	
 	                                      
+	// 旧版材料板逻辑（保留以便对照，当前关闭）
 	// 材料板（用于材料厚度扫描）
 	// 材料板位置：在待测物体和探测器之间
-	G4double MaterialSlabSizeXY = 200 * mm;  // 材料板尺寸，足够大以覆盖探测器
-	G4double MaterialSlabZ = 0.0;  // 材料板中心位置，在待测物体和探测器之间
-	
-	// 如果材料板材料已设置，创建材料板
-	if (fMaterialSlabMaterial != nullptr && fMaterialSlabThickness > 0.0) {
-		auto solidMaterialSlab = new G4Box("solidMaterialSlab", 
-			MaterialSlabSizeXY/2.0, MaterialSlabSizeXY/2.0, fMaterialSlabThickness/2.0);
-		fLogicMaterialSlab = new G4LogicalVolume(solidMaterialSlab, fMaterialSlabMaterial, "logicMaterialSlab");
-		
-		// 材料板位置：在待测物体和探测器之间，距离探测器约一半距离
-		fPhysiMaterialSlab = new G4PVPlacement(
-			0,  // 无旋转
-			G4ThreeVector(0, 0, 0),  // 位置
-			fLogicMaterialSlab,
-			"MaterialSlab_phys",
-			logicWorld,
-			false,
-			0);
-		
-		// 设置可视化属性
-		G4VisAttributes* transorange = new G4VisAttributes(G4Colour(1.0, 0.65, 0.0, 0.5));
-		transorange->SetForceSolid(true);
-		fLogicMaterialSlab->SetVisAttributes(transorange);
-	}
+	// G4double MaterialSlabSizeXY = 200 * mm;  // 材料板尺寸，足够大以覆盖探测器
+	// G4double MaterialSlabZ = 0.0;  // 材料板中心位置，在待测物体和探测器之间
+	//
+	// // 如果材料板材料已设置，创建材料板
+	// if (fMaterialSlabMaterial != nullptr && fMaterialSlabThickness > 0.0) {
+	// 	auto solidMaterialSlab = new G4Box("solidMaterialSlab",
+	// 		MaterialSlabSizeXY/2.0, MaterialSlabSizeXY/2.0, fMaterialSlabThickness/2.0);
+	// 	fLogicMaterialSlab = new G4LogicalVolume(solidMaterialSlab, fMaterialSlabMaterial, "logicMaterialSlab");
+	//
+	// 	// 材料板位置：在待测物体和探测器之间，距离探测器约一半距离
+	// 	fPhysiMaterialSlab = new G4PVPlacement(
+	// 		0,  // 无旋转
+	// 		G4ThreeVector(0, 0, 0),  // 位置
+	// 		fLogicMaterialSlab,
+	// 		"MaterialSlab_phys",
+	// 		logicWorld,
+	// 		false,
+	// 		0);
+	//
+	// 	// 设置可视化属性
+	// 	G4VisAttributes* transorange = new G4VisAttributes(G4Colour(1.0, 0.65, 0.0, 0.5));
+	// 	transorange->SetForceSolid(true);
+	// 	fLogicMaterialSlab->SetVisAttributes(transorange);
+	// }
 	
 	// Visualization attributes
 	//
@@ -390,6 +394,12 @@ void DetectorConstruction::LoadOreGDML(G4String filename)
         
         // 通知 Geant4 几何已修改，需要重新优化导航
         G4RunManager::GetRunManager()->GeometryHasBeenModified();
+
+        // 立即检查新加载矿石几何是否与母体重叠，帮助快速定位 GeomNav1002 根因
+        const G4bool hasOverlap = fPhysiObject->CheckOverlaps(100000, 0.0, false);
+        if (hasOverlap) {
+            G4cerr << "警告：加载的 GDML 几何存在重叠，可能引发 GeomNav1002 导航警告。" << G4endl;
+        }
         
         G4cout << "##### GDML 矿石几何加载成功！#####" << G4endl;
         G4cout << "##### 逻辑体积名称: " << oreLog->GetName() << " #####" << G4endl;
@@ -426,6 +436,8 @@ void DetectorConstruction::SetMaterialSlabMaterial(G4String materialName)
         material = nist->FindOrBuildMaterial("G4_Fe");
     } else if (materialName == "Cu" || materialName == "Copper") {
         material = nist->FindOrBuildMaterial("G4_Cu");
+    } else if (materialName == "Ag" || materialName == "Silver") {
+        material = nist->FindOrBuildMaterial("G4_Ag");
     } else if (materialName == "Pb" || materialName == "Lead") {
         material = nist->FindOrBuildMaterial("G4_Pb");
     } else {

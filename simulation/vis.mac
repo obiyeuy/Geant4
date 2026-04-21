@@ -7,9 +7,14 @@
 /control/verbose 2
 /run/verbose 2
 #
+
 # 注意：想看见移动，可以修改这里
-#/Xray/det/SetObjShift 20 mm
 /run/initialize
+#/Xray/det/loadGDML /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_smoke_highbeam_200k_20260420_single/sample_00001_ore/ore.gdml
+#/Xray/det/SetObjShift 0 mm
+#/run/reinitializeGeometry
+
+
 #
 # Use this open statement to create an OpenGL view:
 #/vis/open OGLIX 600x600-0+0
@@ -81,7 +86,9 @@
 /vis/modeling/trajectories/drawByParticleID-0/set anti_nu_e yellow
 #
 # To superimpose all of the events from a given run:
+
 /vis/scene/endOfEventAction accumulate
+
 #
 # Re-establish auto refreshing and verbosity:
 /vis/viewer/set/autoRefresh true

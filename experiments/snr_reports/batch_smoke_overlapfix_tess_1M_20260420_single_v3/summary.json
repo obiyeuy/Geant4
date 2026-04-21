@@ -1,0 +1,8 @@
+{
+  "batch_id": "smoke_overlapfix_tess_1M_20260420_single_v3",
+  "total": 1,
+  "pass_count": 0,
+  "reports": [
+    "/home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_smoke_overlapfix_tess_1M_20260420_single_v3/sample_00001_ore"
+  ]
+}

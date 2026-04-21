@@ -1,9 +1,2 @@
-# 1. 设置当前行的输出文件名（如 output_0.root, output_1.root ...）
-# /analysis/setFileName data_row_{iRow}
-
-# 2. 根据行号计算并设置物体位移
-# 假设每行位移 1.0 mm，你可以直接传变量给 C++ Messenger
 /Xray/det/SetObjShift {iRow} mm
-
-# 3. 开始这一行的百万粒子模拟
-/run/beamOn 1000000
+/run/beamOn 10000

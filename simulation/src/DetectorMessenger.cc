@@ -53,19 +53,22 @@ DetectorMessenger::DetectorMessenger(DetectorConstruction* Det)
   fTargetShiftDistance->SetRange("Size>-99999.");
   fTargetShiftDistance->SetUnitCategory("Length");
   fTargetShiftDistance->AvailableForStates(G4State_PreInit,G4State_Idle);
-  fTargetShiftDistance->SetToBeBroadcasted(false);
+  // Geometry-affecting command: broadcast to worker threads in MT mode.
+  fTargetShiftDistance->SetToBeBroadcasted(true);
 
   fLoadGDMLCmd = new G4UIcmdWithAString("/Xray/det/loadGDML",this);
   fLoadGDMLCmd->SetGuidance("Load ore geometry from GDML file.");
   fLoadGDMLCmd->SetParameterName("filename",false);
   fLoadGDMLCmd->AvailableForStates(G4State_PreInit, G4State_Idle);
-  fLoadGDMLCmd->SetToBeBroadcasted(false);
+  // Critical for MT: ensure workers receive GDML replacement command.
+  fLoadGDMLCmd->SetToBeBroadcasted(true);
 
   fMaterialSlabMaterialCmd = new G4UIcmdWithAString("/Xray/det/SetMaterialSlabMaterial",this);
   fMaterialSlabMaterialCmd->SetGuidance("Set material for the material slab (H2O, CHO, C, Al, Fe, Cu, Pb).");
   fMaterialSlabMaterialCmd->SetParameterName("material",false);
   fMaterialSlabMaterialCmd->AvailableForStates(G4State_PreInit, G4State_Idle);
-  fMaterialSlabMaterialCmd->SetToBeBroadcasted(false);
+  // Keep geometry/material state consistent across all threads.
+  fMaterialSlabMaterialCmd->SetToBeBroadcasted(true);
 
   fMaterialSlabThicknessCmd = new G4UIcmdWithADoubleAndUnit("/Xray/det/SetMaterialSlabThickness",this);
   fMaterialSlabThicknessCmd->SetGuidance("Set thickness of the material slab.");
@@ -73,7 +76,8 @@ DetectorMessenger::DetectorMessenger(DetectorConstruction* Det)
   fMaterialSlabThicknessCmd->SetRange("thickness>=0.");
   fMaterialSlabThicknessCmd->SetUnitCategory("Length");
   fMaterialSlabThicknessCmd->AvailableForStates(G4State_PreInit, G4State_Idle);
-  fMaterialSlabThicknessCmd->SetToBeBroadcasted(false);
+  // Keep geometry/material state consistent across all threads.
+  fMaterialSlabThicknessCmd->SetToBeBroadcasted(true);
 
 }
 
