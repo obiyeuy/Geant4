@@ -73,7 +73,7 @@ python3 scripts/pipeline/run_full_pipeline.py --stages render --batch-id <batch_
 仅从已有原始数据构建并训练：
 
 ```bash
-python3 scripts/pipeline/run_full_pipeline.py --stages build train
+python3 scripts/pipeline/run_full_pipeline.py --stages build train --batch-id <batch_id>
 ```
 
 ---
@@ -83,6 +83,8 @@ python3 scripts/pipeline/run_full_pipeline.py --stages build train
 - `--batch-id`：批次名（默认时间戳）
 - `--num-samples`：样本数
 - `--ore-ratio`：矿石样本占比（0~1）
+- `--seed`：固定随机种子（默认可复现实验）
+- `--randomize-seed`：使用时间种子（每次运行不同）
 - `--geant-exec`：Geant4可执行文件路径
 - `--blank-dir`：空扫平场目录（用于R值计算；若同批次存在 `data/raw/batch_<batch_id>/blank` 会优先使用；否则按 `--beam-on` 自动匹配）
 - `--epochs --batch-size --lr`：训练参数

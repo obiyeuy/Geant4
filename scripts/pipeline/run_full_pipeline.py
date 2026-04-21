@@ -7,6 +7,7 @@ from __future__ import annotations
 import argparse
 import re
 import sys
+import time
 from datetime import datetime
 from pathlib import Path
 
@@ -153,6 +154,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--num-samples", type=int, default=30)
     parser.add_argument("--ore-ratio", type=float, default=0.5)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument(
+        "--randomize-seed",
+        action="store_true",
+        help="Use time-based seed for this run; otherwise --seed is used for deterministic replay.",
+    )
 
     parser.add_argument("--raw-root", type=Path, default=Path("data/raw"))
     parser.add_argument("--processed-root", type=Path, default=Path("data/processed"))
@@ -181,6 +187,7 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     geant_exec = args.geant_exec if args.geant_exec else _default_geant_exec(PROJECT_ROOT)
+    resolved_seed = int(time.time_ns() % (2**32)) if args.randomize_seed else int(args.seed)
 
     cfg = PipelineConfig(
         raw_root=(PROJECT_ROOT / args.raw_root).resolve(),
@@ -190,7 +197,7 @@ def main() -> None:
         batch_id=args.batch_id,
         num_samples=args.num_samples,
         ore_ratio=args.ore_ratio,
-        seed=args.seed,
+        seed=resolved_seed,
         geant_exec=(PROJECT_ROOT / geant_exec).resolve() if not geant_exec.is_absolute() else geant_exec,
         simulation_root=(PROJECT_ROOT / args.simulation_root).resolve(),
         master_macro=(PROJECT_ROOT / args.master_macro).resolve(),
@@ -232,6 +239,7 @@ def main() -> None:
         )
     if "render" in args.stages or "build" in args.stages:
         print(f"[pipeline] using blank_dir={cfg.blank_dir}")
+    print(f"[pipeline] using seed={cfg.seed} (randomized={args.randomize_seed})")
 
     samples = []
     if "generate" in args.stages:

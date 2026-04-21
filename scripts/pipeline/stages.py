@@ -113,6 +113,11 @@ def generate_samples(cfg: PipelineConfig) -> list[Path]:
             "class": meta.class_id,
             "class_name": meta.class_name,
             "generator": "scripts/pipeline/stages.py::generate_samples",
+            "batch_id": cfg.batch_id,
+            "seed": cfg.seed,
+            "beam_on": cfg.beam_on,
+            "master_macro": str(cfg.master_macro),
+            "ore_mode": cfg.ore_mode,
             "geometry": asdict(meta),
         }
         with (sample_dir / "info.json").open("w", encoding="utf-8") as f:
@@ -303,8 +308,14 @@ def simulate_blank(cfg: PipelineConfig) -> Path:
     meta = {
         "timestamp": datetime.now().isoformat(),
         "batch_id": cfg.batch_id,
+        "seed": cfg.seed,
         "beam_on": cfg.beam_on,
         "generator": "scripts/pipeline/stages.py::simulate_blank",
+        "master_macro": str(cfg.master_macro),
+        "scan_row_template": {
+            "set_obj_shift": "/Xray/det/SetObjShift {iRow} mm",
+            "beam_on": cfg.beam_on,
+        },
         "gdml": str(blank_gdml),
     }
     (blank_dir / "info.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -329,8 +340,9 @@ def build_r_dataset(cfg: PipelineConfig) -> Path:
     from pipeline.build_dataset import build_dataset
 
     out_dir = cfg.processed_root / "r_value_dataset"
+    batch_raw_dir = cfg.raw_root / f"batch_{cfg.batch_id}"
     build_dataset(
-        raw_dir=cfg.raw_root,
+        raw_dir=batch_raw_dir,
         blank_dir=cfg.blank_dir,
         out_dir=out_dir,
         train_ratio=cfg.train_ratio,

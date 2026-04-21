@@ -33,7 +33,11 @@ class SampleRecord:
 def _discover_samples(raw_dir: Path) -> list[Path]:
     out: list[Path] = []
     for p in raw_dir.rglob("*"):
-        if p.is_dir() and (p / "LowEnergy").exists() and (p / "HighEnergy").exists():
+        if not p.is_dir():
+            continue
+        if not p.name.startswith("sample_"):
+            continue
+        if (p / "LowEnergy").exists() and (p / "HighEnergy").exists():
             out.append(p)
     return sorted(out)
 
