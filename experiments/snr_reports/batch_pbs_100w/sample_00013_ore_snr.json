@@ -1,0 +1,75 @@
+{
+  "sample_dir": "/home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_pbs_100w/sample_00013_ore",
+  "blank_columns": [
+    0,
+    2,
+    4,
+    6,
+    8,
+    10,
+    11,
+    12,
+    13,
+    14,
+    17,
+    18,
+    20,
+    21,
+    22,
+    23,
+    27,
+    100,
+    102,
+    104,
+    106,
+    107,
+    108,
+    111,
+    112,
+    113,
+    114,
+    115,
+    118,
+    121,
+    122,
+    126
+  ],
+  "criteria": {
+    "target_half_fwhm_over_mean": 0.01,
+    "target_half66_over_full_scale": 0.01,
+    "gaussian_central_targets": {
+      "33": 0.33,
+      "66": 0.66,
+      "99": 0.99
+    }
+  },
+  "low": {
+    "mu": 1.0021063089370728,
+    "sigma": 0.029785804450511932,
+    "snr": 33.64375505123715,
+    "half_fwhm": 0.03507010468825785,
+    "half_fwhm_over_mean": 0.03499639147612639,
+    "half_66": 0.028420579643685762,
+    "half_66_over_full_scale": 0.028420579643685762,
+    "cov33": 0.41482843137254904,
+    "cov66": 0.7622549019607843,
+    "cov99": 0.9963235294117647
+  },
+  "high": {
+    "mu": 1.0018329620361328,
+    "sigma": 0.027899298816919327,
+    "snr": 35.908893933512715,
+    "half_fwhm": 0.0328489140477632,
+    "half_fwhm_over_mean": 0.03278881339759557,
+    "half_66": 0.02662054151824715,
+    "half_66_over_full_scale": 0.02662054151824715,
+    "cov33": 0.4013480392156863,
+    "cov66": 0.7671568627450981,
+    "cov99": 0.9957107843137255
+  },
+  "pass": {
+    "half_fwhm_over_mean": false,
+    "half66_over_full_scale": false
+  },
+  "estimated_beam_factor_to_meet_half_fwhm": 12.247474163502917
+}

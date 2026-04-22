@@ -140,6 +140,17 @@ def _build_material(reg, material_name, cache):
         mat.add_element_natoms(el_ca, 3)
         mat.add_element_natoms(el_p, 2)
         mat.add_element_natoms(el_o, 8)
+    elif material_name == "G4_PbS":
+        el_pb = cache.get("__el_pb")
+        el_s = cache.get("__el_s")
+        if el_pb is None:
+            el_pb = pyg4g4.ElementSimple("Pb", "Pb", 82, 207.2, reg)
+            el_s = pyg4g4.ElementSimple("S", "S", 16, 32.06, reg)
+            cache["__el_pb"] = el_pb
+            cache["__el_s"] = el_s
+        mat = pyg4g4.MaterialCompound("G4_PbS", 7.6, 2, reg)
+        mat.add_element_natoms(el_pb, 1)
+        mat.add_element_natoms(el_s, 1)
     else:
         mat = pyg4g4.MaterialPredefined(material_name, reg)
 
