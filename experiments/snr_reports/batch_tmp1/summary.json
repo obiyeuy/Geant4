@@ -1,0 +1,17 @@
+{
+  "batch_id": "tmp1",
+  "total": 10,
+  "pass_count": 0,
+  "reports": [
+    "/home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00001_ore",
+    "/home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00002_ore",
+    "/home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00003_waste",
+    "/home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00004_ore",
+    "/home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00005_ore",
+    "/home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00006_waste",
+    "/home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00007_ore",
+    "/home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00008_ore",
+    "/home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00009_ore",
+    "/home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00010_ore"
+  ]
+}

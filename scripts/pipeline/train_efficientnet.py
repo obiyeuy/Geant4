@@ -157,7 +157,7 @@ def train(
         }
         history.append(row)
         print(
-            f"[Epoch {epoch:03d}] "
+            f"[train][epoch {epoch:03d}] "
             f"train_loss={train_loss:.4f}, train_acc={train_acc:.4f}, "
             f"val_loss={val_loss:.4f}, val_acc={val_acc:.4f}"
         )
@@ -193,9 +193,9 @@ def train(
     with (out_dir / "history.json").open("w", encoding="utf-8") as f:
         json.dump(history, f, indent=2)
 
-    print("Training complete.")
-    print(f"Best model: {best_path}")
-    print(f"Test accuracy: {test_acc:.4f}")
+    print("[train] training complete")
+    print(f"[train] best_model={best_path}")
+    print(f"[train] test_accuracy={test_acc:.4f}")
 
 
 def parse_args() -> argparse.Namespace:

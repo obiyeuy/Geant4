@@ -1,0 +1,8 @@
+$ /home/yyb/pyg4/bin/python -u /home/yyb/workspace/XRay-all/XRay-detectionCode/scripts/pipeline/run_full_pipeline.py --stages generate --batch-id tmp_pretty --num-samples 3 --sample-start-index 1 --ore-ratio 0.5 --seed 42 --matrix-material G4_SILICON_DIOXIDE --matrix-density 2.65 --target-material G4_PbS --target-density 7.6 --target-grade-min 0.0 --target-grade-max 20.0 --raw-root data/raw --processed-root data/processed --experiments-root experiments --blank-dir data/raw/output_blank --simulation-root simulation --master-macro simulation/master.mac --beam-on 10 --ore-mode tessellated --tess-max-retries 1 --label-threshold 5.0 --train-ratio 0.7 --val-ratio 0.15 --epochs 1 --batch-size 4 --lr 0.001 --num-workers 0 --balance-mode none --snr-report-dir experiments/snr_reports --no-geometry-guard
+[2026-04-26 14:01:53] [pipeline] using seed=42 (randomized=False)
+[2026-04-26 14:01:53] [pipeline] generate sample_start_index=1
+[2026-04-26 14:01:56] 成功生成棱角矿石模型: /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp_pretty/sample_00001_ore/ore.gdml (模式: tessellated, 材质: mix, 凸起块: 8, 切割面: 23, 尺寸标度: 17.650175910214717)
+[2026-04-26 14:01:56] 成功生成棱角矿石模型: /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp_pretty/sample_00002_waste/ore.gdml (模式: tessellated, 材质: mix, 凸起块: 9, 切割面: 22, 尺寸标度: 20.444006468006055)
+[2026-04-26 14:01:56] 成功生成棱角矿石模型: /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp_pretty/sample_00003_ore/ore.gdml (模式: tessellated, 材质: mix, 凸起块: 14, 切割面: 12, 尺寸标度: 16.178783316628422)
+[2026-04-26 14:01:56] [generate] batch=tmp_pretty, samples=3 -> /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp_pretty
+[2026-04-26 14:01:56] [pipeline] completed

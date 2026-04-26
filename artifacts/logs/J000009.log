@@ -1,0 +1,97 @@
+$ /home/yyb/pyg4/bin/python -u /home/yyb/workspace/XRay-all/XRay-detectionCode/scripts/pipeline/run_full_pipeline.py --stages generate blank simulate render snr build train --batch-id web_20260426_141505 --num-samples 10 --sample-start-index 1 --ore-ratio 0.5 --seed 42 --matrix-material G4_SILICON_DIOXIDE --matrix-density 2.65 --target-material G4_PbS --target-density 7.6 --target-grade-min 0.0 --target-grade-max 20.0 --raw-root data/raw --processed-root data/processed --experiments-root experiments --blank-dir data/raw/output_blank --simulation-root simulation --master-macro simulation/master.mac --beam-on 1000 --ore-mode tessellated --tess-max-retries 3 --label-threshold 5.0 --train-ratio 0.7 --val-ratio 0.15 --epochs 30 --batch-size 16 --lr 0.001 --num-workers 0 --balance-mode both --snr-report-dir experiments/snr_reports --geometry-guard
+[2026-04-26 14:15:14] [blank] generated -> ./data/raw/batch_web_20260426_141505/blank
+[2026-04-26 14:15:14] [pipeline] using blank_dir=./data/raw/batch_web_20260426_141505/blank
+[2026-04-26 14:15:14] [pipeline] using seed=42 (randomized=False)
+[2026-04-26 14:15:14] [pipeline] generate sample_start_index=1
+[2026-04-26 14:15:17] [generate] ore_gdml -> ./data/raw/batch_web_20260426_141505/sample_00001_ore/ore.gdml | mode=tessellated | material=mix | lumps=8 | cuts=23 | scale=17.650175910214717
+[2026-04-26 14:15:17] [generate] ore_gdml -> ./data/raw/batch_web_20260426_141505/sample_00002_waste/ore.gdml | mode=tessellated | material=mix | lumps=9 | cuts=22 | scale=20.444006468006055
+[2026-04-26 14:15:17] [generate] ore_gdml -> ./data/raw/batch_web_20260426_141505/sample_00003_ore/ore.gdml | mode=tessellated | material=mix | lumps=14 | cuts=12 | scale=16.178783316628422
+[2026-04-26 14:15:17] [generate] ore_gdml -> ./data/raw/batch_web_20260426_141505/sample_00004_waste/ore.gdml | mode=tessellated | material=mix | lumps=16 | cuts=21 | scale=16.15921581810318
+[2026-04-26 14:15:17] [generate] ore_gdml -> ./data/raw/batch_web_20260426_141505/sample_00005_waste/ore.gdml | mode=tessellated | material=mix | lumps=16 | cuts=18 | scale=17.32264373224418
+[2026-04-26 14:15:17] [generate] ore_gdml -> ./data/raw/batch_web_20260426_141505/sample_00006_ore/ore.gdml | mode=tessellated | material=mix | lumps=8 | cuts=24 | scale=20.834915510996847
+[2026-04-26 14:15:17] [generate] ore_gdml -> ./data/raw/batch_web_20260426_141505/sample_00007_ore/ore.gdml | mode=tessellated | material=mix | lumps=13 | cuts=16 | scale=16.93287699887069
+[2026-04-26 14:15:17] [generate] ore_gdml -> ./data/raw/batch_web_20260426_141505/sample_00008_ore/ore.gdml | mode=tessellated | material=mix | lumps=13 | cuts=13 | scale=16.55647506028089
+[2026-04-26 14:15:17] [generate] ore_gdml -> ./data/raw/batch_web_20260426_141505/sample_00009_waste/ore.gdml | mode=tessellated | material=mix | lumps=13 | cuts=21 | scale=17.58712520333208
+[2026-04-26 14:15:17] [generate] ore_gdml -> ./data/raw/batch_web_20260426_141505/sample_00010_waste/ore.gdml | mode=tessellated | material=mix | lumps=15 | cuts=20 | scale=16.748956977119256
+[2026-04-26 14:15:17] [generate] batch=web_20260426_141505, samples=10 -> ./data/raw/batch_web_20260426_141505
+[2026-04-26 14:15:17] [simulate] (1) sample_00001_ore
+[2026-04-26 14:15:20] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 14:15:20] [simulate] (2) sample_00002_waste
+[2026-04-26 14:15:22] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 14:15:22] [simulate] (3) sample_00003_ore
+[2026-04-26 14:15:25] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 14:15:25] [simulate] (4) sample_00004_waste
+[2026-04-26 14:15:27] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 14:15:27] [simulate] (5) sample_00005_waste
+[2026-04-26 14:15:30] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 14:15:30] [simulate] (6) sample_00006_ore
+[2026-04-26 14:15:32] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 14:15:32] [simulate] (7) sample_00007_ore
+[2026-04-26 14:15:35] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 14:15:35] [simulate] (8) sample_00008_ore
+[2026-04-26 14:15:37] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 14:15:37] [simulate] (9) sample_00009_waste
+[2026-04-26 14:15:39] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 14:15:39] [simulate] (10) sample_00010_waste
+[2026-04-26 14:15:42] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 14:15:42] [simulate] finished 10 samples
+[2026-04-26 14:15:42] [render] (1) sample_00001_ore -> ./data/raw/batch_web_20260426_141505/sample_00001_ore/images
+[2026-04-26 14:15:42] [render] (2) sample_00002_waste -> ./data/raw/batch_web_20260426_141505/sample_00002_waste/images
+[2026-04-26 14:15:42] [render] (3) sample_00003_ore -> ./data/raw/batch_web_20260426_141505/sample_00003_ore/images
+[2026-04-26 14:15:42] [render] (4) sample_00004_waste -> ./data/raw/batch_web_20260426_141505/sample_00004_waste/images
+[2026-04-26 14:15:42] [render] (5) sample_00005_waste -> ./data/raw/batch_web_20260426_141505/sample_00005_waste/images
+[2026-04-26 14:15:42] [render] (6) sample_00006_ore -> ./data/raw/batch_web_20260426_141505/sample_00006_ore/images
+[2026-04-26 14:15:42] [render] (7) sample_00007_ore -> ./data/raw/batch_web_20260426_141505/sample_00007_ore/images
+[2026-04-26 14:15:42] [render] (8) sample_00008_ore -> ./data/raw/batch_web_20260426_141505/sample_00008_ore/images
+[2026-04-26 14:15:42] [render] (9) sample_00009_waste -> ./data/raw/batch_web_20260426_141505/sample_00009_waste/images
+[2026-04-26 14:15:42] [render] (10) sample_00010_waste -> ./data/raw/batch_web_20260426_141505/sample_00010_waste/images
+[2026-04-26 14:15:42] [render] finished 10 samples
+[2026-04-26 14:15:43] [snr] sample_00001_ore: FAIL -> ./experiments/snr_reports/batch_web_20260426_141505/sample_00001_ore_snr.json
+[2026-04-26 14:15:43] [snr] sample_00002_waste: FAIL -> ./experiments/snr_reports/batch_web_20260426_141505/sample_00002_waste_snr.json
+[2026-04-26 14:15:43] [snr] sample_00003_ore: FAIL -> ./experiments/snr_reports/batch_web_20260426_141505/sample_00003_ore_snr.json
+[2026-04-26 14:15:43] [snr] sample_00004_waste: FAIL -> ./experiments/snr_reports/batch_web_20260426_141505/sample_00004_waste_snr.json
+[2026-04-26 14:15:43] [snr] sample_00005_waste: FAIL -> ./experiments/snr_reports/batch_web_20260426_141505/sample_00005_waste_snr.json
+[2026-04-26 14:15:43] [snr] sample_00006_ore: FAIL -> ./experiments/snr_reports/batch_web_20260426_141505/sample_00006_ore_snr.json
+[2026-04-26 14:15:43] [snr] sample_00007_ore: FAIL -> ./experiments/snr_reports/batch_web_20260426_141505/sample_00007_ore_snr.json
+[2026-04-26 14:15:43] [snr] sample_00008_ore: FAIL -> ./experiments/snr_reports/batch_web_20260426_141505/sample_00008_ore_snr.json
+[2026-04-26 14:15:43] [snr] sample_00009_waste: FAIL -> ./experiments/snr_reports/batch_web_20260426_141505/sample_00009_waste_snr.json
+[2026-04-26 14:15:43] [snr] sample_00010_waste: FAIL -> ./experiments/snr_reports/batch_web_20260426_141505/sample_00010_waste_snr.json
+[2026-04-26 14:15:43] [snr] summary -> ./experiments/snr_reports/batch_web_20260426_141505/summary.json
+[2026-04-26 14:15:43] [信噪] Dataset build completed.
+[2026-04-26 14:15:43] [信噪] Output: ./data/processed/r_value_dataset
+[2026-04-26 14:15:43] [信噪] Split counts: {'train': 7, 'val': 1, 'test': 2}
+[2026-04-26 14:15:51] [Epoch 001] train_loss=0.6722, train_acc=0.4773, val_loss=1.0621, val_acc=0.1964
+[2026-04-26 14:15:57] [Epoch 002] train_loss=0.5785, train_acc=0.5038, val_loss=1.2253, val_acc=0.1964
+[2026-04-26 14:16:04] [Epoch 003] train_loss=0.4520, train_acc=0.6212, val_loss=1.0697, val_acc=0.1964
+[2026-04-26 14:16:11] [Epoch 004] train_loss=0.4816, train_acc=0.6629, val_loss=1.3610, val_acc=0.1964
+[2026-04-26 14:16:17] [Epoch 005] train_loss=0.4582, train_acc=0.6553, val_loss=1.9380, val_acc=0.4107
+[2026-04-26 14:16:24] [Epoch 006] train_loss=0.4383, train_acc=0.7235, val_loss=1.3192, val_acc=0.8036
+[2026-04-26 14:16:31] [Epoch 007] train_loss=0.3717, train_acc=0.7917, val_loss=0.7450, val_acc=0.7321
+[2026-04-26 14:16:37] [Epoch 008] train_loss=0.3730, train_acc=0.7576, val_loss=9.5140, val_acc=0.3571
+[2026-04-26 14:16:43] [Epoch 009] train_loss=0.4166, train_acc=0.7955, val_loss=1.3624, val_acc=0.5893
+[2026-04-26 14:16:50] [Epoch 010] train_loss=0.3021, train_acc=0.8220, val_loss=2.2554, val_acc=0.4821
+[2026-04-26 14:16:56] [Epoch 011] train_loss=0.3734, train_acc=0.7348, val_loss=0.9637, val_acc=0.6607
+[2026-04-26 14:17:03] [Epoch 012] train_loss=0.3727, train_acc=0.7765, val_loss=1.2946, val_acc=0.8036
+[2026-04-26 14:17:09] [Epoch 013] train_loss=0.3589, train_acc=0.7917, val_loss=1.1339, val_acc=0.8036
+[2026-04-26 14:17:16] [Epoch 014] train_loss=0.3436, train_acc=0.7386, val_loss=1.1474, val_acc=0.5357
+[2026-04-26 14:17:22] [Epoch 015] train_loss=0.3130, train_acc=0.8258, val_loss=0.6994, val_acc=0.6071
+[2026-04-26 14:17:29] [Epoch 016] train_loss=0.2844, train_acc=0.8523, val_loss=3.8618, val_acc=0.5893
+[2026-04-26 14:17:35] [Epoch 017] train_loss=0.3235, train_acc=0.8106, val_loss=0.7648, val_acc=0.8036
+[2026-04-26 14:17:41] [Epoch 018] train_loss=0.3128, train_acc=0.7917, val_loss=0.4659, val_acc=0.7857
+[2026-04-26 14:17:47] [Epoch 019] train_loss=0.2737, train_acc=0.8295, val_loss=0.7140, val_acc=0.6607
+[2026-04-26 14:17:54] [Epoch 020] train_loss=0.2745, train_acc=0.8409, val_loss=0.5084, val_acc=0.7679
+[2026-04-26 14:18:00] [Epoch 021] train_loss=0.2553, train_acc=0.8295, val_loss=0.4879, val_acc=0.7679
+[2026-04-26 14:18:06] [Epoch 022] train_loss=0.2765, train_acc=0.8333, val_loss=1.4485, val_acc=0.7679
+[2026-04-26 14:18:12] [Epoch 023] train_loss=0.3223, train_acc=0.8333, val_loss=1.2118, val_acc=0.6607
+[2026-04-26 14:18:18] [Epoch 024] train_loss=0.2985, train_acc=0.8333, val_loss=0.7911, val_acc=0.7321
+[2026-04-26 14:18:24] [Epoch 025] train_loss=0.3127, train_acc=0.8295, val_loss=1.3628, val_acc=0.5357
+[2026-04-26 14:18:30] [Epoch 026] train_loss=0.2669, train_acc=0.8447, val_loss=0.4365, val_acc=0.8036
+[2026-04-26 14:18:36] [Epoch 027] train_loss=0.2461, train_acc=0.8485, val_loss=0.5044, val_acc=0.7500
+[2026-04-26 14:18:42] [Epoch 028] train_loss=0.1984, train_acc=0.8939, val_loss=0.5543, val_acc=0.7857
+[2026-04-26 14:18:48] [Epoch 029] train_loss=0.2228, train_acc=0.8826, val_loss=1.2891, val_acc=0.5000
+[2026-04-26 14:18:54] [Epoch 030] train_loss=0.2667, train_acc=0.8409, val_loss=0.7124, val_acc=0.8036
+[2026-04-26 14:18:54] [信噪] Training complete.
+[2026-04-26 14:18:54] [信噪] Best model: ./experiments/efficientnet_rvalue_web_20260426_141505/best_model.pt
+[2026-04-26 14:18:54] [信噪] Test accuracy: 0.7857
+[2026-04-26 14:18:54] [train] outputs -> ./experiments/efficientnet_rvalue_web_20260426_141505
+[2026-04-26 14:18:54] [pipeline] completed

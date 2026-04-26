@@ -1,0 +1,137 @@
+$ /home/yyb/pyg4/bin/python -u /home/yyb/workspace/XRay-all/XRay-detectionCode/scripts/pipeline/run_full_pipeline.py --stages generate blank simulate render snr build train --batch-id tmp1 --num-samples 10 --sample-start-index 1 --ore-ratio 0.5 --seed 42 --matrix-material G4_SILICON_DIOXIDE --matrix-density 2.65 --target-material G4_PbS --target-density 7.6 --target-grade-min 0.0 --target-grade-max 20.0 --raw-root data/raw --processed-root data/processed --experiments-root experiments --blank-dir data/raw/output_blank --simulation-root simulation --master-macro simulation/master.mac --beam-on 10000 --ore-mode tessellated --tess-max-retries 3 --label-threshold 5.0 --train-ratio 0.7 --val-ratio 0.15 --epochs 30 --batch-size 16 --lr 0.001 --num-workers 0 --balance-mode both --snr-report-dir experiments/snr_reports --randomize-seed --geometry-guard
+[2026-04-26 13:49:57] [blank] generated -> /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/blank
+[2026-04-26 13:49:57] [pipeline] using blank_dir=/home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/blank
+[2026-04-26 13:49:57] [pipeline] using seed=2371924392 (randomized=True)
+[2026-04-26 13:49:57] [pipeline] generate sample_start_index=1
+[2026-04-26 13:50:01] 成功生成棱角矿石模型: /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00001_waste/ore.gdml (模式: tessellated, 材质: mix, 凸起块: 14, 切割面: 17, 尺寸标度: 21.7648706666848)
+[2026-04-26 13:50:01] 成功生成棱角矿石模型: /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00002_waste/ore.gdml (模式: tessellated, 材质: mix, 凸起块: 16, 切割面: 16, 尺寸标度: 19.283457682032566)
+[2026-04-26 13:50:01] 成功生成棱角矿石模型: /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00003_ore/ore.gdml (模式: tessellated, 材质: mix, 凸起块: 12, 切割面: 22, 尺寸标度: 19.529078865533695)
+[2026-04-26 13:50:01] 成功生成棱角矿石模型: /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00004_ore/ore.gdml (模式: tessellated, 材质: mix, 凸起块: 10, 切割面: 24, 尺寸标度: 21.65241791464014)
+[2026-04-26 13:50:01] 成功生成棱角矿石模型: /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00005_ore/ore.gdml (模式: tessellated, 材质: mix, 凸起块: 13, 切割面: 21, 尺寸标度: 21.678901065053314)
+[2026-04-26 13:50:01] 成功生成棱角矿石模型: /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00006_ore/ore.gdml (模式: tessellated, 材质: mix, 凸起块: 16, 切割面: 14, 尺寸标度: 19.611042160467754)
+[2026-04-26 13:50:01] 成功生成棱角矿石模型: /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00007_ore/ore.gdml (模式: tessellated, 材质: mix, 凸起块: 9, 切割面: 12, 尺寸标度: 16.75815267607274)
+[2026-04-26 13:50:01] 成功生成棱角矿石模型: /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00008_ore/ore.gdml (模式: tessellated, 材质: mix, 凸起块: 8, 切割面: 17, 尺寸标度: 20.402869832116682)
+[2026-04-26 13:50:01] 成功生成棱角矿石模型: /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00009_ore/ore.gdml (模式: tessellated, 材质: mix, 凸起块: 12, 切割面: 12, 尺寸标度: 21.70367367527363)
+[2026-04-26 13:50:01] 成功生成棱角矿石模型: /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00010_ore/ore.gdml (模式: tessellated, 材质: mix, 凸起块: 8, 切割面: 17, 尺寸标度: 19.368486792344182)
+[2026-04-26 13:50:01] [generate] batch=tmp1, samples=10 -> /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1
+[2026-04-26 13:50:01] [simulate] (1) sample_00001_waste
+[2026-04-26 13:50:09] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 13:50:09] [simulate] (2) sample_00002_waste
+[2026-04-26 13:50:17] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 13:50:17] [simulate] (3) sample_00003_ore
+[2026-04-26 13:50:24] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 13:50:24] [simulate] (4) sample_00004_ore
+[2026-04-26 13:50:32] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 13:50:32] [simulate] (5) sample_00005_ore
+[2026-04-26 13:50:40] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 13:50:40] [simulate] (6) sample_00006_ore
+[2026-04-26 13:50:48] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 13:50:48] [simulate] (7) sample_00007_ore
+[2026-04-26 13:50:55] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 13:50:55] [simulate] (8) sample_00008_ore
+[2026-04-26 13:51:03] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 13:51:03] [simulate] (9) sample_00009_ore
+[2026-04-26 13:51:10] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 13:51:10] [simulate] (10) sample_00010_ore
+[2026-04-26 13:51:18] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 13:51:18] [simulate] finished 10 samples
+[2026-04-26 13:51:18] [render] (1) sample_00001_waste -> /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00001_waste/images
+[2026-04-26 13:51:18] [render] (2) sample_00002_waste -> /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00002_waste/images
+[2026-04-26 13:51:18] [render] (3) sample_00003_ore -> /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00003_ore/images
+[2026-04-26 13:51:18] [render] (4) sample_00004_ore -> /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00004_ore/images
+[2026-04-26 13:51:18] [render] (5) sample_00005_ore -> /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00005_ore/images
+[2026-04-26 13:51:18] [render] (6) sample_00006_ore -> /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00006_ore/images
+[2026-04-26 13:51:18] [render] (7) sample_00007_ore -> /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00007_ore/images
+[2026-04-26 13:51:18] [render] (8) sample_00008_ore -> /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00008_ore/images
+[2026-04-26 13:51:18] [render] (9) sample_00009_ore -> /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00009_ore/images
+[2026-04-26 13:51:18] [render] (10) sample_00010_ore -> /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00010_ore/images
+[2026-04-26 13:51:18] [render] finished 10 samples
+[2026-04-26 13:51:19] [snr] sample_00001_waste: FAIL -> /home/yyb/workspace/XRay-all/XRay-detectionCode/experiments/snr_reports/batch_tmp1/sample_00001_waste_snr.json
+[2026-04-26 13:51:19] [snr] sample_00002_waste: FAIL -> /home/yyb/workspace/XRay-all/XRay-detectionCode/experiments/snr_reports/batch_tmp1/sample_00002_waste_snr.json
+[2026-04-26 13:51:19] [snr] sample_00003_ore: FAIL -> /home/yyb/workspace/XRay-all/XRay-detectionCode/experiments/snr_reports/batch_tmp1/sample_00003_ore_snr.json
+[2026-04-26 13:51:19] [snr] sample_00004_ore: FAIL -> /home/yyb/workspace/XRay-all/XRay-detectionCode/experiments/snr_reports/batch_tmp1/sample_00004_ore_snr.json
+[2026-04-26 13:51:19] [snr] sample_00005_ore: FAIL -> /home/yyb/workspace/XRay-all/XRay-detectionCode/experiments/snr_reports/batch_tmp1/sample_00005_ore_snr.json
+[2026-04-26 13:51:19] [snr] sample_00006_ore: FAIL -> /home/yyb/workspace/XRay-all/XRay-detectionCode/experiments/snr_reports/batch_tmp1/sample_00006_ore_snr.json
+[2026-04-26 13:51:19] [snr] sample_00007_ore: FAIL -> /home/yyb/workspace/XRay-all/XRay-detectionCode/experiments/snr_reports/batch_tmp1/sample_00007_ore_snr.json
+[2026-04-26 13:51:19] [snr] sample_00008_ore: FAIL -> /home/yyb/workspace/XRay-all/XRay-detectionCode/experiments/snr_reports/batch_tmp1/sample_00008_ore_snr.json
+[2026-04-26 13:51:19] [snr] sample_00009_ore: FAIL -> /home/yyb/workspace/XRay-all/XRay-detectionCode/experiments/snr_reports/batch_tmp1/sample_00009_ore_snr.json
+[2026-04-26 13:51:19] [snr] sample_00010_ore: FAIL -> /home/yyb/workspace/XRay-all/XRay-detectionCode/experiments/snr_reports/batch_tmp1/sample_00010_ore_snr.json
+[2026-04-26 13:51:19] [snr] summary -> /home/yyb/workspace/XRay-all/XRay-detectionCode/experiments/snr_reports/batch_tmp1/summary.json
+[2026-04-26 13:51:19] Dataset build completed.
+[2026-04-26 13:51:19] Output: /home/yyb/workspace/XRay-all/XRay-detectionCode/data/processed/r_value_dataset
+[2026-04-26 13:51:19] Split counts: {'train': 7, 'val': 1, 'test': 2}
+[2026-04-26 13:51:31] [Epoch 001] train_loss=0.5901, train_acc=0.5267, val_loss=1.1261, val_acc=0.1964
+[2026-04-26 13:51:38] [Epoch 002] train_loss=0.5229, train_acc=0.5763, val_loss=1.1340, val_acc=0.1964
+[2026-04-26 13:51:44] [Epoch 003] train_loss=0.4371, train_acc=0.6145, val_loss=1.2336, val_acc=0.1964
+[2026-04-26 13:51:50] [Epoch 004] train_loss=0.3924, train_acc=0.7595, val_loss=1.5173, val_acc=0.2143
+[2026-04-26 13:51:57] [Epoch 005] train_loss=0.4896, train_acc=0.6908, val_loss=1.1205, val_acc=0.5357
+[2026-04-26 13:52:04] [Epoch 006] train_loss=0.4001, train_acc=0.7252, val_loss=3.0854, val_acc=0.4286
+[2026-04-26 13:52:11] [Epoch 007] train_loss=0.3977, train_acc=0.7634, val_loss=0.6996, val_acc=0.6786
+[2026-04-26 13:52:18] [Epoch 008] train_loss=0.4548, train_acc=0.7443, val_loss=1.2590, val_acc=0.4821
+[2026-04-26 13:52:24] [Epoch 009] train_loss=0.3814, train_acc=0.7481, val_loss=0.8626, val_acc=0.6250
+[2026-04-26 13:52:31] [Epoch 010] train_loss=0.2741, train_acc=0.8397, val_loss=0.5620, val_acc=0.7143
+[2026-04-26 13:52:38] [Epoch 011] train_loss=0.2200, train_acc=0.8893, val_loss=0.9638, val_acc=0.7143
+[2026-04-26 13:52:45] [Epoch 012] train_loss=0.2467, train_acc=0.8779, val_loss=1.0938, val_acc=0.5893
+[2026-04-26 13:52:51] [Epoch 013] train_loss=0.3264, train_acc=0.8092, val_loss=0.4537, val_acc=0.7143
+[2026-04-26 13:52:58] [Epoch 014] train_loss=0.4027, train_acc=0.7901, val_loss=0.6065, val_acc=0.7321
+[2026-04-26 13:53:05] [Epoch 015] train_loss=0.3037, train_acc=0.8206, val_loss=0.8205, val_acc=0.6429
+[2026-04-26 13:53:11] [Epoch 016] train_loss=0.2720, train_acc=0.8359, val_loss=0.4376, val_acc=0.7321
+[2026-04-26 13:53:17] [Epoch 017] train_loss=0.2526, train_acc=0.8359, val_loss=0.5319, val_acc=0.7679
+[2026-04-26 13:53:24] [Epoch 018] train_loss=0.2867, train_acc=0.8435, val_loss=0.5884, val_acc=0.7679
+[2026-04-26 13:53:30] [Epoch 019] train_loss=0.2140, train_acc=0.8626, val_loss=0.7800, val_acc=0.7321
+[2026-04-26 13:53:31] Traceback (most recent call last):
+[2026-04-26 13:53:31]   File "/home/yyb/workspace/XRay-all/XRay-detectionCode/scripts/pipeline/run_full_pipeline.py", line 334, in <module>
+[2026-04-26 13:53:31]     main()
+[2026-04-26 13:53:31]   File "/home/yyb/workspace/XRay-all/XRay-detectionCode/scripts/pipeline/run_full_pipeline.py", line 327, in main
+[2026-04-26 13:53:31]     train_out = train_model(cfg, dataset_root=dataset_root)
+[2026-04-26 13:53:31]   File "/home/yyb/workspace/XRay-all/XRay-detectionCode/scripts/pipeline/stages.py", line 442, in train_model
+[2026-04-26 13:53:31]     train(
+[2026-04-26 13:53:31]   File "/home/yyb/workspace/XRay-all/XRay-detectionCode/scripts/pipeline/train_efficientnet.py", line 137, in train
+[2026-04-26 13:53:31]     logits = model(x)
+[2026-04-26 13:53:31]   File "/home/yyb/pyg4/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[2026-04-26 13:53:31]     return self._call_impl(*args, **kwargs)
+[2026-04-26 13:53:31]   File "/home/yyb/pyg4/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[2026-04-26 13:53:31]     return forward_call(*args, **kwargs)
+[2026-04-26 13:53:31]   File "/home/yyb/pyg4/lib/python3.9/site-packages/torchvision/models/efficientnet.py", line 344, in forward
+[2026-04-26 13:53:31]     return self._forward_impl(x)
+[2026-04-26 13:53:31]   File "/home/yyb/pyg4/lib/python3.9/site-packages/torchvision/models/efficientnet.py", line 334, in _forward_impl
+[2026-04-26 13:53:31]     x = self.features(x)
+[2026-04-26 13:53:31]   File "/home/yyb/pyg4/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[2026-04-26 13:53:31]     return self._call_impl(*args, **kwargs)
+[2026-04-26 13:53:31]   File "/home/yyb/pyg4/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[2026-04-26 13:53:31]     return forward_call(*args, **kwargs)
+[2026-04-26 13:53:31]   File "/home/yyb/pyg4/lib/python3.9/site-packages/torch/nn/modules/container.py", line 244, in forward
+[2026-04-26 13:53:31]     input = module(input)
+[2026-04-26 13:53:31]   File "/home/yyb/pyg4/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[2026-04-26 13:53:31]     return self._call_impl(*args, **kwargs)
+[2026-04-26 13:53:31]   File "/home/yyb/pyg4/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[2026-04-26 13:53:31]     return forward_call(*args, **kwargs)
+[2026-04-26 13:53:31]   File "/home/yyb/pyg4/lib/python3.9/site-packages/torch/nn/modules/container.py", line 244, in forward
+[2026-04-26 13:53:31]     input = module(input)
+[2026-04-26 13:53:31]   File "/home/yyb/pyg4/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[2026-04-26 13:53:31]     return self._call_impl(*args, **kwargs)
+[2026-04-26 13:53:31]   File "/home/yyb/pyg4/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[2026-04-26 13:53:31]     return forward_call(*args, **kwargs)
+[2026-04-26 13:53:31]   File "/home/yyb/pyg4/lib/python3.9/site-packages/torchvision/models/efficientnet.py", line 165, in forward
+[2026-04-26 13:53:31]     result = self.block(input)
+[2026-04-26 13:53:31]   File "/home/yyb/pyg4/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[2026-04-26 13:53:31]     return self._call_impl(*args, **kwargs)
+[2026-04-26 13:53:31]   File "/home/yyb/pyg4/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[2026-04-26 13:53:31]     return forward_call(*args, **kwargs)
+[2026-04-26 13:53:31]   File "/home/yyb/pyg4/lib/python3.9/site-packages/torch/nn/modules/container.py", line 244, in forward
+[2026-04-26 13:53:31]     input = module(input)
+[2026-04-26 13:53:31]   File "/home/yyb/pyg4/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[2026-04-26 13:53:31]     return self._call_impl(*args, **kwargs)
+[2026-04-26 13:53:31]   File "/home/yyb/pyg4/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[2026-04-26 13:53:31]     return forward_call(*args, **kwargs)
+[2026-04-26 13:53:31]   File "/home/yyb/pyg4/lib/python3.9/site-packages/torch/nn/modules/container.py", line 244, in forward
+[2026-04-26 13:53:31]     input = module(input)
+[2026-04-26 13:53:31]   File "/home/yyb/pyg4/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[2026-04-26 13:53:31]     return self._call_impl(*args, **kwargs)
+[2026-04-26 13:53:31]   File "/home/yyb/pyg4/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[2026-04-26 13:53:31]     return forward_call(*args, **kwargs)
+[2026-04-26 13:53:31]   File "/home/yyb/pyg4/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 548, in forward
+[2026-04-26 13:53:31]     return self._conv_forward(input, self.weight, self.bias)
+[2026-04-26 13:53:31]   File "/home/yyb/pyg4/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 543, in _conv_forward
+[2026-04-26 13:53:31]     return F.conv2d(
+[2026-04-26 13:53:31] KeyboardInterrupt

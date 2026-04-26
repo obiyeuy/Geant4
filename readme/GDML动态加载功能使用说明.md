@@ -45,7 +45,7 @@ make
 ### 1. 生成单个矿石 GDML 文件
 
 ```bash
-python scripts/generate_ore.py --output ore.gdml \
+python scripts/pipeline/generate_ore.py --output ore.gdml \
     --num-particles 1000 \
     --particle-radius 1.0 \
     --matrix-material CalciumPhosphate \
@@ -149,7 +149,7 @@ data/raw/
 
 **原因**：GDML 文件中的逻辑体积名称不是 "OreLog"
 
-**解决**：检查 `scripts/generate_ore.py` 中逻辑体积的命名，确保为 `"OreLog"`
+**解决**：检查 `scripts/pipeline/generate_ore.py` 中逻辑体积的命名，确保为 `"OreLog"`
 
 ### 问题：GDML 文件无法读取
 
@@ -193,7 +193,7 @@ make
 
 # 2. 生成单个样本测试
 cd ../..
-python scripts/generate_ore.py --output test_ore.gdml --num-particles 100
+python scripts/pipeline/generate_ore.py --output test_ore.gdml --num-particles 100
 
 # 3. 测试加载
 cd simulation/build
@@ -215,7 +215,7 @@ python3 scripts/pipeline/run_full_pipeline.py --num-samples 5
 
 ### 更复杂的几何形状
 
-可以修改 `scripts/generate_ore.py` 中的 `generate_irregular_matrix` 函数，实现更复杂的基体形状（如多个椭球的布尔并集、三角网格等）。
+可以修改 `scripts/pipeline/generate_ore.py` 中的 `generate_irregular_matrix` 函数，实现更复杂的基体形状（如多个椭球的布尔并集、三角网格等）。
 
 ### 并行生成
 

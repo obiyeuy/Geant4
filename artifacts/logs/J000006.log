@@ -1,0 +1,21 @@
+$ /home/yyb/pyg4/bin/python -u /home/yyb/workspace/XRay-all/XRay-detectionCode/scripts/pipeline/run_full_pipeline.py --stages generate blank simulate render snr build train --batch-id tmp12 --num-samples 10 --sample-start-index 1 --ore-ratio 0.5 --seed 42 --matrix-material G4_SILICON_DIOXIDE --matrix-density 2.65 --target-material G4_PbS --target-density 7.6 --target-grade-min 0.0 --target-grade-max 20.0 --raw-root data/raw --processed-root data/processed --experiments-root experiments --blank-dir data/raw/output_blank --simulation-root simulation --master-macro simulation/master.mac --beam-on 1000000 --ore-mode tessellated --tess-max-retries 3 --label-threshold 5.0 --train-ratio 0.7 --val-ratio 0.15 --epochs 30 --batch-size 16 --lr 0.001 --num-workers 0 --balance-mode both --snr-report-dir experiments/snr_reports --geometry-guard
+[2026-04-26 14:03:05] [日志] Traceback (most recent call last):
+[2026-04-26 14:03:05] [日志]   File "./scripts/pipeline/run_full_pipeline.py", line 334, in <module>
+[2026-04-26 14:03:05] [日志]     main()
+[2026-04-26 14:03:05] [日志]   File "./scripts/pipeline/run_full_pipeline.py", line 280, in main
+[2026-04-26 14:03:05] [日志]     cfg.blank_dir = simulate_blank(cfg)
+[2026-04-26 14:03:05] [日志]   File "./scripts/pipeline/stages.py", line 380, in simulate_blank
+[2026-04-26 14:03:05] [日志]     _run_simulation_once_with_gdml(
+[2026-04-26 14:03:05] [日志]   File "./scripts/pipeline/stages.py", line 276, in _run_simulation_once_with_gdml
+[2026-04-26 14:03:05] [日志]     subprocess.run(cmd, cwd=str(cfg.simulation_root), env=env, stdout=f, stderr=subprocess.STDOUT, check=True)
+[2026-04-26 14:03:05] [日志]   File "/usr/lib/python3.9/subprocess.py", line 507, in run
+[2026-04-26 14:03:05] [日志]     stdout, stderr = process.communicate(input, timeout=timeout)
+[2026-04-26 14:03:05] [日志]   File "/usr/lib/python3.9/subprocess.py", line 1126, in communicate
+[2026-04-26 14:03:05] [日志]     self.wait()
+[2026-04-26 14:03:05] [日志]   File "/usr/lib/python3.9/subprocess.py", line 1189, in wait
+[2026-04-26 14:03:05] [日志]     return self._wait(timeout=timeout)
+[2026-04-26 14:03:05] [日志]   File "/usr/lib/python3.9/subprocess.py", line 1933, in _wait
+[2026-04-26 14:03:05] [日志]     (pid, sts) = self._try_wait(0)
+[2026-04-26 14:03:05] [日志]   File "/usr/lib/python3.9/subprocess.py", line 1891, in _try_wait
+[2026-04-26 14:03:05] [日志]     (pid, sts) = os.waitpid(self.pid, wait_flags)
+[2026-04-26 14:03:05] [日志] KeyboardInterrupt

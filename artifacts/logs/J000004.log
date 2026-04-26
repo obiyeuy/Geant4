@@ -1,0 +1,97 @@
+$ /home/yyb/pyg4/bin/python -u /home/yyb/workspace/XRay-all/XRay-detectionCode/scripts/pipeline/run_full_pipeline.py --stages generate blank simulate render snr build train --batch-id tmp1 --num-samples 10 --sample-start-index 1 --ore-ratio 0.5 --seed 42 --matrix-material G4_SILICON_DIOXIDE --matrix-density 2.65 --target-material G4_PbS --target-density 7.6 --target-grade-min 0.0 --target-grade-max 20.0 --raw-root data/raw --processed-root data/processed --experiments-root experiments --blank-dir data/raw/output_blank --simulation-root simulation --master-macro simulation/master.mac --beam-on 1000 --ore-mode tessellated --tess-max-retries 3 --label-threshold 5.0 --train-ratio 0.7 --val-ratio 0.15 --epochs 30 --batch-size 16 --lr 0.001 --num-workers 0 --balance-mode both --snr-report-dir experiments/snr_reports --randomize-seed --geometry-guard
+[2026-04-26 13:55:12] [blank] generated -> /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/blank
+[2026-04-26 13:55:12] [pipeline] using blank_dir=/home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/blank
+[2026-04-26 13:55:12] [pipeline] using seed=3820289016 (randomized=True)
+[2026-04-26 13:55:12] [pipeline] generate sample_start_index=1
+[2026-04-26 13:55:15] 成功生成棱角矿石模型: /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00001_ore/ore.gdml (模式: tessellated, 材质: mix, 凸起块: 10, 切割面: 19, 尺寸标度: 20.945584699475393)
+[2026-04-26 13:55:15] 成功生成棱角矿石模型: /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00002_ore/ore.gdml (模式: tessellated, 材质: mix, 凸起块: 9, 切割面: 22, 尺寸标度: 17.289388849051804)
+[2026-04-26 13:55:15] 成功生成棱角矿石模型: /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00003_waste/ore.gdml (模式: tessellated, 材质: mix, 凸起块: 10, 切割面: 24, 尺寸标度: 18.058413541312984)
+[2026-04-26 13:55:15] 成功生成棱角矿石模型: /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00004_ore/ore.gdml (模式: tessellated, 材质: mix, 凸起块: 14, 切割面: 17, 尺寸标度: 21.050710609537283)
+[2026-04-26 13:55:15] 成功生成棱角矿石模型: /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00005_ore/ore.gdml (模式: tessellated, 材质: mix, 凸起块: 14, 切割面: 21, 尺寸标度: 17.36766940266116)
+[2026-04-26 13:55:15] 成功生成棱角矿石模型: /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00006_waste/ore.gdml (模式: tessellated, 材质: mix, 凸起块: 14, 切割面: 19, 尺寸标度: 16.11284033935825)
+[2026-04-26 13:55:15] 成功生成棱角矿石模型: /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00007_ore/ore.gdml (模式: tessellated, 材质: mix, 凸起块: 9, 切割面: 23, 尺寸标度: 18.875638413510938)
+[2026-04-26 13:55:15] 成功生成棱角矿石模型: /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00008_ore/ore.gdml (模式: tessellated, 材质: mix, 凸起块: 13, 切割面: 23, 尺寸标度: 16.53123590070284)
+[2026-04-26 13:55:15] 成功生成棱角矿石模型: /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00009_ore/ore.gdml (模式: tessellated, 材质: mix, 凸起块: 10, 切割面: 21, 尺寸标度: 16.887257770624277)
+[2026-04-26 13:55:15] 成功生成棱角矿石模型: /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00010_ore/ore.gdml (模式: tessellated, 材质: mix, 凸起块: 10, 切割面: 18, 尺寸标度: 16.12415771613589)
+[2026-04-26 13:55:15] [generate] batch=tmp1, samples=10 -> /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1
+[2026-04-26 13:55:15] [simulate] (1) sample_00001_ore
+[2026-04-26 13:55:18] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 13:55:18] [simulate] (2) sample_00002_ore
+[2026-04-26 13:55:20] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 13:55:20] [simulate] (3) sample_00003_waste
+[2026-04-26 13:55:23] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 13:55:23] [simulate] (4) sample_00004_ore
+[2026-04-26 13:55:25] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 13:55:25] [simulate] (5) sample_00005_ore
+[2026-04-26 13:55:27] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 13:55:27] [simulate] (6) sample_00006_waste
+[2026-04-26 13:55:30] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 13:55:30] [simulate] (7) sample_00007_ore
+[2026-04-26 13:55:32] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 13:55:32] [simulate] (8) sample_00008_ore
+[2026-04-26 13:55:35] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 13:55:35] [simulate] (9) sample_00009_ore
+[2026-04-26 13:55:37] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 13:55:37] [simulate] (10) sample_00010_ore
+[2026-04-26 13:55:40] [simulate] geometry_guard: tessellated pass at try=1
+[2026-04-26 13:55:40] [simulate] finished 10 samples
+[2026-04-26 13:55:40] [render] (1) sample_00001_ore -> /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00001_ore/images
+[2026-04-26 13:55:40] [render] (2) sample_00002_ore -> /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00002_ore/images
+[2026-04-26 13:55:40] [render] (3) sample_00003_waste -> /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00003_waste/images
+[2026-04-26 13:55:40] [render] (4) sample_00004_ore -> /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00004_ore/images
+[2026-04-26 13:55:40] [render] (5) sample_00005_ore -> /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00005_ore/images
+[2026-04-26 13:55:40] [render] (6) sample_00006_waste -> /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00006_waste/images
+[2026-04-26 13:55:40] [render] (7) sample_00007_ore -> /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00007_ore/images
+[2026-04-26 13:55:40] [render] (8) sample_00008_ore -> /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00008_ore/images
+[2026-04-26 13:55:40] [render] (9) sample_00009_ore -> /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00009_ore/images
+[2026-04-26 13:55:40] [render] (10) sample_00010_ore -> /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp1/sample_00010_ore/images
+[2026-04-26 13:55:40] [render] finished 10 samples
+[2026-04-26 13:55:41] [snr] sample_00001_ore: FAIL -> /home/yyb/workspace/XRay-all/XRay-detectionCode/experiments/snr_reports/batch_tmp1/sample_00001_ore_snr.json
+[2026-04-26 13:55:41] [snr] sample_00002_ore: FAIL -> /home/yyb/workspace/XRay-all/XRay-detectionCode/experiments/snr_reports/batch_tmp1/sample_00002_ore_snr.json
+[2026-04-26 13:55:41] [snr] sample_00003_waste: FAIL -> /home/yyb/workspace/XRay-all/XRay-detectionCode/experiments/snr_reports/batch_tmp1/sample_00003_waste_snr.json
+[2026-04-26 13:55:41] [snr] sample_00004_ore: FAIL -> /home/yyb/workspace/XRay-all/XRay-detectionCode/experiments/snr_reports/batch_tmp1/sample_00004_ore_snr.json
+[2026-04-26 13:55:41] [snr] sample_00005_ore: FAIL -> /home/yyb/workspace/XRay-all/XRay-detectionCode/experiments/snr_reports/batch_tmp1/sample_00005_ore_snr.json
+[2026-04-26 13:55:41] [snr] sample_00006_waste: FAIL -> /home/yyb/workspace/XRay-all/XRay-detectionCode/experiments/snr_reports/batch_tmp1/sample_00006_waste_snr.json
+[2026-04-26 13:55:41] [snr] sample_00007_ore: FAIL -> /home/yyb/workspace/XRay-all/XRay-detectionCode/experiments/snr_reports/batch_tmp1/sample_00007_ore_snr.json
+[2026-04-26 13:55:41] [snr] sample_00008_ore: FAIL -> /home/yyb/workspace/XRay-all/XRay-detectionCode/experiments/snr_reports/batch_tmp1/sample_00008_ore_snr.json
+[2026-04-26 13:55:41] [snr] sample_00009_ore: FAIL -> /home/yyb/workspace/XRay-all/XRay-detectionCode/experiments/snr_reports/batch_tmp1/sample_00009_ore_snr.json
+[2026-04-26 13:55:41] [snr] sample_00010_ore: FAIL -> /home/yyb/workspace/XRay-all/XRay-detectionCode/experiments/snr_reports/batch_tmp1/sample_00010_ore_snr.json
+[2026-04-26 13:55:41] [snr] summary -> /home/yyb/workspace/XRay-all/XRay-detectionCode/experiments/snr_reports/batch_tmp1/summary.json
+[2026-04-26 13:55:41] Dataset build completed.
+[2026-04-26 13:55:41] Output: /home/yyb/workspace/XRay-all/XRay-detectionCode/data/processed/r_value_dataset
+[2026-04-26 13:55:41] Split counts: {'train': 7, 'val': 1, 'test': 2}
+[2026-04-26 13:55:51] [Epoch 001] train_loss=0.6662, train_acc=0.4847, val_loss=0.9618, val_acc=0.1964
+[2026-04-26 13:55:57] [Epoch 002] train_loss=0.5616, train_acc=0.5573, val_loss=1.1417, val_acc=0.1964
+[2026-04-26 13:56:03] [Epoch 003] train_loss=0.3971, train_acc=0.6565, val_loss=1.3513, val_acc=0.1964
+[2026-04-26 13:56:09] [Epoch 004] train_loss=0.3833, train_acc=0.7023, val_loss=1.4882, val_acc=0.1964
+[2026-04-26 13:56:15] [Epoch 005] train_loss=0.4136, train_acc=0.6908, val_loss=1.8969, val_acc=0.3750
+[2026-04-26 13:56:21] [Epoch 006] train_loss=0.3920, train_acc=0.7290, val_loss=9.0411, val_acc=0.5714
+[2026-04-26 13:56:27] [Epoch 007] train_loss=0.3463, train_acc=0.7863, val_loss=7.2153, val_acc=0.5714
+[2026-04-26 13:56:33] [Epoch 008] train_loss=0.3592, train_acc=0.7863, val_loss=6.0908, val_acc=0.4286
+[2026-04-26 13:56:39] [Epoch 009] train_loss=0.3601, train_acc=0.7328, val_loss=0.8170, val_acc=0.6964
+[2026-04-26 13:56:45] [Epoch 010] train_loss=0.3145, train_acc=0.7176, val_loss=0.6407, val_acc=0.6786
+[2026-04-26 13:56:51] [Epoch 011] train_loss=0.3440, train_acc=0.7519, val_loss=0.5897, val_acc=0.7143
+[2026-04-26 13:56:58] [Epoch 012] train_loss=0.3127, train_acc=0.7786, val_loss=0.7998, val_acc=0.6607
+[2026-04-26 13:57:04] [Epoch 013] train_loss=0.3632, train_acc=0.7443, val_loss=1.0748, val_acc=0.6786
+[2026-04-26 13:57:10] [Epoch 014] train_loss=0.3543, train_acc=0.7099, val_loss=1.4634, val_acc=0.3929
+[2026-04-26 13:57:16] [Epoch 015] train_loss=0.3308, train_acc=0.8168, val_loss=0.7941, val_acc=0.7857
+[2026-04-26 13:57:22] [Epoch 016] train_loss=0.2625, train_acc=0.8473, val_loss=0.9657, val_acc=0.5893
+[2026-04-26 13:57:29] [Epoch 017] train_loss=0.3296, train_acc=0.7824, val_loss=0.8590, val_acc=0.5536
+[2026-04-26 13:57:35] [Epoch 018] train_loss=0.2830, train_acc=0.8168, val_loss=0.5505, val_acc=0.6786
+[2026-04-26 13:57:42] [Epoch 019] train_loss=0.3089, train_acc=0.8168, val_loss=0.4488, val_acc=0.7143
+[2026-04-26 13:57:48] [Epoch 020] train_loss=0.2957, train_acc=0.8435, val_loss=0.6365, val_acc=0.7679
+[2026-04-26 13:57:55] [Epoch 021] train_loss=0.2711, train_acc=0.8550, val_loss=1.1158, val_acc=0.4643
+[2026-04-26 13:58:01] [Epoch 022] train_loss=0.3307, train_acc=0.8244, val_loss=0.5576, val_acc=0.6964
+[2026-04-26 13:58:08] [Epoch 023] train_loss=0.2923, train_acc=0.8244, val_loss=1.0780, val_acc=0.6250
+[2026-04-26 13:58:14] [Epoch 024] train_loss=0.2617, train_acc=0.8511, val_loss=0.7526, val_acc=0.7321
+[2026-04-26 13:58:20] [Epoch 025] train_loss=0.2234, train_acc=0.8664, val_loss=0.6733, val_acc=0.6786
+[2026-04-26 13:58:26] [Epoch 026] train_loss=0.2583, train_acc=0.8511, val_loss=1.1519, val_acc=0.3929
+[2026-04-26 13:58:33] [Epoch 027] train_loss=0.3239, train_acc=0.8435, val_loss=0.6098, val_acc=0.6250
+[2026-04-26 13:58:39] [Epoch 028] train_loss=0.2552, train_acc=0.8626, val_loss=0.4863, val_acc=0.8036
+[2026-04-26 13:58:45] [Epoch 029] train_loss=0.3146, train_acc=0.7863, val_loss=0.6660, val_acc=0.7143
+[2026-04-26 13:58:52] [Epoch 030] train_loss=0.2244, train_acc=0.8702, val_loss=0.4500, val_acc=0.7857
+[2026-04-26 13:58:52] Training complete.
+[2026-04-26 13:58:52] Best model: /home/yyb/workspace/XRay-all/XRay-detectionCode/experiments/efficientnet_rvalue_tmp1/best_model.pt
+[2026-04-26 13:58:52] Test accuracy: 0.7091
+[2026-04-26 13:58:52] [train] outputs -> /home/yyb/workspace/XRay-all/XRay-detectionCode/experiments/efficientnet_rvalue_tmp1
+[2026-04-26 13:58:52] [pipeline] completed

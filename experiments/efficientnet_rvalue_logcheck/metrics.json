@@ -1,0 +1,21 @@
+{
+  "best_val_acc": 0.19642857142857142,
+  "test_loss": 1.2296240351029806,
+  "test_acc": 0.23214285714285715,
+  "epochs": 1,
+  "batch_size": 4,
+  "lr": 0.001,
+  "device": "cpu",
+  "train_size": 264,
+  "val_size": 56,
+  "test_size": 56,
+  "balance_mode": "both",
+  "train_class_counts": {
+    "0": 55,
+    "1": 209
+  },
+  "train_class_weights": [
+    1.5833333730697632,
+    0.4166666865348816
+  ]
+}

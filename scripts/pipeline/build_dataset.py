@@ -180,9 +180,9 @@ def build_dataset(
     with (out_dir / "manifest.json").open("w", encoding="utf-8") as f:
         json.dump(manifest, f, indent=2, ensure_ascii=False)
 
-    print("Dataset build completed.")
-    print(f"Output: {out_dir}")
-    print(f"Split counts: {manifest['splits']}")
+    print("[build] dataset build completed")
+    print(f"[build] output={out_dir}")
+    print(f"[build] split_counts={manifest['splits']}")
 
 
 def parse_args() -> argparse.Namespace:

@@ -106,7 +106,7 @@ def _sample_material_setup(
 
 
 def generate_samples(cfg: PipelineConfig) -> list[Path]:
-    from generate_ore import create_rugged_ore_gdml
+    from pipeline.generate_ore import create_rugged_ore_gdml
 
     rng = random.Random(cfg.seed)
     batch_dir = cfg.raw_root / f"batch_{cfg.batch_id}"

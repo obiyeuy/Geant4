@@ -1,0 +1,6 @@
+{
+  "batch_dir": "/home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_tmp123213",
+  "snr_summary": "/home/yyb/workspace/XRay-all/XRay-detectionCode/experiments/snr_reports/batch_tmp123213/summary.json",
+  "sorting_r_threshold": "/home/yyb/workspace/XRay-all/XRay-detectionCode/experiments/sorting_reports/tmp123213/r_threshold_report.json",
+  "sorting_simple_feature": "/home/yyb/workspace/XRay-all/XRay-detectionCode/experiments/sorting_reports/tmp123213/simple_feature_threshold_report.json"
+}
