@@ -1,31 +1,31 @@
 //
 // ********************************************************************
-// * License and Disclaimer                                           *
+// * 许可证与免责声明                                           *
 // *                                                                  *
-// * The  Geant4 software  is  copyright of the Copyright Holders  of *
-// * the Geant4 Collaboration.  It is provided  under  the terms  and *
-// * conditions of the Geant4 Software License,  included in the file *
-// * LICENSE and available at  http://cern.ch/geant4/license .  These *
-// * include a list of copyright holders.                             *
+// * Geant4 软件版权归以下版权持有者所有： *
+// * Geant4 协作组。软件按以下条款提供： *
+// * Geant4 软件许可证条款，包含在文件中： *
+// * LICENSE，或访问 http://cern.ch/geant4/license 。其中 *
+// * 包含版权持有者列表。                             *
 // *                                                                  *
-// * Neither the authors of this software system, nor their employing *
-// * institutes,nor the agencies providing financial support for this *
-// * work  make  any representation or  warranty, express or implied, *
-// * regarding  this  software system or assume any liability for its *
-// * use.  Please see the license in the file  LICENSE  and URL above *
-// * for the full disclaimer and the limitation of liability.         *
+// * 本软件系统作者及其所属机构， *
+// * 以及提供经费支持的机构， *
+// * 均不对本软件作任何明示或暗示担保， *
+// * 也不对本软件系统承担任何责任。 *
+// * 有关使用条款请参见 LICENSE 文件及上述网址， *
+// * 以获取完整免责声明与责任限制。         *
 // *                                                                  *
-// * This  code  implementation is the result of  the  scientific and *
-// * technical work of the GEANT4 collaboration.                      *
-// * By using,  copying,  modifying or  distributing the software (or *
-// * any work based  on the software)  you  agree  to acknowledge its *
-// * use  in  resulting  scientific  publications,  and indicate your *
-// * acceptance of all terms of the Geant4 Software license.          *
+// * 本代码实现源自 GEANT4 协作组的科学与 *
+// * 技术工作成果。                      *
+// * 使用、复制、修改或分发本软件（或 *
+// * 基于本软件的任何成果）即表示你同意在 *
+// * 相关科学出版物中致谢其使用，并表示你 *
+// * 接受 Geant4 软件许可证的全部条款。          *
 // ********************************************************************
 //
 // 
 /// \file DetectorMessenger.cc
-/// \brief Implementation of the DetectorMessenger class
+/// \brief DetectorMessenger 类的实现
 
 #include "DetectorMessenger.hh"
 #include "DetectorConstruction.hh"
@@ -44,7 +44,7 @@ DetectorMessenger::DetectorMessenger(DetectorConstruction* Det)
   fB2Directory->SetGuidance("UI commands specific to this example.");
 
   fDetDirectory = new G4UIdirectory("/Xray/det/");
-  fDetDirectory->SetGuidance("Detector construction control");
+  fDetDirectory->SetGuidance("探测器 construction control");
 
 
   fTargetShiftDistance = new G4UIcmdWithADoubleAndUnit("/Xray/det/SetObjShift",this);
@@ -53,21 +53,21 @@ DetectorMessenger::DetectorMessenger(DetectorConstruction* Det)
   fTargetShiftDistance->SetRange("Size>-99999.");
   fTargetShiftDistance->SetUnitCategory("Length");
   fTargetShiftDistance->AvailableForStates(G4State_PreInit,G4State_Idle);
-  // Geometry-affecting command: broadcast to worker threads in MT mode.
+  // 影响几何的命令：在多线程模式下广播到工作线程。
   fTargetShiftDistance->SetToBeBroadcasted(true);
 
   fLoadGDMLCmd = new G4UIcmdWithAString("/Xray/det/loadGDML",this);
   fLoadGDMLCmd->SetGuidance("Load ore geometry from GDML file.");
   fLoadGDMLCmd->SetParameterName("filename",false);
   fLoadGDMLCmd->AvailableForStates(G4State_PreInit, G4State_Idle);
-  // Critical for MT: ensure workers receive GDML replacement command.
+  // 多线程关键：确保工作线程收到 GDML 替换命令。
   fLoadGDMLCmd->SetToBeBroadcasted(true);
 
   fMaterialSlabMaterialCmd = new G4UIcmdWithAString("/Xray/det/SetMaterialSlabMaterial",this);
   fMaterialSlabMaterialCmd->SetGuidance("Set material for the material slab (H2O, CHO, C, Al, Fe, Cu, Pb).");
   fMaterialSlabMaterialCmd->SetParameterName("material",false);
   fMaterialSlabMaterialCmd->AvailableForStates(G4State_PreInit, G4State_Idle);
-  // Keep geometry/material state consistent across all threads.
+  // 保持所有线程中的几何/材质状态一致。
   fMaterialSlabMaterialCmd->SetToBeBroadcasted(true);
 
   fMaterialSlabThicknessCmd = new G4UIcmdWithADoubleAndUnit("/Xray/det/SetMaterialSlabThickness",this);
@@ -76,7 +76,7 @@ DetectorMessenger::DetectorMessenger(DetectorConstruction* Det)
   fMaterialSlabThicknessCmd->SetRange("thickness>=0.");
   fMaterialSlabThicknessCmd->SetUnitCategory("Length");
   fMaterialSlabThicknessCmd->AvailableForStates(G4State_PreInit, G4State_Idle);
-  // Keep geometry/material state consistent across all threads.
+  // 保持所有线程中的几何/材质状态一致。
   fMaterialSlabThicknessCmd->SetToBeBroadcasted(true);
 
 }

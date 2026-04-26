@@ -1,0 +1,12 @@
+{
+  "best_val_acc": 0.9555555555555556,
+  "test_loss": 0.21645829346444873,
+  "test_acc": 0.9333333333333333,
+  "epochs": 20,
+  "batch_size": 16,
+  "lr": 0.001,
+  "device": "cpu",
+  "train_size": 210,
+  "val_size": 45,
+  "test_size": 45
+}

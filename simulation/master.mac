@@ -23,4 +23,4 @@
 
 # 开启内置循环
 # 参数含义：[单行宏文件名] [循环变量名] [初始值] [终止值] [步长]
-/control/loop scan_row.mac iRow -17.5 17.5 0.7
+/control/loop scan_row.mac iRow -21 21 0.7

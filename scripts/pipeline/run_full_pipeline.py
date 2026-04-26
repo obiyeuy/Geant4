@@ -29,6 +29,8 @@ from pipeline.stages import (  # noqa: E402
     train_model,
 )
 
+SAMPLE_NAME_RE = re.compile(r"^sample_(\d+)_")
+
 
 def _default_geant_exec(project_root: Path) -> Path:
     candidates = [
@@ -57,7 +59,7 @@ def _beam_on_tokens(beam_on: int) -> list[str]:
 
 
 def _batch_id_tokens(batch_id: str) -> list[str]:
-    # Example: "single_800w_20260421" -> ["800w", "800W"]
+    # 示例： "single_800w_20260421" -> ["800w", "800W"]
     found = re.findall(r"(\d+\s*[wWkKmM])", batch_id)
     out: list[str] = []
     for token in found:
@@ -68,6 +70,24 @@ def _batch_id_tokens(batch_id: str) -> list[str]:
 
 def _looks_like_blank_dir(path: Path) -> bool:
     return path.is_dir() and (path / "LowEnergy").exists() and (path / "HighEnergy").exists()
+
+
+def _resolve_sample_start_index(raw_root: Path, batch_id: str, requested_start: int) -> int:
+    if requested_start >= 1:
+        return requested_start
+    # requested_start <= 0 means auto-append from existing max index
+    batch_dir = raw_root / f"batch_{batch_id}"
+    if not batch_dir.exists():
+        return 1
+    max_idx = 0
+    for p in batch_dir.glob("sample_*"):
+        if not p.is_dir():
+            continue
+        m = SAMPLE_NAME_RE.match(p.name)
+        if not m:
+            continue
+        max_idx = max(max_idx, int(m.group(1)))
+    return max_idx + 1
 
 
 def _resolve_blank_dir(
@@ -111,7 +131,7 @@ def _resolve_blank_dir(
             ]
         )
 
-    # Also scan existing raw directories for blank folders with matched beam-on token.
+    # 同时扫描已有 raw 目录中与 beam-on 标记匹配的空文件夹。
     matched_token_dirs: list[Path] = []
     for d in raw_root.iterdir():
         if not d.is_dir():
@@ -152,8 +172,20 @@ def parse_args() -> argparse.Namespace:
 
     parser.add_argument("--batch-id", type=str, default=datetime.now().strftime("%Y%m%d_%H%M%S"))
     parser.add_argument("--num-samples", type=int, default=30)
+    parser.add_argument(
+        "--sample-start-index",
+        type=int,
+        default=1,
+        help="Start index for generated sample numbering. Use 0 to auto-append after existing max.",
+    )
     parser.add_argument("--ore-ratio", type=float, default=0.5)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--matrix-material", type=str, default="G4_SILICON_DIOXIDE")
+    parser.add_argument("--matrix-density", type=float, default=2.65, help="g/cm3")
+    parser.add_argument("--target-material", type=str, default="G4_PbS")
+    parser.add_argument("--target-density", type=float, default=7.6, help="g/cm3")
+    parser.add_argument("--target-grade-min", type=float, default=0.0, help="target mineral wt%% min")
+    parser.add_argument("--target-grade-max", type=float, default=20.0, help="target mineral wt%% max")
     parser.add_argument(
         "--randomize-seed",
         action="store_true",
@@ -176,10 +208,23 @@ def parse_args() -> argparse.Namespace:
 
     parser.add_argument("--train-ratio", type=float, default=0.7)
     parser.add_argument("--val-ratio", type=float, default=0.15)
+    parser.add_argument(
+        "--label-threshold",
+        type=float,
+        default=0.5,
+        help="Binary threshold in percent for class derivation during build",
+    )
     parser.add_argument("--epochs", type=int, default=30)
     parser.add_argument("--batch-size", type=int, default=16)
     parser.add_argument("--lr", type=float, default=1e-3)
     parser.add_argument("--num-workers", type=int, default=0)
+    parser.add_argument(
+        "--balance-mode",
+        type=str,
+        default="both",
+        choices=["none", "class_weight", "sampler", "both"],
+        help="Class balancing mode used when training EfficientNet.",
+    )
     parser.add_argument("--snr-report-dir", type=Path, default=Path("experiments/snr_reports"))
     return parser.parse_args()
 
@@ -188,6 +233,11 @@ def main() -> None:
     args = parse_args()
     geant_exec = args.geant_exec if args.geant_exec else _default_geant_exec(PROJECT_ROOT)
     resolved_seed = int(time.time_ns() % (2**32)) if args.randomize_seed else int(args.seed)
+    resolved_sample_start = _resolve_sample_start_index(
+        raw_root=(PROJECT_ROOT / args.raw_root).resolve(),
+        batch_id=args.batch_id,
+        requested_start=int(args.sample_start_index),
+    )
 
     cfg = PipelineConfig(
         raw_root=(PROJECT_ROOT / args.raw_root).resolve(),
@@ -196,8 +246,15 @@ def main() -> None:
         blank_dir=Path(),
         batch_id=args.batch_id,
         num_samples=args.num_samples,
+        sample_start_index=resolved_sample_start,
         ore_ratio=args.ore_ratio,
         seed=resolved_seed,
+        matrix_material=args.matrix_material,
+        matrix_density=args.matrix_density,
+        target_material=args.target_material,
+        target_density=args.target_density,
+        target_grade_min=args.target_grade_min,
+        target_grade_max=args.target_grade_max,
         geant_exec=(PROJECT_ROOT / geant_exec).resolve() if not geant_exec.is_absolute() else geant_exec,
         simulation_root=(PROJECT_ROOT / args.simulation_root).resolve(),
         master_macro=(PROJECT_ROOT / args.master_macro).resolve(),
@@ -205,12 +262,14 @@ def main() -> None:
         ore_mode=args.ore_mode,
         geometry_guard=args.geometry_guard,
         tess_max_retries=args.tess_max_retries,
+        label_threshold=args.label_threshold,
         train_ratio=args.train_ratio,
         val_ratio=args.val_ratio,
         epochs=args.epochs,
         batch_size=args.batch_size,
         lr=args.lr,
         num_workers=args.num_workers,
+        balance_mode=args.balance_mode,
     )
 
     if not cfg.geant_exec.exists() and ("simulate" in args.stages or "blank" in args.stages):
@@ -240,6 +299,8 @@ def main() -> None:
     if "render" in args.stages or "build" in args.stages:
         print(f"[pipeline] using blank_dir={cfg.blank_dir}")
     print(f"[pipeline] using seed={cfg.seed} (randomized={args.randomize_seed})")
+    if "generate" in args.stages:
+        print(f"[pipeline] generate sample_start_index={cfg.sample_start_index}")
 
     samples = []
     if "generate" in args.stages:

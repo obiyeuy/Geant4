@@ -71,7 +71,7 @@ void RunAction::BeginOfRunAction(const G4Run*)
 		mkdir(dirListMode1.c_str(), 0755);
 		mkdir(dirListMode2.c_str(), 0755);
 		
-		G4cout << "##### Output directory: " << outputDir << " #####" << G4endl;
+		G4cout << "##### 输出目录： " << outputDir << " #####" << G4endl;
 	}
 }
 

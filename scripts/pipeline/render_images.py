@@ -112,7 +112,7 @@ def _build_ore_mask_from_high(high: np.ndarray) -> np.ndarray:
     mask = u8 < t
     mask = _largest_component(mask)
     if float(mask.mean()) < 0.01:
-        # fallback if Otsu fails (e.g., mostly background)
+        # 若 Otsu 失败（如几乎全是背景）则回退。
         mask = u8 < min(240, t + 30)
         mask = _largest_component(mask)
     return mask
@@ -153,14 +153,14 @@ def render_sample_images(sample_dir: Path, flat_field: FlatField) -> Path:
     _save_mask_png(ore_mask, images_dir / "ore_mask.png")
     _save_mask_preview(ore_mask, images_dir / "ore_mask_vis_x4.png")
 
-    # Masked R-map preview: normalize using only ore pixels, background forced to 0.
+    # 遮罩 R 图预览：仅使用矿石像素归一化，背景强制为 0。
     r_u8_masked = _to_u8_masked(r_map, ore_mask)
     Image.fromarray(r_u8_masked, mode="L").save(images_dir / "r_map_masked.png")
     Image.fromarray(r_u8_masked, mode="L").resize(
         (r_u8_masked.shape[1] * 4, r_u8_masked.shape[0] * 4), resample=Image.Resampling.NEAREST
     ).save(images_dir / "r_map_masked_vis_x4.png")
 
-    # Denoised R-map preview: median filter in attenuation domain before ratio.
+    # 去噪 R 图预览：在求比值前先在衰减域做中值滤波。
     t_low = (low + BIX_OFFSET) / (flat_field.low[None, :] + BIX_OFFSET)
     t_high = (high + BIX_OFFSET) / (flat_field.high[None, :] + BIX_OFFSET)
     a_low = -np.log(np.clip(t_low, EPS, 1.0))

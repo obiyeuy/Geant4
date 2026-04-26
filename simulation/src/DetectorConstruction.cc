@@ -52,7 +52,7 @@ DetectorConstruction::~DetectorConstruction()
 
 G4VPhysicalVolume *DetectorConstruction::Construct()
 {
-  // Cleanup old geometry
+  // 清理旧几何体
   G4GeometryManager::GetInstance()->OpenGeometry();
   G4PhysicalVolumeStore::GetInstance()->Clean();
   G4LogicalVolumeStore::GetInstance()->Clean();
@@ -88,20 +88,20 @@ G4VPhysicalVolume *DetectorConstruction::Construct()
 	density = 1.e-25 * g / cm3;
 
 	//====================================================
-	// Material definitions  材料定义
+	// 材料定义  材料定义
 	//====================================================
 
-	//Vacuum
+	//真空
 	G4Material *Vacuum = new G4Material(name = "Galactic", z = 1., a = 1.01 * g / mole,
 										density, kStateGas, temperature, pressure);
 
-  // Get nist material manager
+  // 获取 NIST 材料管理器
  	 G4NistManager* nist = G4NistManager::Instance();
 
   // ========================== ========================== ========================== ==========================//
   // ========================== ========================== ========================== ==========================//
 
-  // ----------- Material define -----------
+  // ----------- 材料定义 -----------
   //  
 
   G4bool isotopes = false;
@@ -181,7 +181,7 @@ G4VPhysicalVolume *DetectorConstruction::Construct()
     // 如果材质已存在（可能从之前的运行中创建），直接使用它
 
 	//====================================================
-	// Detector geometry 探测器几何构建
+	// 探测器几何构建 探测器几何构建
 	//====================================================
 
 
@@ -214,7 +214,7 @@ G4VPhysicalVolume *DetectorConstruction::Construct()
 	// G4double Angle = 45;                    // 旋转角度单位 degree
     G4double sphereRadius = 15 * mm;  // 待测物半径
 	//
-	// ===== Detector =====
+	// ===== 探测器 =====
 
 
 	auto solidGOS = new G4Box("solidGOS", GOSlength/2.0, GOSwidth/2.0, GOSthickness/2.0);
@@ -227,34 +227,34 @@ G4VPhysicalVolume *DetectorConstruction::Construct()
 	auto logicCopper= new G4LogicalVolume(solidCopper, mCu, "logicCopper");
 
 	//     
-	// World
+	// 世界体积
 	//
 
 	auto worldSizeXY = 10 * m;
 	auto worldSizeZ  = 10 * m; 
 
 	auto solidWorld 
-		= new G4Box("World",           // its name
-					worldSizeXY/2, worldSizeXY/2, worldSizeZ/2); // its size
+		= new G4Box("World",           // 名称
+					worldSizeXY/2, worldSizeXY/2, worldSizeZ/2); // 尺寸
 							
 	auto logicWorld
 		= new G4LogicalVolume(
-					solidWorld,           // its solid
-					Vacuum,  // its material
-					"World");         // its name
+					solidWorld,           // 对应几何体
+					真空,  // 材质
+					"World");         // 名称
 									
 	constexpr G4bool kCheckOverlaps = true;
 
 	auto physiWorld
 		= new G4PVPlacement(
-					0,                // no rotation
-					G4ThreeVector(),  // at (0,0,0)
-					logicWorld,          // its logical volume                         
-					"Worldphys",          // its name
-					0,                // its mother  volume
-					false,            // no boolean operation
-					0,                // copy number
-					kCheckOverlaps);  // checking overlaps 
+					0,                // 不旋转
+					G4ThreeVector(),  // 位于 (0,0,0)
+					logicWorld,          // 对应逻辑体积                         
+					"Worldphys",          // 名称
+					0,                // 母体体积
+					false,            // 无布尔操作
+					0,                // 拷贝编号
+					kCheckOverlaps);  // 检查重叠 
 
 	auto Copper_phys = new G4PVPlacement(0, G4ThreeVector(0, 0,   Distance_Object2GGAG - GGAGthickness/2.0 - Copperthickness/2.0 - Distance_GGAG2Copper ), logicCopper, "Copper_phys", logicWorld,false, 0, kCheckOverlaps);
 
@@ -272,54 +272,66 @@ G4VPhysicalVolume *DetectorConstruction::Construct()
  
     fArmRotation->rotateY(0 *deg);
 
-    // 待测物体 - 默认创建一个占位球体，后续可通过 GDML 动态替换逻辑体
-  	auto solidObject = new G4Sphere("Object", 0., sphereRadius, 0., 360.*deg, 0., 180.*deg);
-	auto logicObject = new G4LogicalVolume(solidObject, calciumPhosphate, "logicObject");
-	// auto logicObject = new G4LogicalVolume(solidObject, Vacuum, "logicObject");
+    // 材料板（用于材料厚度扫描）
+    // 启用材料板时，中心固定在原点；默认球体不创建，避免几何冲突。
+	const G4bool hasMaterialSlab = (fMaterialSlabMaterial != nullptr && fMaterialSlabThickness > 0.0);
+	G4double MaterialSlabSizeXY = 200 * mm;
+	G4double MaterialSlabZ = 0.0;
 
-	// 保存逻辑体积指针，用于后续动态替换
-	fLogicOre = logicObject;
-	logicObject->SetVisAttributes(transblue);
-	fPhysiObject = new G4PVPlacement(
-		fArmRotation, 
-		G4ThreeVector(0, ObjShift, 0), // 初始位置
-		logicObject, 
-		"Object_phys", 
-		logicWorld, 
-		false, 
-		0,
-		kCheckOverlaps);
+	if (hasMaterialSlab) {
+		auto solidMaterialSlab = new G4Box(
+			"solidMaterialSlab",
+			MaterialSlabSizeXY / 2.0,
+			MaterialSlabSizeXY / 2.0,
+			fMaterialSlabThickness / 2.0
+		);
+		fLogicMaterialSlab = new G4LogicalVolume(
+			solidMaterialSlab,
+			fMaterialSlabMaterial,
+			"logicMaterialSlab"
+		);
+
+		fPhysiMaterialSlab = new G4PVPlacement(
+			0,
+			G4ThreeVector(0, 0, MaterialSlabZ),
+			fLogicMaterialSlab,
+			"MaterialSlab_phys",
+			logicWorld,
+			false,
+			0,
+			kCheckOverlaps
+		);
+
+		G4VisAttributes* transorange = new G4VisAttributes(G4Colour(1.0, 0.65, 0.0, 0.5));
+		transorange->SetForceSolid(true);
+		fLogicMaterialSlab->SetVisAttributes(transorange);
+	}
 	
-	                                      
-	// 旧版材料板逻辑（保留以便对照，当前关闭）
-	// 材料板（用于材料厚度扫描）
-	// 材料板位置：在待测物体和探测器之间
-	// G4double MaterialSlabSizeXY = 200 * mm;  // 材料板尺寸，足够大以覆盖探测器
-	// G4double MaterialSlabZ = 0.0;  // 材料板中心位置，在待测物体和探测器之间
-	//
-	// // 如果材料板材料已设置，创建材料板
-	// if (fMaterialSlabMaterial != nullptr && fMaterialSlabThickness > 0.0) {
-	// 	auto solidMaterialSlab = new G4Box("solidMaterialSlab",
-	// 		MaterialSlabSizeXY/2.0, MaterialSlabSizeXY/2.0, fMaterialSlabThickness/2.0);
-	// 	fLogicMaterialSlab = new G4LogicalVolume(solidMaterialSlab, fMaterialSlabMaterial, "logicMaterialSlab");
-	//
-	// 	// 材料板位置：在待测物体和探测器之间，距离探测器约一半距离
-	// 	fPhysiMaterialSlab = new G4PVPlacement(
-	// 		0,  // 无旋转
-	// 		G4ThreeVector(0, 0, 0),  // 位置
-	// 		fLogicMaterialSlab,
-	// 		"MaterialSlab_phys",
-	// 		logicWorld,
-	// 		false,
-	// 		0);
-	//
-	// 	// 设置可视化属性
-	// 	G4VisAttributes* transorange = new G4VisAttributes(G4Colour(1.0, 0.65, 0.0, 0.5));
-	// 	transorange->SetForceSolid(true);
-	// 	fLogicMaterialSlab->SetVisAttributes(transorange);
-	// }
+    // 待测物体 - 不启用材料板时才创建默认球体
+    // 这样可保证材料板扫描与默认矿石模式互斥，避免重叠冲突。
+    if (!hasMaterialSlab) {
+  	    auto solidObject = new G4Sphere("Object", 0., sphereRadius, 0., 360.*deg, 0., 180.*deg);
+	    auto logicObject = new G4LogicalVolume(solidObject, calciumPhosphate, "logicObject");
+	    // auto logicObject = new G4LogicalVolume(solidObject, Vacuum, "logicObject");
+
+	    // 保存逻辑体积指针，用于后续动态替换
+	    fLogicOre = logicObject;
+	    logicObject->SetVisAttributes(transblue);
+	    fPhysiObject = new G4PVPlacement(
+		    fArmRotation, 
+		    G4ThreeVector(0, ObjShift, 0), // 初始位置
+		    logicObject, 
+		    "Object_phys", 
+		    logicWorld, 
+		    false, 
+		    0,
+		    kCheckOverlaps);
+    } else {
+        fPhysiObject = nullptr;
+        fLogicOre = nullptr;
+    }
 	
-	// Visualization attributes
+	// 可视化属性
 	//
 	logicWorld->SetVisAttributes (G4VisAttributes::GetInvisible());
 	logicCopper->SetVisAttributes(transyellow);

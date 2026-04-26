@@ -1,2 +1,2 @@
 /Xray/det/SetObjShift {iRow} mm
-/run/beamOn 156863
+/run/beamOn 1000000

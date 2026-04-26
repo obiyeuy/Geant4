@@ -107,8 +107,8 @@ def _parse_material_mix(mix_spec):
         name, pct = token.split(":", 1)
         name = name.strip()
         pct_value = float(pct.strip())
-        if pct_value <= 0:
-            raise ValueError(f"混合项 '{token}' 百分比必须 > 0")
+        if pct_value < 0:
+            raise ValueError(f"混合项 '{token}' 百分比必须 >= 0")
         pairs.append((name, pct_value))
 
     if not pairs:
@@ -117,6 +117,7 @@ def _parse_material_mix(mix_spec):
     total_pct = sum(p for _, p in pairs)
     if total_pct <= 0:
         raise ValueError("mix 百分比总和必须 > 0")
+    # 允许 0% 组分，便于保持 ore/waste 的元数据结构一致。
     return [(name, pct / total_pct) for name, pct in pairs]
 
 def _build_material(reg, material_name, cache):
@@ -521,8 +522,9 @@ def create_rugged_ore_gdml(
         mix_density = float(mix_density)
         if mix_density <= 0:
             raise ValueError("mix_density 必须 > 0")
-        mat = pyg4g4.MaterialCompound("OreMixture", mix_density, len(mix_items), reg)
-        for comp_name, comp_frac in mix_items:
+        non_zero_mix_items = [(name, frac) for name, frac in mix_items if frac > 0.0]
+        mat = pyg4g4.MaterialCompound("OreMixture", mix_density, len(non_zero_mix_items), reg)
+        for comp_name, comp_frac in non_zero_mix_items:
             component = _build_material(reg, comp_name, mat_cache)
             mat.add_material(component, comp_frac)
     else:

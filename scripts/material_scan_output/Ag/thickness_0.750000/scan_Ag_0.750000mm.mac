@@ -1,5 +1,5 @@
-# Material thickness scan macro
-# Material: Ag, Thickness: 0.75 mm
+# 材料厚度扫描宏
+# 材料： Ag, 厚度： 0.75 mm
 
 /control/verbose 2
 /run/verbose 2
@@ -9,7 +9,7 @@
 
 /run/initialize
 
-# Output directory: /home/yyb/workspace/XRay-all/XRay-detectionCode/scripts/material_scan_output/Ag/thickness_0.750000
-# This is set via environment variable G4_OUTPUT_DIR
+# 输出目录： /home/yyb/workspace/XRay-all/XRay-detectionCode/scripts/material_scan_output/Ag/thickness_0.750000
+# 该路径通过环境变量 G4_OUTPUT_DIR 设置
 
 /run/beamOn 1000000

@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from collections import Counter
 from pathlib import Path
 from typing import List, Tuple
 
@@ -13,6 +14,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, Dataset
+from torch.utils.data import WeightedRandomSampler
 from torchvision.models import efficientnet_b0
 
 
@@ -65,6 +67,7 @@ def train(
     batch_size: int,
     lr: float,
     num_workers: int,
+    balance_mode: str,
 ) -> None:
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -72,7 +75,37 @@ def train(
     val_set = NpyFeatureDataset(dataset_root / "val")
     test_set = NpyFeatureDataset(dataset_root / "test")
 
-    train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True, num_workers=num_workers)
+    label_counts = Counter(int(label) for _, label in train_set.items)
+    labels_sorted = sorted(label_counts.keys())
+    class_weights = None
+    if labels_sorted:
+        # Inverse-frequency weighting: minority class gets larger weight.
+        inv = torch.tensor([1.0 / max(label_counts[c], 1) for c in labels_sorted], dtype=torch.float32)
+        inv = inv / inv.mean()
+        max_class_id = max(labels_sorted)
+        class_weights = torch.ones(max_class_id + 1, dtype=torch.float32)
+        for idx, class_id in enumerate(labels_sorted):
+            class_weights[class_id] = inv[idx]
+
+    sampler = None
+    if balance_mode in ("sampler", "both"):
+        sample_weights = torch.tensor(
+            [1.0 / max(label_counts[int(label)], 1) for _, label in train_set.items],
+            dtype=torch.double,
+        )
+        sampler = WeightedRandomSampler(
+            weights=sample_weights,
+            num_samples=len(sample_weights),
+            replacement=True,
+        )
+
+    train_loader = DataLoader(
+        train_set,
+        batch_size=batch_size,
+        shuffle=(sampler is None),
+        sampler=sampler,
+        num_workers=num_workers,
+    )
     val_loader = DataLoader(val_set, batch_size=batch_size, shuffle=False, num_workers=num_workers)
     test_loader = DataLoader(test_set, batch_size=batch_size, shuffle=False, num_workers=num_workers)
 
@@ -81,7 +114,11 @@ def train(
     model = model.to(device)
 
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
-    loss_fn = nn.CrossEntropyLoss()
+    loss_fn = (
+        nn.CrossEntropyLoss(weight=class_weights.to(device))
+        if (class_weights is not None and balance_mode in ("class_weight", "both"))
+        else nn.CrossEntropyLoss()
+    )
 
     history = []
     best_val_acc = -1.0
@@ -143,6 +180,13 @@ def train(
         "train_size": len(train_set),
         "val_size": len(val_set),
         "test_size": len(test_set),
+        "balance_mode": balance_mode,
+        "train_class_counts": {str(k): int(v) for k, v in sorted(label_counts.items())},
+        "train_class_weights": (
+            [float(class_weights[i]) for i in range(len(class_weights))]
+            if class_weights is not None
+            else None
+        ),
     }
     with (out_dir / "metrics.json").open("w", encoding="utf-8") as f:
         json.dump(metrics, f, indent=2)
@@ -172,6 +216,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--batch-size", type=int, default=16)
     parser.add_argument("--lr", type=float, default=1e-3)
     parser.add_argument("--num-workers", type=int, default=0)
+    parser.add_argument(
+        "--balance-mode",
+        type=str,
+        default="both",
+        choices=["none", "class_weight", "sampler", "both"],
+        help="Class balancing strategy for imbalanced training sets.",
+    )
     return parser.parse_args()
 
 
@@ -184,6 +235,7 @@ def main() -> None:
         batch_size=args.batch_size,
         lr=args.lr,
         num_workers=args.num_workers,
+        balance_mode=args.balance_mode,
     )
 
 

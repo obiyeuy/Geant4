@@ -1,8 +1,8 @@
 #
-# Macro file for the initialization phase of "TestEm6.cc"
+# 用于 "TestEm6.cc" 初始化阶段的宏文件
 #
-# Sets some default verbose
-# and initializes the graphic.
+# 设置默认详细输出级别
+# 并初始化图形显示。
 #
 /control/verbose 2
 /run/verbose 2
@@ -10,71 +10,71 @@
 
 # 注意：想看见移动，可以修改这里
 /run/initialize
-#/Xray/det/loadGDML /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_smoke_highbeam_200k_20260420_single/sample_00001_ore/ore.gdml
+#/Xray/det/loadGDML /home/yyb/workspace/XRay-all/XRay-detectionCode/build/ore.gdml
 #/Xray/det/SetObjShift 0 mm
 #/run/reinitializeGeometry
 
 
 #
-# Use this open statement to create an OpenGL view:
+# 使用以下打开语句创建 OpenGL 视图：
 #/vis/open OGLIX 600x600-0+0
 /vis/open OGL 600x600-0+0
 #
-# Use this open statement to create a .prim file suitable for
-# viewing in DAWN:
+# 使用以下打开语句创建适用于
+# 在 DAWN 中查看的 .prim 文件：
 #/vis/open DAWNFILE
 #
-# Use this open statement to create a .heprep file suitable for
-# viewing in HepRApp:
+# 使用以下打开语句创建适用于
+# 在 HepRApp 中查看的 .heprep 文件：
 #/vis/open HepRepFile
 #
-# Use this open statement to create a .wrl file suitable for
-# viewing in a VRML viewer:
+# 使用以下打开语句创建适用于
+# 在 VRML 查看器中查看的 .wrl 文件：
 #/vis/open VRML2FILE
 #
-# Disable auto refresh and quieten vis messages whilst scene and
-# trajectories are established:
+# 在建立场景和轨迹期间关闭自动刷新并减少可视化消息输出：
+# 轨迹建立时：
 /vis/viewer/set/autoRefresh false
 /vis/verbose errors
 #
-# Draw geometry:
+# 绘制几何体：
 /vis/drawVolume
 #
-# Specify view angle:
+# 指定视角：
 /vis/viewer/set/viewpointThetaPhi 135. 15.
 #
-# Specify zoom value:
+# 指定缩放值：
 /vis/viewer/zoom 1.4
 #
-# Specify style (surface or wireframe):
+# 指定样式（表面或线框）：
 /vis/viewer/set/style surface
-# To get nice view
+# 获得更好的视图效果
 /vis/geometry/set/visibility World 0 false
 #
-# Draw coordinate axes:
+# 绘制坐标轴：
   /vis/scene/add/axes 0 0 0 10 cm
 #
-# Draw smooth trajectories at end of event, showing trajectory points
-# as markers 2 pixels wide:
+# 在事件结束时绘制平滑轨迹，并显示轨迹点
+# 为 2 像素宽的标记：
 /vis/scene/add/trajectories smooth
 /vis/modeling/trajectories/create/drawByCharge
 /vis/modeling/trajectories/drawByCharge-0/default/setDrawStepPts false
 /vis/modeling/trajectories/drawByCharge-0/default/setStepPtsSize 1
-# (if too many tracks cause core dump => /tracking/storeTrajectory 0)
+# (若轨迹过多导致崩溃 => /tracking/storeTrajectory 0)
 #
-# Draw hits at end of event:
+# 在事件结束时绘制击中点：
 #/vis/scene/add/hits
 #
-# To draw only gammas:
+# 若只绘制 gamma：
 #/vis/filtering/trajectories/create/particleFilter
 #/vis/filtering/trajectories/particleFilter-0/add gamma
 #
-# To invert the above, drawing all particles except gammas,
-# keep the above two lines but also add:
+# 若反转上述过滤（绘制除 gamma 外所有粒子），
+# 保留上面两行并额外添加：
 #/vis/filtering/trajectories/particleFilter-0/invert true
 #
-# Many other options are available with /vis/modeling and /vis/filtering.
-# For example, to select colour by particle ID:
+# /vis/modeling 和 /vis/filtering 提供更多选项。
+# 例如，可按粒子 ID 选择颜色：
 /vis/modeling/trajectories/create/drawByParticleID
 /vis/modeling/trajectories/drawByParticleID-0/set e- red
 /vis/modeling/trajectories/drawByParticleID-0/set e+ red
@@ -85,15 +85,15 @@
 /vis/modeling/trajectories/drawByParticleID-0/set nu_e yellow
 /vis/modeling/trajectories/drawByParticleID-0/set anti_nu_e yellow
 #
-# To superimpose all of the events from a given run:
+# 叠加某次运行中的所有事件：
 
 /vis/scene/endOfEventAction accumulate
 
 #
-# Re-establish auto refreshing and verbosity:
+# 恢复自动刷新与详细输出：
 /vis/viewer/set/autoRefresh true
 /vis/verbose warnings
 #
-# For file-based drivers, use this to create an empty detector view:
+# 对于基于文件的驱动，使用此命令创建空探测器视图：
 #/vis/viewer/flush
 #/control/execute Co60.mac

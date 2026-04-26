@@ -1,9 +1,9 @@
 
 #include "EventAction.hh"
 
-//#include "Randomize.hh" // do we really need this?
+//#include "Randomize.hh" // 这里真的需要吗？
 #include <iomanip>
-#include <cstring>  // for memset
+#include <cstring>  // 用于 memset
 
 #include "RunAction.hh"
 // #include "Analysis.hh"
@@ -47,12 +47,12 @@ void EventAction::BeginOfEventAction(const G4Event*)
 
 void EventAction::EndOfEventAction(const G4Event* evt)
 {
-	// Accumulate statistics（将每个事件的像素能量累加到 RunAction 中）
+	// 累积统计量（将每个事件的像素能量累加到 RunAction 中）
 	// 使用批量更新方法减少锁竞争，提高性能
 	runAction->AddEdepInCrystalBatch(EdepInCrystal, fDetNum);
 	runAction->AddEdepInCrystal2Batch(EdepInCrystal2, fDetNum);
 
-	// Print per event (modulo n)
+	// 按事件打印（每 n 个事件）
 	MyeventID = 1 + evt->GetEventID();
 	//G4int printModulo = G4RunManager::GetRunManager()->GetPrintProgress();
 
@@ -69,7 +69,7 @@ void EventAction::EndOfEventAction(const G4Event* evt)
 //
 // void EventAction::EndOfEventAction(const G4Event* evt)
 // {
-//   // Accumulate statistics
+//   // 累积统计量
 //   auto analysisManager = G4AnalysisManager::Instance();
 //
 //   const auto detConstruction = static_cast<const DetectorConstruction*>(

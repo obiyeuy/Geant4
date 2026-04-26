@@ -85,7 +85,20 @@ python3 scripts/pipeline/run_full_pipeline.py --stages build train --batch-id <b
 - `--ore-ratio`：矿石样本占比（0~1）
 - `--seed`：固定随机种子（默认可复现实验）
 - `--randomize-seed`：使用时间种子（每次运行不同）
+- `--matrix-material --matrix-density`：基质矿物及密度（g/cm3）
+- `--target-material --target-density`：目标矿物及密度（g/cm3）
+- `--target-grade-min --target-grade-max`：目标矿物质量百分比采样范围（wt%）
+- `--label-threshold`：构建标签的二分类阈值（单位：%）
 - `--geant-exec`：Geant4可执行文件路径
 - `--blank-dir`：空扫平场目录（用于R值计算；若同批次存在 `data/raw/batch_<batch_id>/blank` 会优先使用；否则按 `--beam-on` 自动匹配）
 - `--epochs --batch-size --lr`：训练参数
+
+---
+
+## 标签策略说明
+
+- 生成阶段仅写一套统一品位真值：`grade_value` + `grade_type`（例如 `G4_PbS_wt%`）
+- 构建阶段直接使用 `grade_value` 派生二分类标签：
+  - 规则：`class_id = 1 if grade_value >= --label-threshold else 0`
+- 历史数据若只有 `pb_mass_percent` 或 `pbs_mass_percent`，构建脚本会自动兼容读取
 

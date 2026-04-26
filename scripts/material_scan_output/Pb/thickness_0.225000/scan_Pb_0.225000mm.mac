@@ -1,5 +1,5 @@
-# Material thickness scan macro
-# Material: Pb, Thickness: 0.225 mm
+# 材料厚度扫描宏
+# 材料： Pb, 厚度： 0.225 mm
 
 /control/verbose 2
 /run/verbose 2
@@ -9,7 +9,7 @@
 
 /run/initialize
 
-# Output directory: /home/yyb/workspace/XRay-all/XRay-detectionCode/scripts/material_scan_output/Pb/thickness_0.225000
-# This is set via environment variable G4_OUTPUT_DIR
+# 输出目录： /home/yyb/workspace/XRay-all/XRay-detectionCode/scripts/material_scan_output/Pb/thickness_0.225000
+# 该路径通过环境变量 G4_OUTPUT_DIR 设置
 
 /run/beamOn 1000000

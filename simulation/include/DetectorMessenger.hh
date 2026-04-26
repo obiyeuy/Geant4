@@ -1,31 +1,31 @@
 //
 // ********************************************************************
-// * License and Disclaimer                                           *
+// * 许可证与免责声明                                           *
 // *                                                                  *
-// * The  Geant4 software  is  copyright of the Copyright Holders  of *
-// * the Geant4 Collaboration.  It is provided  under  the terms  and *
-// * conditions of the Geant4 Software License,  included in the file *
-// * LICENSE and available at  http://cern.ch/geant4/license .  These *
-// * include a list of copyright holders.                             *
+// * Geant4 软件版权归以下版权持有者所有： *
+// * Geant4 协作组。软件按以下条款提供： *
+// * Geant4 软件许可证条款，包含在文件中： *
+// * LICENSE，或访问 http://cern.ch/geant4/license 。其中 *
+// * 包含版权持有者列表。                             *
 // *                                                                  *
-// * Neither the authors of this software system, nor their employing *
-// * institutes,nor the agencies providing financial support for this *
-// * work  make  any representation or  warranty, express or implied, *
-// * regarding  this  software system or assume any liability for its *
-// * use.  Please see the license in the file  LICENSE  and URL above *
-// * for the full disclaimer and the limitation of liability.         *
+// * 本软件系统作者及其所属机构， *
+// * 以及提供经费支持的机构， *
+// * 均不对本软件作任何明示或暗示担保， *
+// * 也不对本软件系统承担任何责任。 *
+// * 有关使用条款请参见 LICENSE 文件及上述网址， *
+// * 以获取完整免责声明与责任限制。         *
 // *                                                                  *
-// * This  code  implementation is the result of  the  scientific and *
-// * technical work of the GEANT4 collaboration.                      *
-// * By using,  copying,  modifying or  distributing the software (or *
-// * any work based  on the software)  you  agree  to acknowledge its *
-// * use  in  resulting  scientific  publications,  and indicate your *
-// * acceptance of all terms of the Geant4 Software license.          *
+// * 本代码实现源自 GEANT4 协作组的科学与 *
+// * 技术工作成果。                      *
+// * 使用、复制、修改或分发本软件（或 *
+// * 基于本软件的任何成果）即表示你同意在 *
+// * 相关科学出版物中致谢其使用，并表示你 *
+// * 接受 Geant4 软件许可证的全部条款。          *
 // ********************************************************************
 //
 //
 /// \file DetectorMessenger.hh
-/// \brief Definition of the DetectorMessenger class
+/// \brief DetectorMessenger 类定义
 
 #ifndef DetectorMessenger_h
 #define DetectorMessenger_h 1

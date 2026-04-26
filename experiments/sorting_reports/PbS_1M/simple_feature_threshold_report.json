@@ -1,0 +1,106 @@
+{
+  "method": "simple_feature_threshold_sorting",
+  "batch_id": "PbS_1M",
+  "label_rule": "class=1 if grade_value >= 5.0 wt% else 0",
+  "split": {
+    "seed": 42,
+    "train": 210,
+    "val": 45,
+    "test": 45
+  },
+  "feature_def": {
+    "mean_t_low": "mean of t_low map",
+    "mean_t_high": "mean of t_high map",
+    "mean_r": "mean of r_map"
+  },
+  "model_A_mean_r_threshold": {
+    "rule": "ore if mean_r >= tr else waste",
+    "threshold": 1.0572742581367494,
+    "train": {
+      "n": 210,
+      "accuracy": 0.7333333333333333,
+      "precision": 0.751219512195122,
+      "recall": 0.9685534591194969,
+      "f1": 0.8461538461538461,
+      "tp": 154,
+      "tn": 0,
+      "fp": 51,
+      "fn": 5
+    },
+    "val": {
+      "n": 45,
+      "accuracy": 0.7111111111111111,
+      "precision": 0.7441860465116279,
+      "recall": 0.9411764705882353,
+      "f1": 0.8311688311688312,
+      "tp": 32,
+      "tn": 0,
+      "fp": 11,
+      "fn": 2
+    },
+    "test": {
+      "n": 45,
+      "accuracy": 0.7333333333333333,
+      "precision": 0.75,
+      "recall": 0.9705882352941176,
+      "f1": 0.846153846153846,
+      "tp": 33,
+      "tn": 0,
+      "fp": 11,
+      "fn": 1
+    }
+  },
+  "model_B_three_feature_rule": {
+    "rule": "ore if (mean_r >= tr) and (mean_t_low <= tl) and (mean_t_high <= th) else waste",
+    "thresholds": {
+      "tr": 1.0607863903045653,
+      "tl": 0.9058276116847992,
+      "th": 0.9063304384549459
+    },
+    "train": {
+      "n": 210,
+      "accuracy": 0.7142857142857143,
+      "precision": 0.8,
+      "recall": 0.8301886792452831,
+      "f1": 0.8148148148148149,
+      "tp": 132,
+      "tn": 18,
+      "fp": 33,
+      "fn": 27
+    },
+    "val": {
+      "n": 45,
+      "accuracy": 0.6666666666666666,
+      "precision": 0.7714285714285715,
+      "recall": 0.7941176470588235,
+      "f1": 0.782608695652174,
+      "tp": 27,
+      "tn": 3,
+      "fp": 8,
+      "fn": 7
+    },
+    "test": {
+      "n": 45,
+      "accuracy": 0.6888888888888889,
+      "precision": 0.7777777777777778,
+      "recall": 0.8235294117647058,
+      "f1": 0.7999999999999999,
+      "tp": 28,
+      "tn": 3,
+      "fp": 8,
+      "fn": 6
+    }
+  },
+  "efficientnet_reference": {
+    "best_val_acc": 0.9555555555555556,
+    "test_loss": 0.21645829346444873,
+    "test_acc": 0.9333333333333333,
+    "epochs": 20,
+    "batch_size": 16,
+    "lr": 0.001,
+    "device": "cpu",
+    "train_size": 210,
+    "val_size": 45,
+    "test_size": 45
+  }
+}

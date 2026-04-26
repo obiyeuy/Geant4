@@ -24,8 +24,15 @@ class PipelineConfig:
 
     batch_id: str
     num_samples: int
+    sample_start_index: int
     ore_ratio: float
     seed: int
+    matrix_material: str
+    matrix_density: float
+    target_material: str
+    target_density: float
+    target_grade_min: float
+    target_grade_max: float
 
     geant_exec: Path
     simulation_root: Path
@@ -34,6 +41,7 @@ class PipelineConfig:
     ore_mode: str
     geometry_guard: bool
     tess_max_retries: int
+    label_threshold: float
 
     train_ratio: float
     val_ratio: float
@@ -41,6 +49,7 @@ class PipelineConfig:
     batch_size: int
     lr: float
     num_workers: int
+    balance_mode: str
 
 
 @dataclass
@@ -49,12 +58,16 @@ class SampleMeta:
     class_id: int
     class_name: str
     matrix_material: str
+    target_material: str
     mix_spec: str
     mix_density: float
-    pb_mass_fraction: float
-    pb_mass_percent: float
-    pbs_mass_fraction: float
-    quartz_mass_fraction: float
+    matrix_mass_fraction: float
+    matrix_mass_percent: float
+    target_mass_fraction: float
+    target_mass_percent: float
+    grade_value: float
+    grade_type: str
+    grade_basis: str
     lumps: int
     cuts: int
     scale: float
@@ -64,26 +77,32 @@ def _ensure_dir(path: Path) -> None:
     path.mkdir(parents=True, exist_ok=True)
 
 
-PB_ATOMIC_MASS = 207.2
-S_ATOMIC_MASS = 32.06
-PBS_PB_MASS_FRACTION = PB_ATOMIC_MASS / (PB_ATOMIC_MASS + S_ATOMIC_MASS)
-PBS_DENSITY = 7.6  # g/cm3
-QUARTZ_DENSITY = 2.65  # g/cm3
-
-
-def _sample_material_setup(is_ore: bool, rng: random.Random) -> tuple[str, str, float, float, float, float]:
-    if is_ore:
-        # User-facing ore definition: quartz + PbS, with lead mass fraction uniformly sampled in [0, 20%].
-        pb_mass_fraction = rng.uniform(0.0, 0.20)
-        pbs_mass_fraction = min(pb_mass_fraction / PBS_PB_MASS_FRACTION, 1.0)
-        quartz_mass_fraction = max(0.0, 1.0 - pbs_mass_fraction)
-        mix = f"G4_SILICON_DIOXIDE:{quartz_mass_fraction * 100.0:.6f},G4_PbS:{pbs_mass_fraction * 100.0:.6f}"
-        # Mass-fraction mixture density from specific volume averaging.
-        mix_density = 1.0 / (
-            (quartz_mass_fraction / QUARTZ_DENSITY) + (pbs_mass_fraction / PBS_DENSITY)
-        )
-        return "G4_SILICON_DIOXIDE", mix, mix_density, pb_mass_fraction, pbs_mass_fraction, quartz_mass_fraction
-    return "G4_SILICON_DIOXIDE", "", QUARTZ_DENSITY, 0.0, 0.0, 1.0
+def _sample_material_setup(
+    cfg: PipelineConfig, rng: random.Random
+) -> tuple[str, str, float, float, float, float, str]:
+    # 所有样本先随机品位，再由阈值派生 ore/waste 标签。
+    target_mass_percent = rng.uniform(cfg.target_grade_min, cfg.target_grade_max)
+    target_mass_fraction = target_mass_percent / 100.0
+    matrix_mass_fraction = max(0.0, 1.0 - target_mass_fraction)
+    mix = (
+        f"{cfg.matrix_material}:{matrix_mass_fraction * 100.0:.6f},"
+        f"{cfg.target_material}:{target_mass_fraction * 100.0:.6f}"
+    )
+    # 基于质量分数的比体积加权：
+    # 1/rho_mix = sum_i(w_i / rho_i)
+    # 统一用于 ore 与 waste（waste 时 target 分数为 0）。
+    mix_density = 1.0 / (
+        (matrix_mass_fraction / cfg.matrix_density) + (target_mass_fraction / cfg.target_density)
+    )
+    return (
+        cfg.matrix_material,
+        mix,
+        mix_density,
+        matrix_mass_fraction,
+        target_mass_fraction,
+        target_mass_percent,
+        f"{cfg.target_material}_wt%",
+    )
 
 
 def generate_samples(cfg: PipelineConfig) -> list[Path]:
@@ -93,27 +112,49 @@ def generate_samples(cfg: PipelineConfig) -> list[Path]:
     batch_dir = cfg.raw_root / f"batch_{cfg.batch_id}"
     _ensure_dir(batch_dir)
 
+    if cfg.target_grade_min < 0 or cfg.target_grade_max > 100 or cfg.target_grade_min > cfg.target_grade_max:
+        raise ValueError("target grade range must satisfy 0 <= min <= max <= 100")
+
     generated: list[Path] = []
     for i in range(cfg.num_samples):
-        is_ore = rng.random() < cfg.ore_ratio
-        class_id = 1 if is_ore else 0
-        class_name = "ore" if is_ore else "waste"
-        sample_name = f"sample_{i+1:05d}_{class_name}"
+        sample_index = cfg.sample_start_index + i
+        (
+            matrix_material,
+            mix_spec,
+            mix_density,
+            matrix_mass_fraction,
+            target_mass_fraction,
+            target_mass_percent,
+            grade_type,
+        ) = _sample_material_setup(cfg, rng)
+        # 生成阶段的类别直接按阈值定义：
+        # ore: grade >= label_threshold, waste: grade < label_threshold
+        # 这样 waste 样本会保留非零低品位，而不是全部 0。
+        class_id = 1 if target_mass_percent >= cfg.label_threshold else 0
+        class_name = "ore" if class_id == 1 else "waste"
+        sample_name = f"sample_{sample_index:05d}_{class_name}"
         sample_dir = batch_dir / sample_name
+        if sample_dir.exists():
+            raise FileExistsError(
+                f"Sample folder already exists: {sample_dir}. "
+                "Please choose a larger --sample-start-index to append new samples."
+            )
         _ensure_dir(sample_dir)
-
-        matrix_material, mix_spec, mix_density, pb_mass_fraction, pbs_mass_fraction, quartz_mass_fraction = _sample_material_setup(is_ore, rng)
         meta = SampleMeta(
             sample_name=sample_name,
             class_id=class_id,
             class_name=class_name,
             matrix_material=matrix_material,
+            target_material=cfg.target_material,
             mix_spec=mix_spec,
             mix_density=mix_density,
-            pb_mass_fraction=pb_mass_fraction,
-            pb_mass_percent=pb_mass_fraction * 100.0,
-            pbs_mass_fraction=pbs_mass_fraction,
-            quartz_mass_fraction=quartz_mass_fraction,
+            matrix_mass_fraction=matrix_mass_fraction,
+            matrix_mass_percent=matrix_mass_fraction * 100.0,
+            target_mass_fraction=target_mass_fraction,
+            target_mass_percent=target_mass_percent,
+            grade_value=target_mass_percent,
+            grade_type=grade_type,
+            grade_basis="target_material_mass_percent",
             lumps=rng.randint(8, 16),
             cuts=rng.randint(12, 24),
             scale=rng.uniform(16.0, 22.0),
@@ -135,8 +176,12 @@ def generate_samples(cfg: PipelineConfig) -> list[Path]:
             "timestamp": datetime.now().isoformat(),
             "class": meta.class_id,
             "class_name": meta.class_name,
-            "pb_mass_fraction": meta.pb_mass_fraction,
-            "pb_mass_percent": meta.pb_mass_percent,
+            "target_material": meta.target_material,
+            "target_mass_fraction": meta.target_mass_fraction,
+            "target_mass_percent": meta.target_mass_percent,
+            "grade_value": meta.grade_value,
+            "grade_type": meta.grade_type,
+            "grade_basis": meta.grade_basis,
             "generator": "scripts/pipeline/stages.py::generate_samples",
             "batch_id": cfg.batch_id,
             "seed": cfg.seed,
@@ -158,7 +203,7 @@ def _infer_scan_steps(master_macro: Path) -> int:
     """
     Infer how many times scan_row.mac is executed by master macro.
 
-    We treat cfg.beam_on as the TOTAL particle count for the whole scan.
+    We treat cfg.beam_on as the particle count PER scan step.
     If master macro doesn't use /control/loop over scan_row.mac, fall back to 1.
     """
     try:
@@ -166,7 +211,7 @@ def _infer_scan_steps(master_macro: Path) -> int:
     except Exception:
         return 1
 
-    # Example:
+    # 示例：
     # /control/loop scan_row.mac iRow -17.5 17.5 0.7
     m = re.search(
         r"^\s*/control/loop\s+scan_row\.mac\s+\S+\s+([-+]?\d*\.?\d+)\s+([-+]?\d*\.?\d+)\s+([-+]?\d*\.?\d+)\s*$",
@@ -202,7 +247,7 @@ def _write_launch_macro(simulation_root: Path, gdml_path: Path, master_macro: Pa
     launch_path = simulation_root / "launch_sample.mac"
     content = [
         "/run/numberOfThreads 12",
-        # Stable order: initialize geometry first, then replace placeholder object with GDML ore.
+        # 稳定顺序：先初始化几何体，再用 GDML 矿石替换占位物体。
         "/run/initialize",
         f"/Xray/det/loadGDML {gdml_path}",
         f"/control/execute {master_macro}",
@@ -219,8 +264,7 @@ def _run_simulation_once_with_gdml(cfg: PipelineConfig, gdml_path: Path, output_
     _ensure_dir(output_dir)
     _ensure_dir(log_path.parent)
 
-    steps = _infer_scan_steps(cfg.master_macro)
-    beam_on_per_step = max(1, int(math.ceil(float(cfg.beam_on) / float(steps))))
+    beam_on_per_step = max(1, int(cfg.beam_on))
     _write_scan_row(cfg.simulation_root, beam_on_per_step=beam_on_per_step)
     launch_macro = _write_launch_macro(cfg.simulation_root, gdml_path, cfg.master_macro)
 
@@ -252,27 +296,6 @@ def _log_has_geometry_failure(log_path: Path) -> bool:
     return any(re.search(p, text) for p in patterns)
 
 
-def _regenerate_ore_from_info(sample_dir: Path, mode: str) -> None:
-    from generate_ore import create_rugged_ore_gdml
-
-    info_path = sample_dir / "info.json"
-    if not info_path.exists():
-        raise FileNotFoundError(f"Missing info.json: {info_path}")
-    info = json.loads(info_path.read_text(encoding="utf-8"))
-    geom = info.get("geometry", {})
-    gdml_path = sample_dir / "ore.gdml"
-    create_rugged_ore_gdml(
-        str(gdml_path),
-        matrix_material=str(geom.get("matrix_material", "CalciumPhosphate")),
-        mix_spec=str(geom.get("mix_spec", "")),
-        mix_density=float(geom.get("mix_density", 2.9)),
-        num_lumps=int(geom.get("lumps", 12)),
-        num_cuts=int(geom.get("cuts", 18)),
-        base_scale=float(geom.get("scale", 12.0)),
-        mode=mode,
-    )
-
-
 def _run_single_simulation(cfg: PipelineConfig, sample_dir: Path) -> None:
     log_dir = sample_dir / "logs"
     _ensure_dir(log_dir)
@@ -281,9 +304,9 @@ def _run_single_simulation(cfg: PipelineConfig, sample_dir: Path) -> None:
         _run_single_simulation_once(cfg, sample_dir, log_dir / "sim.log")
         return
 
-    # 1) tessellated retries
+    # geometry_guard 仅负责“重跑同一份 GDML”进行稳定性确认，
+    # 不在 simulate 阶段重建或改写几何（几何只由 generate 阶段产出）。
     for attempt in range(1, cfg.tess_max_retries + 1):
-        _regenerate_ore_from_info(sample_dir, mode="tessellated")
         log_path = log_dir / f"sim_tess_try{attempt}.log"
         _run_single_simulation_once(cfg, sample_dir, log_path)
         if not _log_has_geometry_failure(log_path):
@@ -291,17 +314,12 @@ def _run_single_simulation(cfg: PipelineConfig, sample_dir: Path) -> None:
             return
         print(f"[simulate] geometry_guard: tessellated failed at try={attempt}, retrying...")
 
-    # 2) fallback to csg once
-    print("[simulate] geometry_guard: fallback to csg")
-    _regenerate_ore_from_info(sample_dir, mode="csg")
-    fallback_log = log_dir / "sim_csg_fallback.log"
-    _run_single_simulation_once(cfg, sample_dir, fallback_log)
-    if _log_has_geometry_failure(fallback_log):
-        raise RuntimeError(
-            f"Geometry guard failed for {sample_dir.name}. "
-            f"See logs under {log_dir}."
-        )
-    print("[simulate] geometry_guard: csg fallback pass")
+    raise RuntimeError(
+        f"Geometry guard failed for {sample_dir.name}. "
+        "simulate stage does not regenerate geometry; "
+        "please rerun generate for this sample and then simulate again. "
+        f"See logs under {log_dir}."
+    )
 
 
 def simulate_samples(cfg: PipelineConfig, samples: Iterable[Path]) -> None:
@@ -314,7 +332,7 @@ def simulate_samples(cfg: PipelineConfig, samples: Iterable[Path]) -> None:
 
 
 def _write_blank_gdml(blank_gdml_path: Path) -> None:
-    # Keep OreLog name for compatibility with DetectorConstruction::LoadOreGDML.
+    # 保留 OreLog 名称以兼容 DetectorConstruction::LoadOreGDML。
     text = """<?xml version="1.0" ?>
 <gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
   <materials>
@@ -366,7 +384,7 @@ def simulate_blank(cfg: PipelineConfig) -> Path:
         log_path=log_dir / "sim_blank.log",
     )
     steps = _infer_scan_steps(cfg.master_macro)
-    beam_on_per_step = max(1, int(math.ceil(float(cfg.beam_on) / float(steps))))
+    beam_on_per_step = max(1, int(cfg.beam_on))
     meta = {
         "timestamp": datetime.now().isoformat(),
         "batch_id": cfg.batch_id,
@@ -376,7 +394,7 @@ def simulate_blank(cfg: PipelineConfig) -> Path:
         "master_macro": str(cfg.master_macro),
         "scan_row_template": {
             "set_obj_shift": "/Xray/det/SetObjShift {iRow} mm",
-            "beam_on_total": cfg.beam_on,
+            "beam_on_total": beam_on_per_step * steps,
             "beam_on_per_step": beam_on_per_step,
             "scan_steps": steps,
         },
@@ -412,6 +430,7 @@ def build_r_dataset(cfg: PipelineConfig) -> Path:
         train_ratio=cfg.train_ratio,
         val_ratio=cfg.val_ratio,
         seed=cfg.seed,
+        label_threshold=cfg.label_threshold,
     )
     return out_dir
 
@@ -427,6 +446,7 @@ def train_model(cfg: PipelineConfig, dataset_root: Path) -> Path:
         batch_size=cfg.batch_size,
         lr=cfg.lr,
         num_workers=cfg.num_workers,
+        balance_mode=cfg.balance_mode,
     )
     return out_dir
 

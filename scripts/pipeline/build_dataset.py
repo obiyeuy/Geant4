@@ -23,6 +23,8 @@ class SampleRecord:
     sample_id: str
     source_dir: str
     class_id: int
+    grade_value: float
+    grade_type: str
     split: str
     tensor_path: str
     t_low_path: str
@@ -42,21 +44,32 @@ def _discover_samples(raw_dir: Path) -> list[Path]:
     return sorted(out)
 
 
-def _infer_label(sample_dir: Path) -> int:
+def _load_grade_info(sample_dir: Path) -> tuple[float, str]:
     info_path = sample_dir / "info.json"
+    grade_type = "unknown_wt%"
+    grade_value = 0.0
     if info_path.exists():
         with info_path.open("r", encoding="utf-8") as f:
             info = json.load(f)
-        if "class" in info:
-            return int(info["class"])
-        if "label" in info:
-            return int(info["label"])
-    name = sample_dir.name.lower()
-    if "ore" in name:
-        return 1
-    if "waste" in name:
-        return 0
-    raise ValueError(f"Cannot infer class for sample: {sample_dir}")
+        if "grade_value" in info:
+            grade_value = float(info["grade_value"])
+        if "grade_type" in info:
+            grade_type = str(info["grade_type"])
+        elif "target_material" in info:
+            # 兼容缺失 grade_type 的样本：沿用当前约定（按目标矿物质量百分比定义）
+            grade_type = f"{info['target_material']}_wt%"
+        # 兼容旧版样本元数据。
+        elif "pbs_mass_percent" in info:
+            grade_value = float(info["pbs_mass_percent"])
+            grade_type = "PbS_wt%"
+        elif "pb_mass_percent" in info:
+            grade_value = float(info["pb_mass_percent"])
+            grade_type = "Pb_wt%"
+    return grade_value, grade_type
+
+
+def _derive_binary_label(grade_value: float, label_threshold: float) -> int:
+    return 1 if grade_value >= label_threshold else 0
 
 
 def _split_samples(samples: list[Path], train_ratio: float, val_ratio: float, seed: int) -> dict[str, list[Path]]:
@@ -77,6 +90,8 @@ def _save_sample_features(
     split: str,
     flat_field: FlatField,
     class_id: int,
+    grade_value: float,
+    grade_type: str,
     index: int,
 ) -> SampleRecord:
     low, high = read_energy_matrix(sample_dir)
@@ -105,6 +120,8 @@ def _save_sample_features(
         sample_id=sample_id,
         source_dir=str(sample_dir),
         class_id=class_id,
+        grade_value=grade_value,
+        grade_type=grade_type,
         split=split,
         tensor_path=str(tensor_path),
         t_low_path=str(t_low_path),
@@ -120,6 +137,7 @@ def build_dataset(
     train_ratio: float,
     val_ratio: float,
     seed: int,
+    label_threshold: float,
 ) -> None:
     samples = _discover_samples(raw_dir)
     if not samples:
@@ -131,8 +149,18 @@ def build_dataset(
     records: list[SampleRecord] = []
     for split_name, split_samples in splits.items():
         for idx, sample_dir in enumerate(split_samples):
-            class_id = _infer_label(sample_dir)
-            record = _save_sample_features(sample_dir, out_dir, split_name, flat_field, class_id, idx)
+            grade_value, grade_type = _load_grade_info(sample_dir)
+            class_id = _derive_binary_label(grade_value, label_threshold=label_threshold)
+            record = _save_sample_features(
+                sample_dir,
+                out_dir,
+                split_name,
+                flat_field,
+                class_id,
+                grade_value,
+                grade_type,
+                idx,
+            )
             records.append(record)
 
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -141,6 +169,12 @@ def build_dataset(
         "blank_dir": str(blank_dir),
         "num_samples": len(samples),
         "splits": {k: len(v) for k, v in splits.items()},
+        "label_policy": {
+            "task": "binary_classification",
+            "rule": "class=1 if grade_value >= threshold else 0",
+            "grade_type": "from_sample_info",
+            "threshold": label_threshold,
+        },
         "records": [asdict(r) for r in records],
     }
     with (out_dir / "manifest.json").open("w", encoding="utf-8") as f:
@@ -169,6 +203,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--train-ratio", type=float, default=0.7)
     parser.add_argument("--val-ratio", type=float, default=0.15)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument(
+        "--label-threshold",
+        type=float,
+        default=0.5,
+        help="Binary threshold in percent for class derivation",
+    )
     return parser.parse_args()
 
 
@@ -181,6 +221,7 @@ def main() -> None:
         train_ratio=args.train_ratio,
         val_ratio=args.val_ratio,
         seed=args.seed,
+        label_threshold=args.label_threshold,
     )
 
 

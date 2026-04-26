@@ -70,7 +70,7 @@ void PhysicsList::SetCuts(){
 	// #include "G4ProductionCutsTable.hh"
 	// #include "G4ProductionCuts.hh"
 	auto cutsTable = G4ProductionCutsTable::GetProductionCutsTable();
-	G4Region* worldRegion = G4RegionStore::GetInstance()->GetRegion("DefaultRegionForTheWorld");
+G4Region* worldRegion = G4RegionStore::GetInstance()->GetRegion("DefaultRegionForTheWorld");
 	if (worldRegion) {
 	    G4ProductionCuts* worldCuts = worldRegion->GetProductionCuts();
 	    if (worldCuts) {
