@@ -4,7 +4,7 @@ from pathlib import Path
 
 import streamlit as st
 
-from pages import overview, progress, results, run_config, sample_explorer
+from pages import ore_model_viewer, overview, progress, results, run_config, sample_explorer
 from task_service import TaskService
 
 
@@ -86,7 +86,7 @@ def main() -> None:
     st.sidebar.markdown("### 导航菜单")
     page = st.sidebar.radio(
         "页面",
-        options=["总览", "任务配置", "任务进度", "结果分析", "样本浏览"],
+        options=["总览", "任务配置", "任务进度", "结果分析", "样本浏览", "矿石模型"],
     )
 
     if page == "总览":
@@ -99,6 +99,8 @@ def main() -> None:
         results.render(PROJECT_ROOT)
     elif page == "样本浏览":
         sample_explorer.render(PROJECT_ROOT)
+    elif page == "矿石模型":
+        ore_model_viewer.render(PROJECT_ROOT)
 
 
 if __name__ == "__main__":
