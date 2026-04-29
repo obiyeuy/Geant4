@@ -1,4 +1,4 @@
 /run/numberOfThreads 12
 /run/initialize
-/Xray/det/loadGDML /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_web_20260426_142438/sample_00010_ore/ore.gdml
+/Xray/det/loadGDML /home/yyb/workspace/XRay-all/XRay-detectionCode/data/raw/batch_PbS_1M/sample_00622_ore/ore.gdml
 /control/execute /home/yyb/workspace/XRay-all/XRay-detectionCode/simulation/master.mac

@@ -127,6 +127,54 @@ def _median_denoise(arr: np.ndarray, size: int = 3) -> np.ndarray:
         return arr
 
 
+def _hsv_to_rgb_u8(h: np.ndarray, s: np.ndarray, v: np.ndarray) -> np.ndarray:
+    """
+    Convert HSV to RGB (uint8), vectorized.
+
+    Args:
+        h: hue in degrees [0, 360) (float32/float64 array)
+        s: saturation in [0, 1]
+        v: value in [0, 1]
+    Returns:
+        rgb: uint8 image array with shape [..., 3]
+    """
+    # Normalize hue to [0, 360)
+    h = np.mod(h, 360.0).astype(np.float32)
+    s = np.clip(s, 0.0, 1.0).astype(np.float32)
+    v = np.clip(v, 0.0, 1.0).astype(np.float32)
+
+    c = v * s
+    hp = h / 60.0
+    x = c * (1.0 - np.abs(np.mod(hp, 2.0) - 1.0))
+
+    # RGB' in [0, c] before adding m
+    z = np.zeros_like(hp, dtype=np.float32)
+    r_p = np.empty_like(hp, dtype=np.float32)
+    g_p = np.empty_like(hp, dtype=np.float32)
+    b_p = np.empty_like(hp, dtype=np.float32)
+
+    m0 = (0.0 <= hp) & (hp < 1.0)
+    r_p[m0], g_p[m0], b_p[m0] = c[m0], x[m0], z[m0]
+    m1 = (1.0 <= hp) & (hp < 2.0)
+    r_p[m1], g_p[m1], b_p[m1] = x[m1], c[m1], z[m1]
+    m2 = (2.0 <= hp) & (hp < 3.0)
+    r_p[m2], g_p[m2], b_p[m2] = z[m2], c[m2], x[m2]
+    m3 = (3.0 <= hp) & (hp < 4.0)
+    r_p[m3], g_p[m3], b_p[m3] = z[m3], x[m3], c[m3]
+    m4 = (4.0 <= hp) & (hp < 5.0)
+    r_p[m4], g_p[m4], b_p[m4] = x[m4], z[m4], c[m4]
+    m5 = (5.0 <= hp) & (hp < 6.0)
+    r_p[m5], g_p[m5], b_p[m5] = c[m5], z[m5], x[m5]
+
+    # Add m = v - c
+    m = v - c
+    r = r_p + m
+    g = g_p + m
+    b = b_p + m
+    rgb = np.stack([r, g, b], axis=-1)
+    return np.clip(rgb * 255.0, 0, 255).astype(np.uint8)
+
+
 def render_sample_images(sample_dir: Path, flat_field: FlatField) -> Path:
     """
     Render low/high/R maps as PNG images under raw sample folder.
@@ -173,6 +221,41 @@ def render_sample_images(sample_dir: Path, flat_field: FlatField) -> Path:
     Image.fromarray(r_u8_denoised, mode="L").resize(
         (r_u8_denoised.shape[1] * 4, r_u8_denoised.shape[0] * 4), resample=Image.Resampling.NEAREST
     ).save(images_dir / "r_map_denoised_vis_x4.png")
+
+    # HSV 伪彩色：
+    # - 饱和度固定 S0
+    # - 明度 V 从左下(小衰减)到右上(大衰减)：V ~= a_low + a_high 的归一化
+    # - 色相 H 从左上(blue)到右下(red)连续过渡：用 s = a_low/(a_low+a_high) 控制
+    S0 = 0.85
+    denom = np.maximum(a_low_f + a_high_f, EPS)
+    s_coord = np.clip(a_low_f / denom, 0.0, 1.0)  # 0: left-top (a_low<<a_high)->blue, 1: right-bottom->red
+    hue = 240.0 * (1.0 - s_coord)  # blue=240, green=120, red=0
+
+    v_coord = a_low_f + a_high_f
+    if ore_mask is not None and ore_mask.shape == v_coord.shape and np.any(ore_mask):
+        v_lo = float(np.quantile(v_coord[ore_mask], 0.01))
+        v_hi = float(np.quantile(v_coord[ore_mask], 0.99))
+    else:
+        v_lo = float(np.quantile(v_coord, 0.01))
+        v_hi = float(np.quantile(v_coord, 0.99))
+    if v_hi <= v_lo:
+        v_norm = np.zeros_like(v_coord, dtype=np.float32)
+    else:
+        v_norm = np.clip((v_coord - v_lo) / (v_hi - v_lo), 0.0, 1.0).astype(np.float32)
+
+    # Background to black
+    hsv_s = np.full_like(hue, S0, dtype=np.float32)
+    hsv_v = v_norm.astype(np.float32)
+    if ore_mask is not None and ore_mask.shape == hsv_v.shape:
+        hsv_s = hsv_s * ore_mask.astype(np.float32)
+        hsv_v = hsv_v * ore_mask.astype(np.float32)
+        hue = np.where(ore_mask, hue, 0.0)
+
+    rgb_hsv = _hsv_to_rgb_u8(hue, hsv_s, hsv_v)
+    Image.fromarray(rgb_hsv, mode="RGB").save(images_dir / "r_map_hsv_pseudocolor.png")
+    Image.fromarray(rgb_hsv, mode="RGB").resize(
+        (rgb_hsv.shape[1] * 4, rgb_hsv.shape[0] * 4), resample=Image.Resampling.NEAREST
+    ).save(images_dir / "r_map_hsv_pseudocolor_vis_x4.png")
 
     rgb = np.stack([_to_u8(low), _to_u8(high), _to_u8(r_map)], axis=-1)
     Image.fromarray(rgb, mode="RGB").save(images_dir / "preview_rgb.png")

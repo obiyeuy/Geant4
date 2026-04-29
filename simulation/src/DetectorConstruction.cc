@@ -240,7 +240,7 @@ G4VPhysicalVolume *DetectorConstruction::Construct()
 	auto logicWorld
 		= new G4LogicalVolume(
 					solidWorld,           // 对应几何体
-					真空,  // 材质
+					Vacuum,  // 材质
 					"World");         // 名称
 									
 	constexpr G4bool kCheckOverlaps = true;
